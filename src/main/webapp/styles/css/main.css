@@ -1,0 +1,289 @@
+body{
+	font-family:"microsoft yahei";
+}
+em,i{
+	font-style:normal;
+}
+li{list-style:none;}
+.container-fluid{
+	padding:0;
+	margin:0;
+}
+.header{
+	width:100%;
+	height:158px;
+	overflow:hidden;
+	border-top: 7px solid #10488c;
+    background-color: #e8ebec;
+	clear:both;
+}
+.header  .sys-title{
+	width:400px;
+	height:74px;
+	overflow:hidden;
+	color:#0A468E;
+	font-size:32px;
+	background:url(./logo.png)no-repeat left 0px;
+	text-indent:50px;
+	margin-left:30px;
+	float:left;
+}
+.header .user-info{
+	width:auto;
+	height:106px;
+	overflow:hidden;
+	color:#0A468E;
+	font-size:14px; 
+	line-height:114px;
+	float:right;
+}
+.header  .user-info > span > em{
+	font-weight:700;
+	font-size:16px; 
+}
+.header  .user-info > a{
+	margin:0 20px; 
+}
+.header >  .nav{
+	width: 100%;
+    height: 44px; 
+    position: relative;
+    line-height: 44px;
+    background-color: #278bdd;
+	color:#fff;
+	font-size:16px;
+}
+.header > .header-top{
+	clear:both;
+	overflow:hidden;
+}
+.header > .nav >.nav-menu{
+	margin:0 100px;
+	clear:both;
+}
+.header  .nav-menu >li{
+	float:left;
+}
+.header  .nav-menu >li.active{
+	background:#1976c4;
+}
+.header  .nav-menu >li  a{
+	color:#fff;
+	text-decoration:none;
+	padding:0 10px;
+}
+.modal-box{
+	margin:15px 0;
+	border:1px solid #e3e3e3;
+	overflow:hidden;
+	width:100%;
+}
+.modal-box >.modal-header{
+	clear:both;
+	height:42px;
+	border-bottom:1px solid #e3e3e3;
+	padding:0px;
+	line-height:42px;
+}
+.modal-box >.modal-header >h4{
+	float:left;
+	margin:0;
+	padding:0 0 0 10px;
+	height:42px; 
+	font-size:16px;
+	line-height:42px;
+	
+}
+.modal-box >.modal-header >a{
+	float:right; 
+	padding-right:15px;
+	font-size:12px;
+	text-decoration:none;
+}
+.modal-box >.list-group{
+	padding:0;
+	margin:0;
+	border:none;
+}
+.modal-box >.list-group >.list-group-item{   
+	border-left:none;
+	border-right:none;
+	border-bottom:none;
+	border-radius:0px;
+}
+.modal-box >.list-group >.list-group-item:first-child{   
+	border-top:none; 
+}
+/****
+招聘管理
+****/
+.nav-right{
+	float:right
+}
+.recruit-manage{
+	padding:15px;
+}
+.recruit-manage  .customer-thead  >th{
+	padding: 15px 8px;
+	background:#fafcff;
+	border-top:none;
+	font-weight:600;
+}
+.recruit-manage  .customer-tbody  >td >.btn{
+	background:#fff;
+	border:1px solid #278bdd;
+	border-radius:0px;
+	color:#268bdd;
+	outline:none;
+	
+}
+.recruit-manage  .customer-tbody  >td {
+	font-size:12px; 
+	vertical-align: middle;
+}
+.recruit-manage  .customer-tbody  >td.color-yellow {
+	color:#fc6721;
+}
+.recruit-manage-add{
+	width:900px;
+	margin:15px auto;
+}
+/********************
+简历模板
+********************/
+.ui-user-info{
+	height:40px;
+	line-height:40px;
+	border-bottom:1px solid #e2e2e2;
+	font-size:16px;
+	text-align:left;
+	background-color:#fff9f3;
+	margin-bottom:0;
+}
+.ui-education-info{
+	background:#fff;
+}
+.ui-user-info .ui-edit-icon{
+	float:right;
+	margin:15px 10px 0;
+	color:#FF9B49;
+	cursor:pointer; 
+}
+.ui-userInfo-content{
+	background-color:#fff9f3;
+	overflow:hidden;
+}
+.ui-userInfo-content > .row > .col-md-2{
+	text-align:right;
+	line-height:230%;
+}
+.ui-userInfo-content > .row > .col-md-10{
+	text-align:right;
+}
+.ui-userInfo-content.unEdit > .row  > .col-md-10 > select,
+.ui-userInfo-content.unEdit > .row  > .col-md-10 > input ,
+.ui-userInfo-content.unEdit > .row  > .col-md-5 > select,
+.ui-userInfo-content.unEdit > .row  > .col-md-5 > input{
+	border:none;
+	background-color: transparent;
+	box-shadow:none;
+	cursor:auto;
+}
+.ui-education-content.unEdit{
+	background:#fff;
+	overflow:hidden; 
+}
+.ui-education-content.unEdit .ui-date-stylle{
+	width:125px;
+	float:left;
+	padding:6px ;
+	font-size: 12px;
+}
+.ui-education-content.unEdit .ui-date-line{
+	width:auto;
+	float:left; 
+	line-height:34px;
+	margin:0 3px;
+}
+.ui-education-content > li{ 
+	margin:5px 0;
+}
+.ui-education-content > li > span > span { 
+	line-height:34px;
+	cursor:pointer;
+}
+.ui-education-content.unEdit > li > span > span { 
+	display:none;
+}
+.ui-education-content.unEdit > li > span > input,
+.ui-education-content.unEdit > li > span > select{
+	border:none;
+	background-color: transparent;
+	box-shadow:none;
+}
+ 
+.ui-education-content.unEdit > li > .ui-professional-text > textarea{
+	border:none;
+	background-color: transparent;
+	box-shadow:none;
+	text-align:left;
+	height:auto;
+	min-height:500px;
+	resize:none;
+	cursor:auto;
+}
+.ui-experience-content{
+	border-bottom:1px solid #e2e2e2;
+	padding:5px 0;
+}
+.ui-experience-content.unEdit > li > span { 
+	padding:0 10px;
+}
+.ui-experience-content.unEdit > li > span > input,
+.ui-experience-content.unEdit > li > span > select,
+.ui-experience-content.unEdit > li > span > textarea,
+.ui-objective-content.unEdit > li > span > input,
+.ui-objective-content.unEdit > li > span > select,
+.ui-objective-content.unEdit > li > span > textarea{
+	margin:6px 0;
+	padding:6px 3px; 
+	cursor:inherit;
+	border:none;
+	background-color: transparent;
+	box-shadow:none;
+	text-align:left;
+	resize:none;
+}
+.ui-experience-content.unEdit > li > .ui-experience-line{
+	line-height:44px;
+	width:30px;
+	margin:0;
+}
+.ui-experience-content.unEdit > li > .ui-job-title,
+.ui-objective-content.unEdit > li > .ui-job-title{
+	line-height:44px; 
+}
+.ui-objective-content.unEdit > li > span > textarea{
+	min-height:100px; 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>招聘系统</title>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8"> 
+<link rel="stylesheet" type="text/css" href="../css/jqueryUI/jquery-ui-1.11.0.min.css" />
+<link href="../js/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />  
+<link href="../css/main.css" rel="stylesheet" type="text/css" />  
+</head>
+ 
+<body>
+	<div class="container-fluid">
+		<div class="header">
+			<div class="header-top">
+				<h3 class="sys-title">小七的招聘管理系统</h3>
+				<div class="user-info">
+					<span>欢迎，<em>一般用户</em>，回来</span>
+					<a href ="javascript:void(0);">退出</a>
+				</div>
+			</div>
+			<div class="nav">
+				<ul class="nav-menu">
+					<li class="active">
+		 				<a href="#">首页</a>
+					</li>
+					<li>
+						<a href="#">我的招聘</a>
+					</li>
+					<li>
+						<a href="#">招聘管理</a>
+					</li>
+					<li>
+						<a href="#">公告管理</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="container-fluid recruit-manage-add"> 
+			<h3 class="ui-user-info">
+				<span>个人信息</span>
+				<span class="glyphicon glyphicon-pencil ui-edit-icon"></span>
+			</h3>
+			<ul class="container-fluid ui-userInfo-content unEdit">
+				<li class="row">
+					<label class="col-md-2">姓名：</label>
+					<span class="col-md-5">
+						<input type="text" class="form-control" value="张三" disabled/>
+					</span>
+					<span class="col-md-5">
+						<select class="form-control" disabled>
+							<option value="man" selected>男</option>
+							<option value="female">女</option>
+						</select>
+					</span>
+				</li>
+				<li class="row">
+					<label class="col-md-2">出生日期：</label>
+					<span class="col-md-10">
+						<input type="date" class="form-control" value="2016-03-31" pattern="/yyyy-MM-dd/" disabled/>
+					</span>
+				</li>
+				<li class="row">
+					<label class="col-md-2">手机号码：</label>
+					<span class="col-md-10">
+						<input type="number" class="form-control" value="18600006666" maxlength="11" disabled/>
+					</span>
+				</li>
+				<li class="row">
+					<label class="col-md-2">电子邮箱：</label>
+					<span class="col-md-10">
+						<input type="email" class="form-control" value="w82337799@gmail.com" disabled/>
+					</span>
+				</li>
+				<li class="row">
+					<label class="col-md-2">工作年限：</label>
+					<span class="col-md-10">
+						<select class="form-control" disabled>
+							<option value="1" selected>1年</option>
+							<option value="2">2年</option>
+							<option value="3">3年</option>
+							<option value="4">4年</option>
+							<option value="5-7">5-7年</option>
+						</select>
+					</span>
+				</li>
+				<li class="row">
+					<label class="col-md-2">居住-地：</label>
+					<span class="col-md-10">
+						<input type="text" class="form-control" value="北京-海淀-西二旗" disabled/>
+					</span>
+				</li>
+				<li class="row">
+					<label class="col-md-2">求职状态：</label>
+					<span class="col-md-10">
+						<select class="form-control" disabled>
+							<option value="1" selected>处于离职状态，随时入职</option>
+							<option value="2">一周后，可以入职</option>
+							<option value="3">现在在职，一月后方可入职</option>
+							<option value="4">一年内暂无换工作打算</option> 
+						</select>
+					</span>
+				</li>
+				<li class="row">
+					<label class="col-md-2">户籍-地：</label>
+					<span class="col-md-10">
+						<input type="text" class="form-control" value="北京-海淀-西二旗" disabled/>
+					</span>
+				</li>
+				<li class="row">
+					<label class="col-md-2">证件号码：</label>
+					<span class="col-md-5">
+						<input type="number" class="form-control" value="110120199001203040" maxlength="18" disabled/>
+					</span>
+					<span class="col-md-5">
+						<select class="form-control" disabled>
+							<option value="1" selected>身份证</option>
+							<option value="2">护照</option>
+						</select>
+					</span>
+				</li>
+			</ul>
+			<h3 class="ui-user-info ui-education-info">
+				<span>教育信息</span>
+				<span class="glyphicon glyphicon-pencil ui-edit-icon"></span>
+			</h3>
+			<ul class="container-fluid ui-education-content unEdit">
+				<li class="row">
+					<span class="col-md-4">
+						<input type="month" class="form-control ui-date-stylle" value="2012-09" disabled/>
+						<span class="ui-date-line">--</span>
+						<input type="month" class="form-control ui-date-stylle" value="2016-06" disabled/>
+					</span>
+					<span class="col-md-5">
+						<input type="text" class="form-control" value="北京理工大学" disabled/>
+					</span>
+					<span class="col-md-2">
+						<select class="form-control" disabled>
+							<option value="1" selected>本科</option>
+							<option value="2">专科</option>
+							<option value="3">本科同等学力</option>
+							<option value="4">专科同等学力</option>
+						</select>
+					</span>
+					<span class="col-md-1">
+						<span class="glyphicon glyphicon-plus"></span>
+						<span class="glyphicon glyphicon-minus"></span>
+					</span>
+				</li> 
+			</ul>
+			<h3 class="ui-user-info ui-education-info">
+				<span>专业技能</span>
+				<span class="glyphicon glyphicon-pencil ui-edit-icon"></span>
+			</h3>
+			<ul class="container-fluid ui-education-content unEdit">
+				<li class="row">
+					<span class="col-md-12 ui-professional-text">
+						<textarea class="form-control" disabled>
+精通javascript,div+css布局,能够独立完成html、jsp页面制作; 
+精通Jquery等，能用jquery熟练做出各种js特效，熟练运用jQuery插件 
+熟练解决浏览器兼容问题
+了解CSS框架：less等
+精通CSS，熟悉CSS Hack；
+精通HTML、XHTML、JS（JavaScript）、CSS、JQuery、Ajax等常用WEB技术； 
+熟悉HTML5/CSS3
+熟练Java以及JSP等Java Web编程技术； 
+熟悉Struts/Hibernate/Spring等开源框架进行项目开发； 
+熟悉MVC设计模式；
+精通javascript,div+css布局 
+熟练掌握Java、javascript等开发语言；
+能熟练应用多种服务器进行Java程序开发，包括：Apache、Tomcat 等； 
+熟悉MySql数据库； 
+了解Oracle(10g)数据库；   
+熟练使用web开发的相关技术（包括ajax、javascript、Jquery，html等技术）； 
+能熟练应用MyEclipse、NetBeans、Dreamweaver等集成开发工具。
+熟悉bootstrap框架
+						</textarea>
+					</span> 
+				</li> 
+			</ul>
+			<h3 class="ui-user-info ui-education-info">
+				<span>工作经验</span>
+				<span class="glyphicon glyphicon-pencil ui-edit-icon"></span>
+			</h3>
+			<ul class="container-fluid ui-experience-content unEdit">
+				<li class="row">
+					<span class="col-md-2"> 
+						<input type="month" name="stratTime" class="form-control" disabled value="2016-02"/>
+					</span> 
+					<span class="col-md-1 ui-experience-line">&nbsp;-&nbsp; </span>
+					<span class="col-md-2"> 
+						<input type="month" name="endTime" class="form-control" disabled value="2016-06"/>
+					</span> 
+					<span class="col-md-3"> 
+						<input type="text" name="companyName" class="form-control" disabled value="亚信科技（中国）有限公司"/>
+					</span> 
+					<span class="col-md-2"> 
+						<select class="form-control" disabled>
+							<option value="1" >0-20</option>
+							<option value="2">20-99</option>
+							<option value="3">100-150</option>
+							<option value="4">15-499</option>
+							<option value="5">499-1000</option>
+							<option value="6" selected>1000以上</option>
+						</select>
+					</span> 
+					<span class="col-md-2"> 
+						<select class="form-control" disabled>
+							<option value="1">民营企业</option>
+							<option value="2">事业单位</option>
+							<option value="3">外资独商</option>
+							<option value="4">合资企业</option>
+							<option value="5">国企</option>
+							<option value="6" selected>上市公司</option>
+							<option value="7">非盈利机构</option>
+						</select>
+					</span> 
+				</li> 
+				<li class="row">
+					<span class="col-md-2 ui-job-title">职位名称</span>
+					<span class="col-md-10">
+						<input type="text" name="jobName" class="form-control" disabled value="软件工程师 "/>
+					</span>
+				</li>
+				<li class="row">
+					<span class="col-md-2 ui-job-title">所在部门</span>
+					<span class="col-md-10">
+						<input type="text" name="jobName" class="form-control" disabled value="BI研发三部"/>
+					</span>
+				</li>
+				<li class="row">
+					<span class="col-md-2 ui-job-title">所在行业</span>
+					<span class="col-md-10">
+						<select class="form-control" disabled>
+							<option value="1">互联网</option>
+							<option value="2">计算机软件</option>
+							<option value="3">电子商务</option>
+							<option value="4">医药/医院</option>
+							<option value="5">房地产/建筑</option>
+							<option value="6" selected>服务业</option>
+							<option value="7">政府/教育</option>
+							<option value="8">广告/媒体</option>
+							<option value="9">金融/银行</option>
+						</select>
+					</span>
+				</li>
+				<li class="row">
+					<span class="col-md-2 ui-job-title">工作描述</span>
+					<span class="col-md-10">
+						<textarea class="form-control" disabled row="4">研发人员</textarea>
+					</span>
+				</li>
+				<li class="row">
+					<span class="col-md-2 ui-job-title">工作类型</span>
+					<span class="col-md-10">
+						<select class="form-control" disabled>
+							<option value="1">全职</option>
+							<option value="2">兼职</option> 
+							<option value="3" selected>实习生</option> 
+						</select>
+					</span>
+				</li>
+				<li class="row"> 
+					<span class="col-md-12">
+						<button type="button" class="btn btn-success">继续添加</button>
+					</span>
+				</li>
+			</ul>
+			<h3 class="ui-user-info ui-education-info">
+				<span>求职意向</span> 
+				<span class="glyphicon glyphicon-trash ui-edit-icon"></span>
+				<span class="glyphicon glyphicon-pencil ui-edit-icon"></span>
+			</h3>
+			<ul class="container-fluid ui-objective-content unEdit">
+				<li class="row">
+				<span class="col-md-2 ui-job-title">自我评价</span>
+					<span class="col-md-10">
+						<textarea class="form-control" disabled>本人乐观、开朗，热爱IT行业，喜欢从事软件开发工作。思维敏捷清晰，逻辑分析能力较强，有很好的学习、分析能力，参加过实习，能够承担较强的工作压力，做事有始终，敢于挑战！具备团队开发经验，规范的代码编写习惯。工作主动积极、团队协作、责任感强，具备良好团队合作精神！
+						</textarea>
+					</span> 
+				</li>
+				<li class="row">
+					<span class="col-md-2 ui-job-title">工作地点</span>
+					<span class="col-md-10">
+						<input type="text" name="jobAddress" class="form-control" disabled value="北京"/>
+					</span> 
+				</li>
+				<li class="row">
+					<span class="col-md-2 ui-job-title">期望行业</span>
+					<span class="col-md-10">
+						<select class="form-control" disabled>
+							<option value="1" selected>互联网</option>
+							<option value="2">计算机软件</option>
+							<option value="3">电子商务</option>
+							<option value="4">医药/医院</option>
+							<option value="5">房地产/建筑</option>
+							<option value="6">服务业</option>
+							<option value="7">政府/教育</option>
+							<option value="8">广告/媒体</option>
+							<option value="9">金融/银行</option>
+						</select>
+					</span> 
+				</li>
+				<li class="row">
+					<span class="col-md-2 ui-job-title">职能</span>
+					<span class="col-md-10">
+						<select class="form-control" disabled>
+							<option value="1" selected>助理工程师</option>
+							<option value="2">软件工程师</option>
+							<option value="3">部门助理</option>
+							<option value="4">前端开发</option>
+							<option value="5">前台人员</option>
+							<option value="6">销售</option>
+							<option value="7">售后</option>
+							<option value="8">硬件工程师</option> 
+						</select>
+					</span> 
+				</li>
+				<li class="row">
+					<span class="col-md-2 ui-job-title">工作类型</span>
+					<span class="col-md-10">
+						<select class="form-control" disabled>
+							<option value="1" selected>全职</option>
+							<option value="2">兼职</option>
+							<option value="3">实习</option> 
+						</select>
+					</span> 
+				</li>
+				<li class="row">
+					<span class="col-md-2 ui-job-title">期望薪资</span>
+					<span class="col-md-10">
+						<select class="form-control" disabled>
+							<option value="1" selected>3000-5000</option>
+							<option value="1">5000-8000</option>
+							<option value="2">8000-10000</option>
+							<option value="3">10000-15000</option> 
+							<option value="4">15000-20000</option> 
+							<option value="5">20000-25000</option> 
+							<option value="6">25000以上</option> 
+						</select>
+					</span> 
+				</li>
+			</ul>
+			<h3 class="ui-user-info ui-education-info">
+				<span>项目经验</span> 
+				<span class="glyphicon glyphicon-trash ui-edit-icon"></span>
+				<span class="glyphicon glyphicon-pencil ui-edit-icon"></span>
+			</h3>
+			<ul class="container-fluid ui-objective-content unEdit">
+				<li class="row">
+					<span class="col-md-2 ui-job-title">项目时间</span>
+					<span class="col-md-3"> 
+						<input type="month" name="endCompanyTime" class="form-control" disabled="" value="2016-02">
+					</span>
+					<span class="col-md-1"> 
+						-
+					</span>
+					<span class="col-md-3"> 
+						<input type="month" name="stratCompanyTime" class="form-control" disabled="" value="2016-02">
+					</span>
+				</li> 
+				<li class="row">
+					<span class="col-md-2 ui-job-title">项目名称</span>
+					<span class="col-md-10">
+						<input type="text" name="name" class="form-control" disabled value="BI开发系统"/>
+					</span> 
+				</li>
+				<li class="row">
+					<span class="col-md-2 ui-job-title">项目职位</span>
+					<span class="col-md-10">
+						<input type="text" name="name" class="form-control" disabled value="Java开发"/>
+					</span> 
+				</li>
+				<li class="row">
+				<span class="col-md-2 ui-job-title">项目描述</span>
+					<span class="col-md-10">
+						<textarea class="form-control" disabled>本人乐观、开朗，热爱IT行业，喜欢从事软件开发工作。思维敏捷清晰，逻辑分析能力较强，有很好的学习、分析能力，参加过实习，能够承担较强的工作压力，做事有始终，敢于挑战！具备团队开发经验，规范的代码编写习惯。工作主动积极、团队协作、责任感强，具备良好团队合作精神！
+						</textarea>
+					</span> 
+				</li> 
+			</ul>
+		</div>
+	</div>
+</body>
+</html> 
+<script type="text/javascript" src="../js/jquery/jquery-1.10.2.js"></script> 
+<script type="text/javascript" src="../js/jquery/jqueryUI/jquery-ui-1.11.0.min.js"></script> 
+<script type="text/javascript" src="../js/bootstrap/js/bootstrap.min.js"></script>  
+<script type="text/javascript">
+	$(function(){
+		 
+	});
+
+
+</script> 
+
+
+
+
+
+
+
+
+
+
+
