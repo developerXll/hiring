@@ -16,7 +16,7 @@
   </context-param>
   
   <!-- filter -->
-  <!-- <filter>
+  <filter>
   	<filter-name>sessionValidate</filter-name>
   	<filter-class>com.hiring.framework.filter.SessionValidateFilter</filter-class>
   	<init-param>
@@ -31,7 +31,7 @@
   <filter-mapping>
   	<filter-name>sessionValidate</filter-name>
   	<url-pattern>/*</url-pattern>
-  </filter-mapping> -->
+  </filter-mapping>
   
   <filter>
     <filter-name>SpringOpenSessionInViewFilter</filter-name>
