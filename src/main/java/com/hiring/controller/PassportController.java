@@ -1,6 +1,8 @@
 package com.hiring.controller;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -25,7 +27,7 @@ public class PassportController
 	private UserService userService;
 
 	/**
-	 * Ê×Ò³
+	 * é¦–é¡µ
 	 * 
 	 * @return
 	 */
@@ -36,34 +38,44 @@ public class PassportController
 	}
 
 	/**
-	 * ÓÃ»§µÇÂ¼
+	 * ç™»å½•ç”¨æˆ·
 	 * 
 	 * @param form
 	 * @param request
 	 * @return
 	 */
 	@RequestMapping ("/loginUser")
-	public ModelAndView loginUser(UserForm form, HttpServletRequest request)
+	@ResponseBody
+	public Map<String, Object> loginUser(UserForm form, HttpServletRequest request)
 	{
+		Map<String, Object> map = new HashMap<String, Object>();
 		if (!StringUtils.isNullOrEmpty(form.getUserName())
 				&& !StringUtils.isNullOrEmpty(form.getPassWord()))
 		{
 			UserObj user = userService.searchUserByName(form.getUserName());
-			if (user != null && form.getPassWord().equals(user.getPassword())
-					&& form.getUserType().equals(user.getUserType()))
+			if (user != null && form.getPassWord().equals(user.getPassword()))
 			{
 				// insert session
 				HttpSession session = request.getSession();
 				session.setAttribute(Constants.SESSION_AUTHENTICATION, user);
-				return new ModelAndView("index");
+				map.put("user", user);
+				map.put("status", 200);
+				map.put("message", "login success!");
 			}
+			else
+			{
+				map.put("status", 300);
+				map.put("message", "user doesn't exists!");
+			}
+		}else{
+			map.put("status", 300);
+			map.put("message", "userName and password must be input!");
 		}
-		// login failed
-		return new ModelAndView("index", "message", "login faild!");
+		return map;
 	}
 
 	/**
-	 * ÓÃ»§×¢²á
+	 * æ³¨å†Œç”¨æˆ·
 	 * 
 	 * @param form
 	 * @return
