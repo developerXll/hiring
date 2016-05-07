@@ -18,17 +18,9 @@
 	    ">
 	    
 	<!-- 视图设置 -->
-  	<bean id="viewResolver" class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
-	    <property name="exposeRequestAttributes" value="true" />
-	    <property name="exposeSessionAttributes" value="true" />
-	    <property name="viewClass">
-	      <value>org.springframework.web.servlet.view.freemarker.FreeMarkerView</value>
-	    </property>
-	    <!-- <property name="cache"><value>true</value></property> -->
-	    <property name="suffix"><value>.html</value></property>
-	    <property name="contentType">
-	      <value>text/html; charset=UTF-8</value>
-    </property>
+  	<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	    <property name="prefix" value="/html/" />      
+ 		<property name="suffix" value=".jsp" />
    </bean>
 
 	<context:component-scan base-package="com.hiring.controller" />

@@ -93,23 +93,6 @@
     </aop:config>
   <!-- hibernate end -->
   
-  <!-- freemarker基础配置 -->
-  <bean id="freemarkerConfig"
-      class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
-    <property name="templateLoaderPath" value="/html/" />
-    <property name="freemarkerSettings">
-      <props>
-        <prop key="template_update_delay">0</prop>
-        <prop key="default_encoding">UTF-8</prop>
-        <prop key="number_format">0.##########</prop>
-        <prop key="datetime_format">yyyy-MM-dd HH:mm:ss</prop>
-        <prop key="classic_compatible">true</prop>
-        <prop key="template_exception_handler">ignore</prop>
-        <prop key="auto_import">/common/spring.ftl as spring</prop>
-      </props>
-    </property>
-  </bean>
-  
   <!-- 扫描业务层service实现类 -->
   <context:component-scan base-package="com.hiring.**.impl" />
      
