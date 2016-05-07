@@ -7,24 +7,24 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.hiring.bean.obj.AnnouncementObj;
+import com.hiring.bean.obj.ResumeObj;
 import com.hiring.framework.Page;
-import com.hiring.service.AnnouncementService;
+import com.hiring.service.ResumeService;
 
 @RestController
-@RequestMapping("/announ")
-public class AnnouncementController
+@RequestMapping("/res")
+public class ResumeController
 	{
 
 	@Autowired
-	private AnnouncementService announcementService;
+	private ResumeService resumeService;
 
 	@RequestMapping("/list")
 	@ResponseBody
-	public List<AnnouncementObj> getList()
+	public List<ResumeObj> getList()
 		{
 		Page page = new Page();
-		return announcementService.findPageObj(page);
+		return resumeService.findPageObj(page);
 		}
 
 	}

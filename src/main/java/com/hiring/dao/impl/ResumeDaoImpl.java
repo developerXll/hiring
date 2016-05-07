@@ -6,8 +6,8 @@ import com.hiring.bean.Resume;
 import com.hiring.dao.ResumeDao;
 
 @Repository
-public class ResumeDaoImpl extends BaseDaoImpl<Resume, Long> implements
-		ResumeDao
-{
+public class ResumeDaoImpl extends BaseDaoImpl<Resume, Long>
+		implements ResumeDao
+	{
 
-}
+	}

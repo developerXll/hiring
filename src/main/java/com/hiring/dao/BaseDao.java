@@ -6,7 +6,7 @@ import java.util.List;
 import com.hiring.framework.Page;
 
 public interface BaseDao<T, PK extends Serializable>
-{
+	{
 
 	T get(PK pk);
 
@@ -21,6 +21,6 @@ public interface BaseDao<T, PK extends Serializable>
 	void update(T newInstance);
 
 	List<T> getByPage(Page page);
-	
+
 	int getCount();
-}
+	}

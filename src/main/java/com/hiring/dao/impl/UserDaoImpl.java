@@ -12,12 +12,12 @@ import com.hiring.dao.UserDao;
 
 @Repository
 public class UserDaoImpl extends BaseDaoImpl<User, Long> implements UserDao
-{
+	{
 
-	@SuppressWarnings ("unchecked")
+	@SuppressWarnings("unchecked")
 	@Override
 	public User searchByUserName(String userName)
-	{
+		{
 		Session session = getSession();
 		Criteria criteria = session.createCriteria(User.class);
 		criteria.add(Restrictions.eq("userName", userName));
@@ -25,6 +25,6 @@ public class UserDaoImpl extends BaseDaoImpl<User, Long> implements UserDao
 		if (list == null || list.size() <= 0)
 			return null;
 		return list.get(0);
-	}
+		}
 
-}
+	}

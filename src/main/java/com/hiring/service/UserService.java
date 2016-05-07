@@ -4,7 +4,7 @@ import com.hiring.bean.User;
 import com.hiring.bean.obj.UserObj;
 
 public interface UserService extends BaseService<User>
-{
+	{
 
 	String serv_name = "userService";
 
@@ -13,4 +13,4 @@ public interface UserService extends BaseService<User>
 	UserObj searchUserByName(String userName);
 
 	boolean isUserNameExists(String userName);
-}
+	}

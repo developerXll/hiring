@@ -6,7 +6,7 @@ import java.util.List;
 import com.hiring.framework.Page;
 
 public interface BaseService<T>
-{
+	{
 
 	void save(T t);
 
@@ -17,6 +17,6 @@ public interface BaseService<T>
 	void delete(T t);
 
 	List<T> loadPage(Page page);
-	
+
 	int loadCountNum();
-}
+	}

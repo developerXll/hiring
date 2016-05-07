@@ -8,6 +8,6 @@ import com.hiring.dao.AnnouncementDao;
 @Repository
 public class AnnouncementDaoImpl extends BaseDaoImpl<Announcement, Long>
 		implements AnnouncementDao
-{
+	{
 
-}
+	}
