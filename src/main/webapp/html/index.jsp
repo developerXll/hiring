@@ -1,20 +1,10 @@
-﻿
+<%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
+<!DOCTYPE html >
 <html>
-<script type="text/javascript" src="<@spring.url '/styles/js/jquery/jquery-1.10.2.js' />"></script>
-<script type="text/javascript" src="<@spring.url '/styles/js/jquery/jqueryUI/jquery-ui-1.11.0.min.js' />"></script>
-<script type="text/javascript" src="<@spring.url '/styles/js/bootstrap/js/bootstrap.min.js' />"></script>
-<script type="text/javascript" src="<@spring.url '/styles/js/login.js' />"></script>
-<script type="text/javascript">
-	$(function() {
-		
-	});
-</script>
-
 <head>
-<title>招聘系统</title>
-<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-	<link rel="stylesheet" type="text/css"
-		href="<@spring.url '/styles/css/jqueryUI/jquery-ui-1.11.0.min.css' />" />
+	<title>招聘系统</title>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<link rel="stylesheet" type="text/css" href="<@spring.url '/styles/css/jqueryUI/jquery-ui-1.11.0.min.css' />" />
 	<link href="<@spring.url '/styles/js/bootstrap/css/bootstrap.min.css' />" rel="stylesheet" type="text/css" />
 	<link href="<@spring.url '/styles/css/main.css' />" rel="stylesheet" type="text/css" />
 </head>
@@ -26,7 +16,7 @@
 				<h3 class="sys-title">小七的招聘管理系统</h3>
 				<div class="user-info">
 
-					<span>欢迎，<em id="userNameText">一般用户</em>，回来
+					<span>欢迎，<em id="userNameText"><%= %></em>，回来
 					</span> <a href="javascript:void(0);">退出</a>
 					<button type="button" class="btn btn-success" data-toggle="modal" data-target="#registerDialog">注册</button>
 					<button type="button" class="btn btn-success" data-toggle="modal" data-target="#loginDialog" id="emptyLoginDialog">登录</button>
@@ -224,6 +214,11 @@
 			</div>
 		</div>
 	</div>
+	
+	<script type="text/javascript" src="<@spring.url '/styles/js/jquery/jquery-1.10.2.js' />"></script>
+	<script type="text/javascript" src="<@spring.url '/styles/js/jquery/jqueryUI/jquery-ui-1.11.0.min.js' />"></script>
+	<script type="text/javascript" src="<@spring.url '/styles/js/bootstrap/js/bootstrap.min.js' />"></script>
+	<script type="text/javascript" src="<@spring.url '/styles/js/login.js' />"></script>
 </body>
 </html>
 
