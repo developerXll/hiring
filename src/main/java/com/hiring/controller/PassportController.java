@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.hiring.bean.obj.UserObj;
 import com.hiring.constants.Constants;
+import com.hiring.constants.UserType;
 import com.hiring.service.UserService;
 import com.mysql.jdbc.StringUtils;
 
@@ -89,7 +90,7 @@ public class PassportController
 		{
 			if (userService.isUserNameExists(form.getUserName()))
 			{
-				map.put("status", 300);
+				map.put("status", 403);
 				map.put("message", "username is exists, please change other username!");
 			}
 			else
@@ -97,7 +98,7 @@ public class PassportController
 				UserObj user = new UserObj();
 				user.setUserName(form.getUserName());
 				user.setPassword(form.getPassWord());
-				user.setUserType(form.getUserType().toString());
+				user.setUserType(form.getUserType()==null ? UserType.RECRUITER.toString() : form.getUserType().toString());
 				user.setInsertTime(new Date());
 				userService.save(user.getUser());
 				// insert session
