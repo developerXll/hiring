@@ -26,9 +26,9 @@ public class ResumeController
 
 	@RequestMapping("/list")
 	@ResponseBody
-	public List<ResumeObj> getList(HttpServletRequest request)
+	public List<ResumeObj> getList(HttpServletRequest request, Page page)
 		{
-		Page page = new Page();
+		if (page == null) page = new Page();
 		HttpSession session = request.getSession();
 		UserObj userObj = (UserObj) session
 				.getAttribute(Constants.SESSION_AUTHENTICATION);

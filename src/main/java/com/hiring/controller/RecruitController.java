@@ -21,9 +21,9 @@ public class RecruitController
 
 	@RequestMapping("/list")
 	@ResponseBody
-	public List<RecruitObj> getList()
+	public List<RecruitObj> getList(Page page)
 		{
-		Page page = new Page();
+		if (page == null) page = new Page();
 		return recruitService.findPageObj(page);
 		}
 

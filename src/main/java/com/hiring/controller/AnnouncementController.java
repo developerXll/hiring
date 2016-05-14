@@ -21,9 +21,9 @@ public class AnnouncementController
 
 	@RequestMapping("/list")
 	@ResponseBody
-	public List<AnnouncementObj> getList()
+	public List<AnnouncementObj> getList(Page page)
 		{
-		Page page = new Page();
+		if (page == null) page = new Page();
 		return announcementService.findPageObj(page);
 		}
 
