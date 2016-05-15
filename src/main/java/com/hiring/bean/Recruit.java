@@ -33,7 +33,7 @@ public class Recruit
 	private Long id;
 
 	@ManyToOne(cascade = CascadeType.ALL, optional = false)
-	@JoinColumn(name = "USER_ID", referencedColumnName = "ID")
+	@JoinColumn(name = "USER_ID", referencedColumnName = "ID", updatable = false)
 	private User user;
 
 	@Column(name = "POSITION", nullable = false)
@@ -49,7 +49,7 @@ public class Recruit
 	@Enumerated(value = EnumType.STRING)
 	private RecStatus recStatus;
 
-	@Column(name = "INSERT_TIME", nullable = false, columnDefinition = "DATETIME")
+	@Column(name = "INSERT_TIME", nullable = false, columnDefinition = "DATETIME", updatable = false)
 	private Date insertTime;
 
 	@ManyToMany(targetEntity = Resume.class)

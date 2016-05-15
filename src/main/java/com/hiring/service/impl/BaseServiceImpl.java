@@ -21,28 +21,24 @@ public class BaseServiceImpl<T> implements BaseService<T>
 	public void save(T t)
 		{
 		dao.save(t);
-
 		}
 
 	@Override
 	public void update(T t)
 		{
 		dao.update(t);
-
 		}
 
 	@Override
 	public void delById(Serializable id)
 		{
 		dao.deleteById(id);
-
 		}
 
 	@Override
 	public void delete(T t)
 		{
 		dao.delete(t);
-
 		}
 
 	@Override
@@ -55,6 +51,12 @@ public class BaseServiceImpl<T> implements BaseService<T>
 	public int loadCountNum()
 		{
 		return dao.getCount();
+		}
+
+	@Override
+	public T load(Serializable id)
+		{
+		return dao.get(id);
 		}
 
 	}

@@ -8,9 +8,9 @@ import com.hiring.framework.Page;
 public interface BaseDao<T, PK extends Serializable>
 	{
 
-	T get(PK pk);
+	T get(Serializable id);
 
-	T load(PK pk);
+	T load(Serializable pk);
 
 	void save(T newInstance);
 

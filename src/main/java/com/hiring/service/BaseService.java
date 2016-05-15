@@ -16,6 +16,8 @@ public interface BaseService<T>
 
 	void delete(T t);
 
+	T load(Serializable id);
+
 	List<T> loadPage(Page page);
 
 	int loadCountNum();

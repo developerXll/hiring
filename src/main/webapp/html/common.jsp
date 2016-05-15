@@ -7,6 +7,13 @@
 	<link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/styles/css/jqueryUI/jquery-ui-1.11.0.min.css" />
 	<link href="<%=request.getContextPath() %>/styles/js/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
 	<link href="<%=request.getContextPath() %>/styles/css/main.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="<%=request.getContextPath() %>/styles/js/jquery/jquery-1.10.2.js"></script>
+	<script type="text/javascript">
+		$.ctx = "<%=request.getContextPath() %>";
+	</script>
+	<script type="text/javascript" src="<%=request.getContextPath() %>/styles/js/jquery/jqueryUI/jquery-ui-1.11.0.min.js"></script>
+	<script type="text/javascript" src="<%=request.getContextPath() %>/styles/js/bootstrap/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="<%=request.getContextPath() %>/styles/js/login.js"></script>
 </head>
 <%
 	HttpSession Session = request.getSession();
@@ -17,26 +24,33 @@
 			userType ="管理员,"+user.getUserName() ;
 		}else{
 			userType ="应聘者,"+user.getUserName() ;
-		}
-	}
-%>
+		}%>
+<%}else{%>
+	<script type="text/javascript">
+		$(function(){
+			$("#emptyLoginDialog").click(); 
+		});
+	</script>	
+<%}%>
 <body>
 	<div class="header">
 		<div class="header-top">
 			<h3 class="sys-title">小七的招聘管理系统</h3>
 			<div class="user-info">
 				<span>欢迎，<em id="userNameText"><%=userType%></em>，回来
-				</span> <a href="javascript:void(0);">退出</a>
-				<button type="button" class="btn btn-success" data-toggle="modal" data-target="#registerDialog"id="emptyRegisterDialog">注册</button>
-				<button type="button" class="btn btn-success" data-toggle="modal" data-target="#loginDialog" id="emptyLoginDialog">登录</button>
+				</span> <a href="<%=request.getContextPath() %>/passport/logout#index">退出</a>
+				<%if(user == null){ %>
+					<button type="button" class="btn btn-success" data-toggle="modal" data-target="#registerDialog"id="emptyRegisterDialog">注册</button>
+					<button type="button" class="btn btn-success" data-toggle="modal" data-target="#loginDialog" id="emptyLoginDialog">登录</button>
+				<%}%>
 			</div>
 		</div>
 		<div class="nav">
 			<ul class="nav-menu">
-				<li class="active"><a href="#">首页</a></li>
-				<li><a href="#">我的招聘</a></li>
-				<li><a href="#">招聘管理</a></li>
-				<li><a href="#">公告管理</a></li>
+				<li class="active" id="index"><a href="/passport/index#index">首页</a></li>
+				<li id="resume"><a href="/html/resumeList.jsp#resume">我的招聘</a></li>
+				<li id="recruit"><a href="/html/recruitList.jsp#recruit">招聘管理</a></li>
+				<li id="announ"><a href="/html/announ.jsp#announ">公告管理</a></li>
 			</ul>
 		</div>
 	</div>
@@ -123,14 +137,6 @@
 			</div>
 		</div>
 	</div>
-	
-	<script type="text/javascript" src="<%=request.getContextPath() %>/styles/js/jquery/jquery-1.10.2.js"></script>
-	<script type="text/javascript">
-		$.ctx = "<%=request.getContextPath() %>";
-	</script>
-	<script type="text/javascript" src="<%=request.getContextPath() %>/styles/js/jquery/jqueryUI/jquery-ui-1.11.0.min.js"></script>
-	<script type="text/javascript" src="<%=request.getContextPath() %>/styles/js/bootstrap/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="<%=request.getContextPath() %>/styles/js/login.js"></script>
 </body>
 </html>
 

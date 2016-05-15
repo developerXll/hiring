@@ -38,7 +38,7 @@ public class User
 	@Enumerated(value = EnumType.STRING)
 	private UserType userType;
 
-	@Column(name = "INSERT_TIME", nullable = false, columnDefinition = "DATETIME")
+	@Column(name = "INSERT_TIME", nullable = false, columnDefinition = "DATETIME", updatable = false)
 	private Date insertTime;
 
 	@OneToMany(mappedBy = "user")

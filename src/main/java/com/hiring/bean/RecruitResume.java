@@ -33,7 +33,7 @@ public class RecruitResume
 	@JoinColumn(name = "RES_ID", referencedColumnName = "ID")
 	private Resume resume;
 
-	@Column(name = "INSERT_TIME", nullable = false, columnDefinition = "DATETIME")
+	@Column(name = "INSERT_TIME", nullable = false, columnDefinition = "DATETIME", updatable = false)
 	private Date insertTime;
 
 	public Long getId()

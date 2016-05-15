@@ -21,7 +21,14 @@ $(function() {
 	$("#registerPasswordAgain").focus(function(){
 		$("#registerPasswordAgain").attr("placeholder","密码").parent().parent().removeClass("has-error");
 	});
+	var href = window.location.hash;
+	$(".active").removeClass("active");
+	$(href).addClass("active");
+	
 });
+/**
+ *登录
+ */
 function login() {
 	var userName = $("#loginName").val();
 	var passWord = $("#loginPassword").val();
@@ -43,20 +50,18 @@ function login() {
 		dataType:"json",
 		type:"post",
 		success:function(result){
-//			console.log(result);
 			if(result.status === 200){
-				var user = result.user;
-				if(user.userType == "APPLICANT"){
-					$("#userNameText").html("管理员,"+user.userName);
-				}else{
-					$("#userNameText").html("应聘者,"+user.userName);
-				}
-				$('#loginDialog').modal("hide");
+				window.location.reload() 
+			}else{
+				$("#loginName").val("").attr("placeholder","登录账号输入错误").parent().parent().addClass("has-error");
 			}
 		}
 	});
 	
 }
+/**
+ * 注册
+ */
 function resigter(){
 	var userName = $("#registerName").val();
 	var passWord = $("#registerPassword").val();

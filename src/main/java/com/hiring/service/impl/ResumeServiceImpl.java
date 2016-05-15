@@ -53,4 +53,10 @@ public class ResumeServiceImpl extends BaseServiceImpl<Resume>
 		return resObjs;
 		}
 
+	@Override
+	public int findPageNumObjByUser(UserObj userObj)
+		{
+		return resumeDao.getSumByPageByUser(userObj.getUser());
+		}
+
 	}

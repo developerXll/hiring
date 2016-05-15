@@ -1,13 +1,10 @@
 package com.hiring.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.hiring.bean.obj.RecruitObj;
 import com.hiring.framework.Page;
 import com.hiring.service.RecruitService;
 
@@ -21,10 +18,15 @@ public class RecruitController
 
 	@RequestMapping("/list")
 	@ResponseBody
-	public List<RecruitObj> getList(Page page)
+	public RecruitListData getList(Page page)
 		{
-		if (page == null) page = new Page();
-		return recruitService.findPageObj(page);
+		if (page == null)
+			page = new Page();
+		RecruitListData data = new RecruitListData();
+		data.setList(recruitService.findPageObj(page));
+		page.setTotalNumber(recruitService.loadCountNum());
+		data.setPage(page);
+		return data;
 		}
 
 	}

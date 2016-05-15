@@ -26,4 +26,12 @@ public class ResumeDaoImpl extends BaseDaoImpl<Resume, Long>
 		criteria.setMaxResults(page.getPageSize());
 		return criteria.list();
 		}
+
+	@Override
+	public int getSumByPageByUser(User user)
+		{
+		Criteria criteria = this.getSession().createCriteria(getEntityClass());
+		criteria.add(Restrictions.eq("user", user));
+		return criteria.list() == null ? 0 : criteria.list().size();
+		}
 	}

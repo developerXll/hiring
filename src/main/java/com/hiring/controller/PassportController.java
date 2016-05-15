@@ -79,6 +79,20 @@ public class PassportController
 		}
 
 	/**
+	 * 注销用户
+	 * 
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping("/logout")
+	public ModelAndView logout(HttpServletRequest request)
+		{
+		HttpSession session = request.getSession();
+		session.removeAttribute(Constants.SESSION_AUTHENTICATION);
+		return new ModelAndView("index");
+		}
+
+	/**
 	 * 注册用户
 	 * 
 	 * @param form

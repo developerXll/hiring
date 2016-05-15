@@ -65,7 +65,6 @@ public class BaseDaoImpl<T, PK extends java.io.Serializable>
 
 	public Session getSession()
 		{
-		// 需要开启事物，才能得到CurrentSession
 		return sessionFactory.getCurrentSession();
 		}
 
@@ -78,16 +77,13 @@ public class BaseDaoImpl<T, PK extends java.io.Serializable>
 		{ "unchecked" })
 	protected Class<T> getEntityClass()
 		{
-		if (entityClass == null)
-			{
-			entityClass = (Class<T>) ((ParameterizedType) getClass()
-					.getGenericSuperclass()).getActualTypeArguments()[0];
-			}
+		entityClass = (Class<T>) ((ParameterizedType) getClass()
+				.getGenericSuperclass()).getActualTypeArguments()[0];
 		return entityClass;
 		}
 
 	@Override
-	public T load(PK pk)
+	public T load(Serializable pk)
 		{
 		T obj = (T) this.getSession().load(getEntityClass(), pk);
 		return obj;

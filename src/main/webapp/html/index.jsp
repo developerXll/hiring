@@ -5,18 +5,6 @@
 	<title>招聘系统</title>
 	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 </head>
-<%
-	HttpSession Session = request.getSession();
-	UserObj user = (UserObj)Session.getAttribute("SESSION_AUTHENTICATION");
-	String userType = "请登录";
-	if(user != null){
-		if(user.getUserType().equalsIgnoreCase("APPLICANT")){
-			userType ="管理员,"+user.getUserName() ;
-		}else{
-			userType ="应聘者,"+user.getUserName() ;
-		}
-	}
-%>
 <body>
 	<div class="container-fluid">
 		<jsp:include page="common.jsp"></jsp:include>
@@ -25,14 +13,14 @@
 				<div class="modal-box">
 					<div class="modal-header">
 						<h4>我的招聘</h4>
-						<a href="#">进入<em class="glyphicon glyphicon-menu-right"></em></a>
+						<a href="/html/resumeList.jsp#resume">进入<em class="glyphicon glyphicon-menu-right"></em></a>
 					</div>
-					<ul class="list-group">
-						<li class="list-group-item">Cras justo odio</li>
-						<li class="list-group-item">Dapibus ac facilisis in</li>
-						<li class="list-group-item">Morbi leo risus</li>
-						<li class="list-group-item">Porta ac consectetur ac</li>
-						<li class="list-group-item">Vestibulum at eros</li>
+					<ul class="list-group" id="myResList">
+<!-- 						<li class="list-group-item">Cras justo odio</li> -->
+<!-- 						<li class="list-group-item">Dapibus ac facilisis in</li> -->
+<!-- 						<li class="list-group-item">Morbi leo risus</li> -->
+<!-- 						<li class="list-group-item">Porta ac consectetur ac</li> -->
+<!-- 						<li class="list-group-item">Vestibulum at eros</li> -->
 					</ul>
 				</div>
 			</div>
@@ -40,14 +28,14 @@
 				<div class="modal-box">
 					<div class="modal-header">
 						<h4>公告管理</h4>
-						<a href="#">进入<em class="glyphicon glyphicon-menu-right"></em></a>
+						<a href="/html/announ.jsp#announ">进入<em class="glyphicon glyphicon-menu-right"></em></a>
 					</div>
-					<ul class="list-group">
-						<li class="list-group-item">Cras justo odio</li>
-						<li class="list-group-item">Dapibus ac facilisis in</li>
-						<li class="list-group-item">Morbi leo risus</li>
-						<li class="list-group-item">Porta ac consectetur ac</li>
-						<li class="list-group-item">Vestibulum at eros</li>
+					<ul class="list-group" id="announIndexList">
+<!-- 						<li class="list-group-item">Cras justo odio</li> -->
+<!-- 						<li class="list-group-item">Dapibus ac facilisis in</li> -->
+<!-- 						<li class="list-group-item">Morbi leo risus</li> -->
+<!-- 						<li class="list-group-item">Porta ac consectetur ac</li> -->
+<!-- 						<li class="list-group-item">Vestibulum at eros</li> -->
 					</ul>
 				</div>
 			</div>
@@ -55,65 +43,65 @@
 				<div class="modal-box">
 					<div class="modal-header">
 						<h4>招聘管理</h4>
-						<a href="#">进入<em class="glyphicon glyphicon-menu-right"></em></a>
+						<a href="/html/recruitList.jsp#recruit">进入<em class="glyphicon glyphicon-menu-right"></em></a>
 					</div>
-					<ul class="list-group">
-						<li class="list-group-item">Cras justo odio</li>
-						<li class="list-group-item">Dapibus ac facilisis in</li>
-						<li class="list-group-item">Morbi leo risus</li>
-						<li class="list-group-item">Porta ac consectetur ac</li>
-						<li class="list-group-item">Vestibulum at eros</li>
+					<ul class="list-group" id="myRecList">
+<!-- 						<li class="list-group-item">Cras justo odio</li> -->
+<!-- 						<li class="list-group-item">Dapibus ac facilisis in</li> -->
+<!-- 						<li class="list-group-item">Morbi leo risus</li> -->
+<!-- 						<li class="list-group-item">Porta ac consectetur ac</li> -->
+<!-- 						<li class="list-group-item">Vestibulum at eros</li> -->
 					</ul>
 				</div>
 			</div>
 		</div>
-		<div class="row container-fluid">
-			<div class="col-md-4">
-				<div class="modal-box">
-					<div class="modal-header">
-						<h4>我的招聘</h4>
-						<a href="#">进入<em class="glyphicon glyphicon-menu-right"></em></a>
-					</div>
-					<ul class="list-group">
-						<li class="list-group-item">Cras justo odio</li>
-						<li class="list-group-item">Dapibus ac facilisis in</li>
-						<li class="list-group-item">Morbi leo risus</li>
-						<li class="list-group-item">Porta ac consectetur ac</li>
-						<li class="list-group-item">Vestibulum at eros</li>
-					</ul>
-				</div>
-			</div>
-			<div class="col-md-4">
-				<div class="modal-box">
-					<div class="modal-header">
-						<h4>公告管理</h4>
-						<a href="#">进入<em class="glyphicon glyphicon-menu-right"></em></a>
-					</div>
-					<ul class="list-group">
-						<li class="list-group-item">Cras justo odio</li>
-						<li class="list-group-item">Dapibus ac facilisis in</li>
-						<li class="list-group-item">Morbi leo risus</li>
-						<li class="list-group-item">Porta ac consectetur ac</li>
-						<li class="list-group-item">Vestibulum at eros</li>
-					</ul>
-				</div>
-			</div>
-			<div class="col-md-4">
-				<div class="modal-box">
-					<div class="modal-header">
-						<h4>招聘管理</h4>
-						<a href="#">进入<em class="glyphicon glyphicon-menu-right"></em></a>
-					</div>
-					<ul class="list-group">
-						<li class="list-group-item">Cras justo odio</li>
-						<li class="list-group-item">Dapibus ac facilisis in</li>
-						<li class="list-group-item">Morbi leo risus</li>
-						<li class="list-group-item">Porta ac consectetur ac</li>
-						<li class="list-group-item">Vestibulum at eros</li>
-					</ul>
-				</div>
-			</div>
-		</div>
+<!-- 		<div class="row container-fluid"> -->
+<!-- 			<div class="col-md-4"> -->
+<!-- 				<div class="modal-box"> -->
+<!-- 					<div class="modal-header"> -->
+<!-- 						<h4>我的招聘</h4> -->
+<!-- 						<a href="#">进入<em class="glyphicon glyphicon-menu-right"></em></a> -->
+<!-- 					</div> -->
+<!-- 					<ul class="list-group"> -->
+<!-- 						<li class="list-group-item">Cras justo odio</li> -->
+<!-- 						<li class="list-group-item">Dapibus ac facilisis in</li> -->
+<!-- 						<li class="list-group-item">Morbi leo risus</li> -->
+<!-- 						<li class="list-group-item">Porta ac consectetur ac</li> -->
+<!-- 						<li class="list-group-item">Vestibulum at eros</li> -->
+<!-- 					</ul> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
+<!-- 			<div class="col-md-4"> -->
+<!-- 				<div class="modal-box"> -->
+<!-- 					<div class="modal-header"> -->
+<!-- 						<h4>公告管理</h4> -->
+<!-- 						<a href="#">进入<em class="glyphicon glyphicon-menu-right"></em></a> -->
+<!-- 					</div> -->
+<!-- 					<ul class="list-group"> -->
+<!-- 						<li class="list-group-item">Cras justo odio</li> -->
+<!-- 						<li class="list-group-item">Dapibus ac facilisis in</li> -->
+<!-- 						<li class="list-group-item">Morbi leo risus</li> -->
+<!-- 						<li class="list-group-item">Porta ac consectetur ac</li> -->
+<!-- 						<li class="list-group-item">Vestibulum at eros</li> -->
+<!-- 					</ul> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
+<!-- 			<div class="col-md-4"> -->
+<!-- 				<div class="modal-box"> -->
+<!-- 					<div class="modal-header"> -->
+<!-- 						<h4>招聘管理</h4> -->
+<!-- 						<a href="#">进入<em class="glyphicon glyphicon-menu-right"></em></a> -->
+<!-- 					</div> -->
+<!-- 					<ul class="list-group"> -->
+<!-- 						<li class="list-group-item">Cras justo odio</li> -->
+<!-- 						<li class="list-group-item">Dapibus ac facilisis in</li> -->
+<!-- 						<li class="list-group-item">Morbi leo risus</li> -->
+<!-- 						<li class="list-group-item">Porta ac consectetur ac</li> -->
+<!-- 						<li class="list-group-item">Vestibulum at eros</li> -->
+<!-- 					</ul> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
 	</div>
 	<!-- Modal -->
 	<div class="modal fade" id="loginDialog" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">

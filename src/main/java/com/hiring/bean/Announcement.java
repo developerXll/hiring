@@ -25,8 +25,8 @@ public class Announcement
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
-	@ManyToOne(cascade = CascadeType.ALL, optional = false)
-	@JoinColumn(name = "USER_ID", referencedColumnName = "ID")
+	@ManyToOne(cascade = CascadeType.PERSIST, optional = false)
+	@JoinColumn(name = "USER_ID", referencedColumnName = "ID", updatable = false)
 	private User user;
 
 	@Column(name = "TITLE", nullable = false)
@@ -35,7 +35,7 @@ public class Announcement
 	@Column(name = "ANN_INFO", columnDefinition = "TEXT")
 	private String annInfo;
 
-	@Column(name = "INSERT_TIME", nullable = false, columnDefinition = "DATETIME")
+	@Column(name = "INSERT_TIME", nullable = false, columnDefinition = "DATETIME", updatable = false)
 	private Date insertTime;
 
 	public Long getId()

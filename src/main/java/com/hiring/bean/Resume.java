@@ -56,7 +56,7 @@ public class Resume
 	@Column(name = "SELF_INTRODUCTION", columnDefinition = "TEXT")
 	private String selfIntroduction;
 
-	@Column(name = "INSERT_TIME", nullable = false, columnDefinition = "DATETIME")
+	@Column(name = "INSERT_TIME", nullable = false, columnDefinition = "DATETIME", updatable = false)
 	private Date insertTime;
 
 	@Column(name = "UPDATE_TIME", nullable = false, columnDefinition = "DATETIME")

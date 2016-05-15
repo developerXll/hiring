@@ -16,4 +16,6 @@ public interface ResumeService extends BaseService<Resume>
 
 	List<ResumeObj> findPageObjByUser(UserObj userObj, Page page);
 
+	int findPageNumObjByUser(UserObj userObj);
+
 	}

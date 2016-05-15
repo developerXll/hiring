@@ -12,5 +12,9 @@ public interface AnnouncementService extends BaseService<Announcement>
 	String serv_name = "announcementService";
 
 	List<AnnouncementObj> findPageObj(Page page);
+	
+	List<AnnouncementObj> findPageObjByName(Page page, String name);
+	
+	int findSizeObjByName(String name);
 
 	}

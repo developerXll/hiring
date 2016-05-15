@@ -7,6 +7,10 @@ public class Page
 
 	private int pageSize = 10;
 
+	private int totalNumber = 0;
+
+	private int totalPageNumber;
+
 	public int getPageNo()
 		{
 		return pageNo;
@@ -25,6 +29,32 @@ public class Page
 	public void setPageSize(int pageSize)
 		{
 		this.pageSize = pageSize;
+		}
+
+	public int getTotalNumber()
+		{
+		return totalNumber;
+		}
+
+	public void setTotalNumber(int totalNumber)
+		{
+		this.totalNumber = totalNumber;
+		}
+
+	public int getTotalPageNumber()
+		{
+		if (totalPageNumber != 0)
+			return totalPageNumber;
+		else if (totalNumber == 0)
+			return 0;
+		else
+			return totalNumber % pageSize == 0 ? totalNumber / pageSize
+					: totalNumber / pageSize + 1;
+		}
+
+	public void setTotalPageNumber(int totalPageNumber)
+		{
+		this.totalPageNumber = totalPageNumber;
 		}
 
 	}
