@@ -62,6 +62,26 @@ public class RecruitObj
 		this.recruit.setPossion(possion);
 		}
 
+	public String getPay()
+		{
+		return this.recruit.getPay();
+		}
+
+	public void setPay(String pay)
+		{
+		this.recruit.setPay(pay);
+		}
+	
+	public String getPayMonths()
+		{
+		return this.recruit.getPayMonths();
+		}
+
+	public void setPayMonths(String payMonths)
+		{
+		this.recruit.setPayMonths(payMonths);
+		}
+
 	public String getPossionIntroduction()
 		{
 		return this.recruit.getPossionIntroduction();

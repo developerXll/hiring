@@ -33,7 +33,7 @@ public class Resume
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
-	@ManyToOne(cascade = CascadeType.ALL, optional = false)
+	@ManyToOne(cascade = CascadeType.PERSIST, optional = false)
 	@JoinColumn(name = "USER_ID", referencedColumnName = "ID")
 	private User user;
 

@@ -13,10 +13,10 @@
 				<form class="form-inline">
 				   <div class="form-group">
 				     <label for="name">名称</label>
-				     <input type="text" class="form-control" id="name" placeholder="输入查询名称">
+				     <input type="text" class="form-control" id="recName" placeholder="输入查询名称">
 				   </div>
-				   <button type="button" class="btn btn-primary">查询</button>
-				   <button type="button" class="btn btn-success nav-right">新建</button>
+				   <button type="button" class="btn btn-primary" id="recSearchBtn">查询</button>
+				   <a type="button" class="btn btn-success nav-right" href="/html/addOrUpdateRecruit.jsp#recruit">新建</a>
 				</form>
 			</div>
 			<table class="table table-striped table-hover"> 

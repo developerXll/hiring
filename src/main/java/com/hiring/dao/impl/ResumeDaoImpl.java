@@ -34,4 +34,23 @@ public class ResumeDaoImpl extends BaseDaoImpl<Resume, Long>
 		criteria.add(Restrictions.eq("user", user));
 		return criteria.list() == null ? 0 : criteria.list().size();
 		}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Resume> getByPageByUserName(Page page, String name)
+		{
+		Criteria criteria = this.getSession().createCriteria(getEntityClass());
+		criteria.add(Restrictions.like("user.userName", "%" + name + "%"));
+		criteria.setFirstResult((page.getPageNo() - 1) * page.getPageSize());
+		criteria.setMaxResults(page.getPageSize());
+		return criteria.list();
+		}
+
+	@Override
+	public int countByPageByUserName(String name)
+		{
+		Criteria criteria = this.getSession().createCriteria(getEntityClass());
+		criteria.add(Restrictions.like("user.userName", "%" + name + "%"));
+		return criteria.list() == null ? 0 : criteria.list().size();
+		}
 	}

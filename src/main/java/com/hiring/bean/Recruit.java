@@ -32,12 +32,18 @@ public class Recruit
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
-	@ManyToOne(cascade = CascadeType.ALL, optional = false)
+	@ManyToOne(cascade = CascadeType.PERSIST, optional = false)
 	@JoinColumn(name = "USER_ID", referencedColumnName = "ID", updatable = false)
 	private User user;
 
 	@Column(name = "POSITION", nullable = false)
 	private String possion;
+
+	@Column(name = "PAY")
+	private String pay;
+
+	@Column(name = "PAY_MONTHS")
+	private String payMonths;
 
 	@Column(name = "POSSION_INTRODUCTION", columnDefinition = "TEXT")
 	private String possionIntroduction;
@@ -52,7 +58,7 @@ public class Recruit
 	@Column(name = "INSERT_TIME", nullable = false, columnDefinition = "DATETIME", updatable = false)
 	private Date insertTime;
 
-	@ManyToMany(targetEntity = Resume.class)
+	@ManyToMany(cascade = CascadeType.ALL, targetEntity = Resume.class)
 	@JoinTable(name = "t_recruit_resume", joinColumns =
 		{ @JoinColumn(name = "REC_ID") }, inverseJoinColumns =
 		{ @JoinColumn(name = "RES_ID") })
@@ -86,6 +92,26 @@ public class Recruit
 	public void setPossion(String possion)
 		{
 		this.possion = possion;
+		}
+
+	public String getPay()
+		{
+		return pay;
+		}
+
+	public void setPay(String pay)
+		{
+		this.pay = pay;
+		}
+
+	public String getPayMonths()
+		{
+		return payMonths;
+		}
+
+	public void setPayMonths(String payMonths)
+		{
+		this.payMonths = payMonths;
 		}
 
 	public String getPossionIntroduction()

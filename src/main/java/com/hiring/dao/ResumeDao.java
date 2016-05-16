@@ -13,4 +13,8 @@ public interface ResumeDao extends BaseDao<Resume, Long>
 
 	public int getSumByPageByUser(User user);
 
+	public List<Resume> getByPageByUserName(Page page, String name);
+
+	public int countByPageByUserName(String name);
+
 	}

@@ -29,10 +29,14 @@ $(function(){
 	$("#announceSearchBtn").on("click",function(){
 		loadAnnounList($("#currentPage").html());
 	});
+	$("#recSearchBtn").on("click",function(){
+		loadRecList($("#currentPage").html());
+	});
 });
 function loadRecList(pageNo){
+	var name = $("#recName").val();
 	$.ajax({
-		url:$.ctx+"/rec/list",
+		url:$.ctx+"/rec/list/"+name,
 		data:{pageNo:pageNo},
 		dataType:"json",
 		type:"post",
@@ -51,8 +55,8 @@ function loadRecList(pageNo){
 								'<td width="12%">'+data[i].insertTime+'</td>'+
 								'<td width="12%">'+(data[i].recStatus == "RECRUTING"?"招聘中":"招聘结束")+'</td>'+
 								'<td width="14%" class="color-yellow">'+
-									'<button class="btn btn-defaul">修改</button>'+
-									'<button class="btn btn-defaul">删除</button>'+
+									'<a class="btn btn-defaul" href="/html/addOrUpdateRecruit.jsp?'+data[i].id+'#recruit">修改</a>'+
+									'<button class="btn btn-defaul"onclick="delRecruit('+data[i].id+')">删除</button>'+
 								'</td>'+
 							'</tr>';
 				}
@@ -208,6 +212,7 @@ function loadResumeList(pageNo){
 		}
 	});
 }
+//删除公告
 function delAnnounce(id){
 	if(!confirm("确定删除？")){
 		return;
@@ -223,6 +228,25 @@ function delAnnounce(id){
 				loadAnnounList($("#currentPage").html());
 			}else{
 				alert("删除错误！");
+			}
+		}
+	});
+}
+//del招聘 
+function delRecruit(id){
+	if(!confirm("确定删除？")){
+		return;
+	}
+	$.ajax({
+		url:$.ctx+"/rec/delete/"+id,
+		data:{},
+		dataType:"json",
+		type:"post",
+		success:function(result){
+			if(result.status == 200){
+				loadRecList($("#currentPage").html());
+			}else{
+				alert("删除失败！");
 			}
 		}
 	});
