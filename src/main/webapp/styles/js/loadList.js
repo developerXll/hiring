@@ -174,7 +174,7 @@ function loadResumeList(pageNo){
 					'<td width="12%">'+data[i].graduateSchool+'</td>'+
 					'<td width="12%">'+data[i].age+'</td>'+
 					'<td width="14%" class="color-yellow">'+
-					'<button class="btn btn-defaul">修改</button>'+
+					'<a class="btn btn-defaul" href="/html/addResume.jsp?'+data[i].id+'#resume">修改</a>'+
 					'<button class="btn btn-defaul">删除</button>'+
 					'</td>'+
 					'</tr>';

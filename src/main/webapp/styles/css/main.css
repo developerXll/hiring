@@ -193,11 +193,12 @@ li{list-style:none;}
 	background:#fff;
 	overflow:hidden; 
 }
-.ui-education-content.unEdit .ui-date-stylle{
-	width:125px;
+.ui-education-content .ui-date-stylle{
+	width:145px;
 	float:left;
 	padding:6px ;
 	font-size: 12px;
+	margin: 0 30px 0;
 }
 .ui-education-content.unEdit .ui-date-line{
 	width:auto;
@@ -211,6 +212,8 @@ li{list-style:none;}
 .ui-education-content > li > span > span { 
 	line-height:34px;
 	cursor:pointer;
+    float: left;
+    margin: 0 10px;
 }
 .ui-education-content.unEdit > li > span > span { 
 	display:none;
@@ -232,12 +235,22 @@ li{list-style:none;}
 	resize:none;
 	cursor:auto;
 }
+.ui-education-content > li > .ui-professional-text > textarea{
+	text-align:left;
+	height:500px;
+}
 .ui-experience-content{
-	border-bottom:1px solid #e2e2e2;
+/* 	border-bottom:1px solid #e2e2e2; */
 	padding:5px 0;
 }
 .ui-experience-content.unEdit > li > span { 
 	padding:0 10px;
+}
+.ui-experience-content.unEdit > li > span >button { 
+	display: none;
+}
+.ui-experience-content > li > span { 
+	padding:0 3px;
 }
 .ui-experience-content.unEdit > li > span > input,
 .ui-experience-content.unEdit > li > span > select,
@@ -266,6 +279,9 @@ li{list-style:none;}
 .ui-objective-content.unEdit > li > span > textarea{
 	min-height:100px; 
 }
+.ui-objective-content > li > span > textarea{
+	min-height:100px; 
+}
 .ui-page-num{
 	float: left;
     padding: 6px 12px;
@@ -278,8 +294,17 @@ li{list-style:none;}
 .ui-error{
 	color: #b00;
 }
-
-
+.ui-btn{
+	margin: 10px auto 0;
+	display: block;
+	padding: 6px 30px;
+}
+.unEdit .ui-btn{
+	display: none;
+}
+.line-height45{
+	line-height: 45px;
+}
 
 
 

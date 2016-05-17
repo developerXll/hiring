@@ -40,6 +40,36 @@ public class Resume
 	@Column(name = "NAME", nullable = false)
 	private String name;
 
+	@Column(name = "TEL", nullable = false)
+	private String tel;
+
+	@Column(name = "EMAIL", nullable = false)
+	private String email;
+
+	/**
+	 * 居住地
+	 */
+	@Column(name = "RESIDENCE", nullable = false)
+	private String residence;
+
+	/**
+	 * 户籍所在地
+	 */
+	@Column(name = "DOMICILE", nullable = false)
+	private String domicile;
+
+	@Column(name = "IDENTIFICATION", nullable = false)
+	private String identification;
+
+	@Column(name = "IDENTIFICATION_TYPE", nullable = false)
+	private String identificationType;
+
+	@Column(name = "JOB_INTENSION", nullable = false)
+	private String jobIntension;
+
+	@Column(name = "EXPECT_SALARY", nullable = false)
+	private String expectSalary;
+
 	@Column(name = "GENDER", nullable = false)
 	@Enumerated(value = EnumType.STRING)
 	private Gender gender;
@@ -102,6 +132,86 @@ public class Resume
 	public void setName(String name)
 		{
 		this.name = name;
+		}
+
+	public String getTel()
+		{
+		return tel;
+		}
+
+	public void setTel(String tel)
+		{
+		this.tel = tel;
+		}
+
+	public String getEmail()
+		{
+		return email;
+		}
+
+	public void setEmail(String email)
+		{
+		this.email = email;
+		}
+
+	public String getResidence()
+		{
+		return residence;
+		}
+
+	public void setResidence(String residence)
+		{
+		this.residence = residence;
+		}
+
+	public String getDomicile()
+		{
+		return domicile;
+		}
+
+	public void setDomicile(String domicile)
+		{
+		this.domicile = domicile;
+		}
+
+	public String getIdentification()
+		{
+		return identification;
+		}
+
+	public void setIdentification(String identification)
+		{
+		this.identification = identification;
+		}
+
+	public String getIdentificationType()
+		{
+		return identificationType;
+		}
+
+	public void setIdentificationType(String identificationType)
+		{
+		this.identificationType = identificationType;
+		}
+
+	public String getJobIntension()
+		{
+		return jobIntension;
+		}
+
+	public void setJobIntension(String jobIntension)
+		{
+		this.jobIntension = jobIntension;
+		}
+
+	public String getExpectSalary()
+		{
+		return expectSalary;
+		}
+
+	public void setExpectSalary(String expectSalary)
+		{
+		this.expectSalary = expectSalary;
 		}
 
 	public Gender getGender()

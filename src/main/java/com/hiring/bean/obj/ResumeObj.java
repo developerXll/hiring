@@ -75,6 +75,86 @@ public class ResumeObj
 		this.resume.setName(name);
 		}
 
+	public String getTel()
+		{
+		return this.resume.getTel();
+		}
+
+	public void setTel(String tel)
+		{
+		this.resume.setTel(tel);
+		}
+
+	public String getEmail()
+		{
+		return this.resume.getEmail();
+		}
+
+	public void setEmail(String email)
+		{
+		this.resume.setEmail(email);
+		}
+
+	public String getResidence()
+		{
+		return this.resume.getResidence();
+		}
+
+	public void setResidence(String residence)
+		{
+		this.resume.setResidence(residence);
+		}
+
+	public String getDomicile()
+		{
+		return this.resume.getDomicile();
+		}
+
+	public void setDomicile(String domicile)
+		{
+		this.resume.setDomicile(domicile);
+		}
+
+	public String getIdentification()
+		{
+		return this.resume.getIdentification();
+		}
+
+	public void setIdentification(String identification)
+		{
+		this.resume.setIdentification(identification);
+		}
+
+	public String getIdentificationType()
+		{
+		return this.resume.getIdentificationType();
+		}
+
+	public void setIdentificationType(String identificationType)
+		{
+		this.resume.setIdentificationType(identificationType);
+		}
+
+	public String getJobIntension()
+		{
+		return this.resume.getJobIntension();
+		}
+
+	public void setJobIntension(String jobIntension)
+		{
+		this.resume.setJobIntension(jobIntension);
+		}
+
+	public String getExpectSalary()
+		{
+		return this.resume.getExpectSalary();
+		}
+
+	public void setExpectSalary(String expectSalary)
+		{
+		this.resume.setExpectSalary(expectSalary);
+		}
+
 	public String getGender()
 		{
 		return this.resume.getGender().toString();
