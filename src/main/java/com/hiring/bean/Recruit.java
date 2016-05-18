@@ -58,7 +58,7 @@ public class Recruit
 	@Column(name = "INSERT_TIME", nullable = false, columnDefinition = "DATETIME", updatable = false)
 	private Date insertTime;
 
-	@ManyToMany(cascade = CascadeType.ALL, targetEntity = Resume.class)
+	@ManyToMany(cascade = CascadeType.PERSIST, targetEntity = Resume.class)
 	@JoinTable(name = "t_recruit_resume", joinColumns =
 		{ @JoinColumn(name = "REC_ID") }, inverseJoinColumns =
 		{ @JoinColumn(name = "RES_ID") })

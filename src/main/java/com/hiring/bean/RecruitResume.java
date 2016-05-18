@@ -25,11 +25,11 @@ public class RecruitResume
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 
-	@ManyToOne(cascade = CascadeType.ALL, optional = false)
+	@ManyToOne(cascade = CascadeType.PERSIST, optional = false)
 	@JoinColumn(name = "REC_ID", referencedColumnName = "ID")
 	private Recruit recruit;
 
-	@ManyToOne(cascade = CascadeType.ALL, optional = false)
+	@ManyToOne(cascade = CascadeType.PERSIST, optional = false)
 	@JoinColumn(name = "RES_ID", referencedColumnName = "ID")
 	private Resume resume;
 
