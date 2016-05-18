@@ -27,12 +27,12 @@
 					</select>
 				</span>
 			</li>
-<!-- 			<li class="row"> -->
-<!-- 				<label class="col-md-2">出生日期：</label> -->
-<!-- 				<span class="col-md-10"> -->
-<!-- 					<input type="date" class="form-control" id="" pattern="/yyyy-MM-dd/" disabled/> -->
-<!-- 				</span> -->
-<!-- 			</li> -->
+			<li class="row">
+				<label class="col-md-2">年龄：</label>
+				<span class="col-md-10">
+					<input type="number" class="form-control" id="age" disabled/>
+				</span>
+			</li>
 			<li class="row">
 				<label class="col-md-2">手机号码：</label>
 				<span class="col-md-10">
@@ -134,7 +134,13 @@
 			<span class="glyphicon glyphicon-pencil ui-edit-icon"></span>
 		</h3>
 		<div id="resumePros"></div>
-		
+		<ul class="container-fluid ui-objective-content">
+			<li class="row"> 
+				<span class="col-md-12">
+					<button type="button" class="btn btn-primary ui-btn" onclick="saveOrUpdateResume();">提交</button>
+				</span>
+			</li>
+		</ul>
 	</div>
 	<script type="text/javascript" src="<%=request.getContextPath() %>/styles/js/addOrUpdate.js"></script>
 </body>

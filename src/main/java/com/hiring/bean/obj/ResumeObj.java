@@ -6,7 +6,6 @@ import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.hiring.bean.Recruit;
 import com.hiring.bean.Resume;
 import com.hiring.bean.ResumeEdu;
 import com.hiring.bean.ResumeOcc;
@@ -170,9 +169,9 @@ public class ResumeObj
 		return this.resume.getAge();
 		}
 
-	public void setAge(int age)
+	public void setAge(String age)
 		{
-		this.resume.setAge(age);
+		this.resume.setAge(Integer.parseInt(age));
 		}
 
 	public String getGraduateSchool()
@@ -227,24 +226,26 @@ public class ResumeObj
 		this.resume.setUpdateTime(updateTime);
 		}
 
-	public Set<ResumeEduObj> getResumeEdus()
+	public ResumeEduObj[] getResumeEdus()
 		{
-		Set<ResumeEduObj> edus = new HashSet<ResumeEduObj>();
+		ResumeEduObj[] edus = new ResumeEduObj[10];
 		if (this.resume.getResumeEdus() != null
 				&& this.resume.getResumeEdus().size() > 0)
 			{
+			int i = 0;
 			for (ResumeEdu edu : this.resume.getResumeEdus())
 				{
-				edus.add(new ResumeEduObj(edu));
+				edus[i] = new ResumeEduObj(edu);
+				i++;
 				}
 			}
 		return edus;
 		}
 
-	public void setResumeEdus(Set<ResumeEduObj> resumeEdus)
+	public void setResumeEdus(ResumeEduObj[] resumeEdus)
 		{
 		Set<ResumeEdu> edus = new HashSet<ResumeEdu>();
-		if (resumeEdus != null && resumeEdus.size() > 0)
+		if (resumeEdus != null && resumeEdus.length > 0)
 			{
 			for (ResumeEduObj obj : resumeEdus)
 				{
@@ -256,24 +257,26 @@ public class ResumeObj
 		this.resume.setResumeEdus(edus);
 		}
 
-	public Set<ResumeOccObj> getResumeOccs()
+	public ResumeOccObj[] getResumeOccs()
 		{
-		Set<ResumeOccObj> occs = new HashSet<ResumeOccObj>();
+		ResumeOccObj[] occs = new ResumeOccObj[10];
 		if (this.resume.getResumeOccs() != null
 				&& this.resume.getResumeOccs().size() > 0)
 			{
+			int i = 0;
 			for (ResumeOcc occ : this.resume.getResumeOccs())
 				{
-				occs.add(new ResumeOccObj(occ));
+				occs[i] = new ResumeOccObj(occ);
+				i++;
 				}
 			}
 		return occs;
 		}
 
-	public void setResumeOccs(Set<ResumeOccObj> resumeOccs)
+	public void setResumeOccs(ResumeOccObj[] resumeOccs)
 		{
 		Set<ResumeOcc> occs = new HashSet<ResumeOcc>();
-		if (resumeOccs != null && resumeOccs.size() > 0)
+		if (resumeOccs != null && resumeOccs.length > 0)
 			{
 			for (ResumeOccObj obj : resumeOccs)
 				{
@@ -285,24 +288,26 @@ public class ResumeObj
 		this.resume.setResumeOccs(occs);
 		}
 
-	public Set<ResumeProObj> getResumePros()
+	public ResumeProObj[] getResumePros()
 		{
-		Set<ResumeProObj> pros = new HashSet<ResumeProObj>();
+		ResumeProObj[] pros = new ResumeProObj[10];
 		if (this.resume.getResumePros() != null
 				&& this.resume.getResumePros().size() > 0)
 			{
+			int i = 0;
 			for (ResumePro pro : this.resume.getResumePros())
 				{
-				pros.add(new ResumeProObj(pro));
+				pros[i] = new ResumeProObj(pro);
+				i++;
 				}
 			}
 		return pros;
 		}
 
-	public void setResumePros(Set<ResumeProObj> resumePros)
+	public void setResumePros(ResumeProObj[] resumePros)
 		{
 		Set<ResumePro> pros = new HashSet<ResumePro>();
-		if (resumePros != null && resumePros.size() > 0)
+		if (resumePros != null && resumePros.length > 0)
 			{
 			for (ResumeProObj obj : resumePros)
 				{
@@ -312,20 +317,6 @@ public class ResumeObj
 				}
 			}
 		this.resume.setResumePros(pros);
-		}
-
-	public Set<RecruitObj> getRecruits()
-		{
-		Set<RecruitObj> recruits = new HashSet<RecruitObj>();
-		if (this.resume.getRecruits() != null
-				&& this.resume.getRecruits().size() > 0)
-			{
-			for (Recruit recruit : this.resume.getRecruits())
-				{
-				recruits.add(new RecruitObj(recruit));
-				}
-			}
-		return recruits;
 		}
 
 	}

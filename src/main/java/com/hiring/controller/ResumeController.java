@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -47,7 +48,7 @@ public class ResumeController
 		return data;
 		}
 
-	@RequestMapping("/add")
+	@RequestMapping(value = "/add", method = {RequestMethod.POST })
 	@ResponseBody
 	public Map<String, Object> add(ResumeObj resObj, HttpServletRequest request)
 		{
@@ -71,7 +72,7 @@ public class ResumeController
 		return map;
 		}
 
-	@RequestMapping("/update")
+	@RequestMapping(value = "/update", method = {RequestMethod.POST })
 	@ResponseBody
 	public Map<String, Object> update(ResumeObj resObj)
 		{

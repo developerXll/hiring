@@ -1,5 +1,7 @@
 package com.hiring.bean.obj;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -34,6 +36,7 @@ public class ResumeProObj
 		return resumePro;
 		}
 
+	@JsonIgnore
 	public void setResumePro(ResumePro resumePro)
 		{
 		this.resumePro = resumePro;
@@ -85,9 +88,16 @@ public class ResumeProObj
 		return this.resumePro.getStartTime();
 		}
 
-	public void setStartTime(Date startTime)
+	public void setStartTime(String startTime)
 		{
-		this.resumePro.setStartTime(startTime);
+		try
+			{
+			this.resumePro.setEndTime(new SimpleDateFormat("yyyy-MM").parse(startTime));
+			}
+		catch (ParseException e)
+			{
+			e.printStackTrace();
+			}
 		}
 
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
@@ -96,9 +106,16 @@ public class ResumeProObj
 		return this.resumePro.getEndTime();
 		}
 
-	public void setEndTime(Date endTime)
+	public void setEndTime(String endTime)
 		{
-		this.resumePro.setEndTime(endTime);
+		try
+			{
+			this.resumePro.setEndTime(new SimpleDateFormat("yyyy-MM").parse(endTime));
+			}
+		catch (ParseException e)
+			{
+			e.printStackTrace();
+			}
 		}
 
 	}
