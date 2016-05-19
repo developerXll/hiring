@@ -18,6 +18,136 @@ $(function(){
 	$(".ui-userInfo-content input,.ui-objective-content input").focus(function(){
 		$(this).attr("placeholder","请输入").parent().parent().removeClass("has-error");
 	});
+	$(document).on("click",".J_del_resumeEdus",function(){
+		if(!confirm("确定删除？")){
+			return;
+		}
+		$(this).parent().parent().remove();
+	});
+	$(document).on("click",".J_del_resumeOccs,.J_del_resumePros",function(){
+		if(!confirm("确定删除？")){
+			return;
+		}
+		$(this).parent().parent().parent().remove();
+	});
+	$("#resumeEdusBtn").click(function(){
+		var html = '<ul  class="container-fluid ui-education-content"><li class="row">'+
+		'<span class="col-md-6">'+
+		'<input type="month" class="form-control ui-date-stylle eduStartTime" placeholder="入学时间">'+
+		'<input type="month" class="form-control ui-date-stylle eduEndTime" placeholder="毕业时间">'+
+		'</span>'+
+		'<span class="col-md-2">'+
+			'<input type="text" class="form-control graduate" placeholder="毕业学校">'+
+		'</span>'+
+		'<span class="col-md-2">'+
+		'<select class="form-control educationName">'+
+			'<option value="本科" selected>本科</option>'+
+			'<option value="专科">专科</option>'+
+			'<option value="本科同等学力">本科同等学力</option>'+
+			'<option value="专科同等学力">专科同等学力</option>'+
+		'</select>'+
+		'</span><span class="col-md-2"><span class="glyphicon glyphicon-minus J_del_resumeEdus"></span></span></li></ul>';
+		$("#resumeEdus").append(html);
+	});
+	$("#jobExperienceBtn").click(function(){
+		var resumeOccsHtml = '<ul class="container-fluid ui-experience-content">'+
+			'<li class="row">'+
+				'<span class="col-md-3"> '+
+					'<input type="month" name="jobstratTime" class="form-control jobstratTime" placeholder="开始时间"/>'+
+				'</span> '+
+				'<span class="col-md-1 ui-experience-line">&nbsp;-&nbsp; </span>'+
+				'<span class="col-md-3"> '+
+					'<input type="month" name="jobendTime" class="form-control jobendTime" placeholder="结束时间"/>'+
+				'</span> '+
+				'<span class="col-md-5"> '+
+					'<input type="text" name="companyName" class="form-control companyName"placeholder="公司名称"/>'+
+				'</span> '+
+			'</li> '+
+			'<li class="row">'+
+				'<span class="col-md-2 ui-job-title">职位名称</span>'+
+				'<span class="col-md-10">'+
+					'<input type="text" name="jobName" class="form-control possion"placeholder="职位名称"/>'+
+				'</span></span>'+
+			'</li>'+
+			'<li class="row">'+
+				'<span class="col-md-2 ui-job-title">所在行业</span>'+
+				'<span class="col-md-10">'+
+					'<select class="form-control companyType">'+
+						'<option value="互联网">互联网</option>'+
+						'<option value="计算机软件">计算机软件</option>'+
+						'<option value="电子商务">电子商务</option>'+
+						'<option value="医药/医院">医药/医院</option>'+
+						'<option value="房地产/建筑">房地产/建筑</option>'+
+						'<option value="服务业">服务业</option>'+
+						'<option value="政府/教育">政府/教育</option>'+
+						'<option value="广告/媒体">广告/媒体</option>'+
+						'<option value="金融/银行">金融/银行</option>'+
+					'</select>'+
+				'</span>'+
+			'</li>'+
+			'<li class="row">'+
+				'<span class="col-md-2 ui-job-title">工作描述</span>'+
+				'<span class="col-md-9">'+
+					'<textarea class="form-control jobDesc" row="4" placeholder="工作描述"></textarea>'+
+				'</span><span class="col-md-1"><span class="glyphicon glyphicon-minus J_del_resumeOccs"></span>'+
+			'</li>'+
+		'</ul>';
+		$("#jobExperience").append(resumeOccsHtml);
+	});
+	$("#resumeProsBtn").click(function(){
+		var resumeProsHtml ='<ul class="container-fluid ui-objective-content">'+
+			'<li class="row">'+
+				'<span class="col-md-2 ui-job-title">项目时间</span>'+
+				'<span class="col-md-3">' +
+					'<input type="month" name="stratCompanyTime" class="form-control stratCompanyTime" placeholder="开始时间">'+
+				'</span>'+
+				'<span class="col-md-1"> - </span>'+
+				'<span class="col-md-3">' +
+					'<input type="month" name="endCompanyTime" class="form-control endCompanyTime" placeholder="结束时间">'+
+				'</span>'+
+			'</li>' +
+			'<li class="row">'+
+				'<span class="col-md-2 ui-job-title">项目名称</span>'+
+				'<span class="col-md-10">'+
+					'<input type="text" name="name" class="form-control projectName" placeholder="项目名称"/>'+
+				'</span>' +
+			'</li>'+
+			'<li class="row">'+
+				'<span class="col-md-2 ui-job-title">项目职位</span>'+
+				'<span class="col-md-10">'+
+					'<input type="text" name="name" class="form-control resumeProsName" placeholder="项目职位"/>'+
+				'</span>'+
+			'</li>'+
+			'<li class="row">'+
+			'<span class="col-md-2 ui-job-title">项目描述</span>'+
+				'<span class="col-md-9">'+
+					'<textarea class="form-control projectIntroduction" placeholder="项目描述">'+
+					'</textarea>'+
+				'</span><span class="col-md-1"><span class="glyphicon glyphicon-minus J_del_resumePros"></span>' +
+			'</li>' +
+		'</ul>';
+		$("#resumePros").append(resumeProsHtml);
+	});
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 });
 function getAnnounce(){
 	if(window.location.href.split("?").length < 2 || window.location.hash.indexOf("announ") == -1){
@@ -174,6 +304,9 @@ function getResume(){
 				var resumeEdus = data.resumeEdus;
 				$("#resumeEdus,#jobExperience,#resumePros").empty();
 				for(var i = 0 ,len = resumeEdus.length;i<len ;i++){
+					if(!resumeEdus[i]){
+						continue;
+					}
 					var resumeEdusHtml = '<ul  class="container-fluid ui-education-content unEdit"><li class="row">'+
 					'<span class="col-md-6">'+
 						'<input type="month" class="form-control ui-date-stylle eduStartTime" value="'+new Date(resumeEdus[i].startTime).pattern("yyyy-MM")+'" disabled placeholder="入学时间">'+
@@ -189,98 +322,98 @@ function getResume(){
 						'<option value="本科同等学力">本科同等学力</option>'+
 						'<option value="专科同等学力">专科同等学力</option>'+
 					'</select>'+
-					'</span><span class="col-md-2"><span class="glyphicon glyphicon-plus"></span><span class="glyphicon glyphicon-minus" resumeEdusId="'+resumeEdus[i].id+'"></span></span></li></ul>';
+					'</span><span class="col-md-2"><span class="glyphicon glyphicon-minus J_del_resumeEdus" resumeEdusId="'+resumeEdus[i].id+'"></span></span></li></ul>';
 					$("#resumeEdus").append(resumeEdusHtml);
 					$('.educationName[resumeEdusId="'+resumeEdus[i].id+'"]').val(resumeEdus[i].education);
-					var resumeOccs = data.resumeOccs;
-					for(var i = 0 ,len = resumeOccs.length;i<len ;i++){
-						var resumeOccsHtml = '<ul class="container-fluid ui-experience-content unEdit">'+
-							'<li class="row">'+
-								'<span class="col-md-3"> '+
-									'<input type="month" name="jobstratTime" class="form-control jobstratTime" disabled value="'+new Date(resumeOccs[i].startTime).pattern("yyyy-MM")+'"/>'+
-								'</span> '+
-								'<span class="col-md-1 ui-experience-line">&nbsp;-&nbsp; </span>'+
-								'<span class="col-md-3"> '+
-									'<input type="month" name="jobendTime" class="form-control jobendTime" disabled value="'+new Date(resumeOccs[i].endTime).pattern("yyyy-MM")+'"/>'+
-								'</span> '+
-								'<span class="col-md-5"> '+
-									'<input type="text" name="companyName" class="form-control companyName" disabled value="'+resumeOccs[i].companyName+'"/>'+
-								'</span> '+
-							'</li> '+
-							'<li class="row">'+
-								'<span class="col-md-2 ui-job-title">职位名称</span>'+
-								'<span class="col-md-10">'+
-									'<input type="text" name="jobName" class="form-control possion" disabled value="'+resumeOccs[i].possion+' "/>'+
-								'</span>'+
-							'</li>'+
-							'<li class="row">'+
-								'<span class="col-md-2 ui-job-title">所在行业</span>'+
-								'<span class="col-md-10">'+
-									'<select class="form-control companyType" disabled resumeOccsId ="'+resumeOccs[i].id+'" >'+
-										'<option value="互联网">互联网</option>'+
-										'<option value="计算机软件">计算机软件</option>'+
-										'<option value="电子商务">电子商务</option>'+
-										'<option value="医药/医院">医药/医院</option>'+
-										'<option value="房地产/建筑">房地产/建筑</option>'+
-										'<option value="服务业">服务业</option>'+
-										'<option value="政府/教育">政府/教育</option>'+
-										'<option value="广告/媒体">广告/媒体</option>'+
-										'<option value="金融/银行">金融/银行</option>'+
-									'</select>'+
-								'</span>'+
-							'</li>'+
-							'<li class="row">'+
-								'<span class="col-md-2 ui-job-title">工作描述</span>'+
-								'<span class="col-md-10">'+
-									'<textarea class="form-control jobDesc" disabled row="4">'+resumeOccs[i].workIntroduction+'</textarea>'+
-								'</span>'+
-							'</li>'+
-							'<li class="row"> '+
-								'<span class="col-md-12">'+
-									'<button type="button" class="btn btn-success">继续添加</button>'+
-								'</span>'+
-							'</li>'+
-						'</ul>';
-						$("#jobExperience").append(resumeOccsHtml);
-						$('.companyType[resumeOccsId ="'+resumeOccs[i].id+'"]').val(resumeOccs[i].companyType);
-						var resumePros = data.resumePros;
-						for(var i = 0 ,len = resumePros.length;i<len ;i++){
-							var resumeProsHtml ='<ul class="container-fluid ui-objective-content unEdit">'+
-								'<li class="row">'+
-									'<span class="col-md-2 ui-job-title">项目时间</span>'+
-									'<span class="col-md-3">' +
-										'<input type="month" name="stratCompanyTime" class="form-control stratCompanyTime" disabled value="'+new Date(resumePros[i].startTime).pattern("yyyy-MM")+'">'+
-									'</span>'+
-									'<span class="col-md-1"> - </span>'+
-									'<span class="col-md-3">' +
-										'<input type="month" name="endCompanyTime" class="form-control endCompanyTime" disabled value="'+new Date(resumePros[i].endTime).pattern("yyyy-MM")+'">'+
-									'</span>'+
-								'</li>' +
-								'<li class="row">'+
-									'<span class="col-md-2 ui-job-title">项目名称</span>'+
-									'<span class="col-md-10">'+
-										'<input type="text" name="name" class="form-control projectName"  disabled value="'+resumePros[i].projectName+'"/>'+
-									'</span>' +
-								'</li>'+
-								'<li class="row">'+
-									'<span class="col-md-2 ui-job-title">项目职位</span>'+
-									'<span class="col-md-10">'+
-										'<input type="text" name="name" class="form-control resumeProsName" disabled value="'+resumePros[i].possion+'"/>'+
-									'</span>'+
-								'</li>'+
-								'<li class="row">'+
-								'<span class="col-md-2 ui-job-title">项目描述</span>'+
-									'<span class="col-md-10">'+
-										'<textarea class="form-control projectIntroduction" disabled>'+ resumePros[i].projectIntroduction +
-										'</textarea>'+
-									'</span>' +
-								'</li>' +
-							'</ul>';
-							$("#resumePros").append(resumeProsHtml);
-						}
-					}
 				}
-				
+				var resumeOccs = data.resumeOccs;debugger
+				for(var i = 0 ,len = resumeOccs.length;i<len ;i++){
+					if(!resumeOccs[i]){
+						continue;
+					}
+					var resumeOccsHtml = '<ul class="container-fluid ui-experience-content unEdit">'+
+						'<li class="row">'+
+							'<span class="col-md-3"> '+
+								'<input type="month" name="jobstratTime" class="form-control jobstratTime" disabled value="'+new Date(resumeOccs[i].startTime).pattern("yyyy-MM")+'"/>'+
+							'</span> '+
+							'<span class="col-md-1 ui-experience-line">&nbsp;-&nbsp; </span>'+
+							'<span class="col-md-3"> '+
+								'<input type="month" name="jobendTime" class="form-control jobendTime" disabled value="'+new Date(resumeOccs[i].endTime).pattern("yyyy-MM")+'"/>'+
+							'</span> '+
+							'<span class="col-md-5"> '+
+								'<input type="text" name="companyName" class="form-control companyName" disabled value="'+resumeOccs[i].companyName+'"/>'+
+							'</span> '+
+						'</li> '+
+						'<li class="row">'+
+							'<span class="col-md-2 ui-job-title">职位名称</span>'+
+							'<span class="col-md-10">'+
+								'<input type="text" name="jobName" class="form-control possion" disabled value="'+resumeOccs[i].possion+' "/>'+
+							'</span>'+
+						'</li>'+
+						'<li class="row">'+
+							'<span class="col-md-2 ui-job-title">所在行业</span>'+
+							'<span class="col-md-10">'+
+								'<select class="form-control companyType" disabled resumeOccsId ="'+resumeOccs[i].id+'" >'+
+									'<option value="互联网">互联网</option>'+
+									'<option value="计算机软件">计算机软件</option>'+
+									'<option value="电子商务">电子商务</option>'+
+									'<option value="医药/医院">医药/医院</option>'+
+									'<option value="房地产/建筑">房地产/建筑</option>'+
+									'<option value="服务业">服务业</option>'+
+									'<option value="政府/教育">政府/教育</option>'+
+									'<option value="广告/媒体">广告/媒体</option>'+
+									'<option value="金融/银行">金融/银行</option>'+
+								'</select>'+
+							'</span>'+
+						'</li>'+
+						'<li class="row">'+
+							'<span class="col-md-2 ui-job-title">工作描述</span>'+
+							'<span class="col-md-9">'+
+								'<textarea class="form-control jobDesc" disabled row="4">'+resumeOccs[i].workIntroduction+'</textarea>'+
+							'</span><span class="col-md-1"><span class="glyphicon glyphicon-minus J_del_resumeOccs"></span></span>'+
+						'</li>'+
+					'</ul>';
+					$("#jobExperience").append(resumeOccsHtml);
+					$('.companyType[resumeOccsId ="'+resumeOccs[i].id+'"]').val(resumeOccs[i].companyType);
+				}
+				var resumePros = data.resumePros;debugger
+				for(var i = 0 ,len = resumePros.length;i<len ;i++){
+					if(!resumePros[i]){
+						continue;
+					}
+					var resumeProsHtml ='<ul class="container-fluid ui-objective-content unEdit">'+
+						'<li class="row">'+
+							'<span class="col-md-2 ui-job-title">项目时间</span>'+
+							'<span class="col-md-3">' +
+								'<input type="month" name="stratCompanyTime" class="form-control stratCompanyTime" disabled value="'+new Date(resumePros[i].startTime).pattern("yyyy-MM")+'">'+
+							'</span>'+
+							'<span class="col-md-1"> - </span>'+
+							'<span class="col-md-3">' +
+								'<input type="month" name="endCompanyTime" class="form-control endCompanyTime" disabled value="'+new Date(resumePros[i].endTime).pattern("yyyy-MM")+'">'+
+							'</span>'+
+						'</li>' +
+						'<li class="row">'+
+							'<span class="col-md-2 ui-job-title">项目名称</span>'+
+							'<span class="col-md-10">'+
+								'<input type="text" name="name" class="form-control projectName" resumeProsId="'+resumePros[i].id+'"  disabled value="'+resumePros[i].projectName+'"/>'+
+							'</span>' +
+						'</li>'+
+						'<li class="row">'+
+							'<span class="col-md-2 ui-job-title">项目职位</span>'+
+							'<span class="col-md-10">'+
+								'<input type="text" name="name" class="form-control resumeProsName" disabled value="'+resumePros[i].possion+'"/>'+
+							'</span>'+
+						'</li>'+
+						'<li class="row">'+
+						'<span class="col-md-2 ui-job-title">项目描述</span>'+
+							'<span class="col-md-9">'+
+								'<textarea class="form-control projectIntroduction" disabled>'+ resumePros[i].projectIntroduction +
+								'</textarea>'+
+							'</span><span class="col-md-1"><span class="glyphicon glyphicon-minus J_del_resumePros"></span></span>' +
+						'</li>' +
+					'</ul>';
+					$("#resumePros").append(resumeProsHtml);
+				}
 			}else{
 				alert("获取失败！");
 			}
@@ -349,87 +482,102 @@ function getResume(){
 		$("#jobIntension").attr("placeholder","工作意向").parent().parent().removeClass("has-error");
 	}
 	var expectSalary = $("#salaryExpectation").val();
-	
 	var eduList = $("#resumeEdus ul.ui-education-content");
-	var resumeEdus = []
+	var resumeEdus = "[";
 	for(var i = 0,len=eduList.length;i<len;i++){
 		var eduStartTime = $(eduList[i]).find(".eduStartTime").val();
 		var eduEndTime =  $(eduList[i]).find(".eduEndTime").val();
 		var graduate =  $(eduList[i]).find(".graduate").val();
 		var educationName =  $(eduList[i]).find(".educationName").val();
-		var data = "{startTime:"+eduStartTime+",endTime:"+eduEndTime+",schoolName:"+graduate+",education:"+educationName+"}";
-		resumeEdus.push(data);
-		
+		var resumeEdusId =  $(eduList[i]).find(".educationName").attr("resumeEdusId");
+		var data = "{'id':"+resumeEdusId+",'startTime':'"+eduStartTime+"','endTime':'"+eduEndTime+"','schoolName':'"+graduate+"','education':'"+educationName+"'},";
+		resumeEdus +=data;
+//		resumeEdus.push({
+//			"startTime":eduStartTime,
+//			"endTime":eduEndTime,
+//			"schoolName":graduate,
+//			"education":educationName
+//		});
 	}
+	resumeEdus += "]";
 	var occsList = $("#jobExperience ul.ui-experience-content");
-	var resumeOccs =[];
+	var resumeOccs ="[";
 	for(var i = 0,len=occsList.length;i<len;i++){
 		var companyName = $(occsList[i]).find(".companyName").val();
 		var endTime = $(occsList[i]).find(".jobendTime").val();
 		var stratTime = $(occsList[i]).find(".jobstratTime").val();
 		var possion = $(occsList[i]).find(".possion").val();
 		var companyType = $(occsList[i]).find(".companyType").val();
+		var resumeOccsId = $(occsList[i]).find(".companyType").attr("resumeOccsId");
 		var workIntroduction = $(occsList[i]).find(".jobDesc").val();
-		/*resumeOccs.push({
-			companyName:companyName,
-			endTime:endTime,
-			stratTime:stratTime,
-			possion:possion,
-			companyType:companyType,
-			workIntroduction:workIntroduction
-		});*/
-		var data = "{companyName:"+companyName+",endTime:"+endTime+",startTime:"+stratTime+",possion:"+possion+",companyType:"+companyType+",workIntroduction:"+workIntroduction+"}";
-		resumeOccs.push(data);
-		
+//		resumeOccs.push({
+//			"companyName":companyName,
+//			"endTime":endTime,
+//			"stratTime":stratTime,
+//			"possion":possion,
+//			"companyType":companyType,
+//			"workIntroduction":workIntroduction
+//		});
+		var data = "{'id':"+resumeOccsId+",'companyName':'"+companyName+"','endTime':'"+endTime+"','startTime':'"+stratTime+"','possion':'"+possion+"','companyType':'"+companyType+"','workIntroduction':'"+workIntroduction+"'},";
+		resumeOccs +=data;
 	}
+	resumeOccs += "]";
 	var prosList = $("#resumePros ul.ui-objective-content");
-	var resumePros =[];
+	var resumePros ="[";
 	for(var i = 0,len=prosList.length;i<len;i++){
 		var stratTime = $(prosList[i]).find(".stratCompanyTime").val();
 		var endTime = $(prosList[i]).find(".endCompanyTime").val();
 		var projectName = $(prosList[i]).find(".projectName").val();
+		var resumeProsId = $(prosList[i]).find(".projectName").attr("resumeProsId");
 		var possion = $(prosList[i]).find(".resumeProsName").val();
 		var projectIntroduction = $(prosList[i]).find(".projectIntroduction").val();
-		/*resumePros.push({
-			endTime:endTime,
-			stratTime:stratTime,
-			possion:possion,
-			projectIntroduction:projectIntroduction,
-			projectName:projectName
-		});*/
-		var data = "{endTime:"+endTime+",startTime:"+stratTime+",possion:"+possion+",projectIntroduction:"+projectIntroduction+",projectName:"+projectName+"}"
-		resumeOccs.push(data);
+//		var obj = {
+//				"endTime":endTime,
+//				"stratTime":stratTime,
+//				"possion":possion,
+//				"projectIntroduction":projectIntroduction,
+//				"projectName":projectName
+//			};
+//		resumePros.push(obj);
+		var data = "{'id':"+resumeProsId+",'endTime':'"+endTime+"','startTime':'"+stratTime+"','possion':'"+possion+"','projectIntroduction':'"+projectIntroduction+"','projectName':'"+projectName+"'},";
+		resumePros+=data;
 	}
+	resumePros += "]";
 	var url = $.ctx+"/res/add";
 	if(id){
 		url = $.ctx+"/res/update";
 	}
 	$.ajax({
-		url:$.ctx+"/res/add",
+		url:url,
 		data:{
-			age:age,
-			domicile:domicile,
-			education:"",
-			email:email,
-			expectSalary:expectSalary,
-			gender:gender,
-			graduateSchool:"",
-			id:id,
-			identification:identification,
-			identificationType:identificationType,
-			jobIntension:jobIntension,
-			name:name,
-			residence:residence,
-			resumeEdus:resumeEdus,
-			resumeOccs:resumeOccs,
-			resumePros:resumePros,
-			selfIntroduction:selfIntroduction,
-			tel:tel
+			'age':age,
+			'domicile':domicile,
+			'education':"",
+			'email':email,
+			'expectSalary':expectSalary,
+			'gender':gender,
+			'graduateSchool':"",
+			'id':id,
+			'identification':identification,
+			'identificationType':identificationType,
+			'jobIntension':jobIntension,
+			'name':name,
+			'residence':residence,
+			'resumeEdus':resumeEdus,
+			'resumeOccs':resumeOccs,
+			'resumePros':resumePros,
+			'selfIntroduction':selfIntroduction,
+			'tel':tel
 		},
 		dataType:"json",
 		type:"post",
 		success:function(result){
 			console.log(result);
+			if(result.status == 200){
+				window.location.href = "/html/resumeList.jsp#resume";
+			}else{
+				alert("提交失败！");
+			}
 		}
 	});
 	 

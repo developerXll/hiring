@@ -92,7 +92,7 @@ public class ResumeProObj
 		{
 		try
 			{
-			this.resumePro.setEndTime(new SimpleDateFormat("yyyy-MM").parse(startTime));
+			this.resumePro.setStartTime(new SimpleDateFormat("yyyy-MM").parse(startTime));
 			}
 		catch (ParseException e)
 			{

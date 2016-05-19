@@ -8,7 +8,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -19,7 +18,6 @@ import com.hiring.bean.Resume;
 import com.hiring.bean.obj.ResumeObj;
 import com.hiring.bean.obj.UserObj;
 import com.hiring.constants.Constants;
-import com.hiring.constants.UserType;
 import com.hiring.framework.Page;
 import com.hiring.service.ResumeService;
 
@@ -72,9 +70,9 @@ public class ResumeController
 		return map;
 		}
 
-	@RequestMapping(value = "/update", method = {RequestMethod.POST })
+	@RequestMapping(value = "/update", method = {RequestMethod.POST }, produces = { "application/json" })
 	@ResponseBody
-	public Map<String, Object> update(ResumeObj resObj)
+	public Map<String, Object> update(ResumeObj resObj, HttpServletRequest request)
 		{
 		Map<String, Object> map = new HashMap<String, Object>();
 		if (resObj == null)
@@ -84,6 +82,9 @@ public class ResumeController
 			}
 		else
 			{
+			HttpSession session = request.getSession();
+			resObj.setUser((UserObj) session
+					.getAttribute(Constants.SESSION_AUTHENTICATION));
 			resObj.setUpdateTime(new Date());
 			resumeService.update(resObj.getResume());
 			map.put("status", 200);
@@ -152,6 +153,7 @@ public class ResumeController
 	public ResumeListData getListByUserName(Page page,
 			@PathVariable("name") String name, HttpServletRequest request)
 		{
+		/*
 		HttpSession session = request.getSession();
 		UserObj user = (UserObj) session
 				.getAttribute(Constants.SESSION_AUTHENTICATION);
@@ -165,6 +167,7 @@ public class ResumeController
 			return null;
 		if (page == null)
 			page = new Page();
+		*/
 		ResumeListData data = new ResumeListData();
 		if (name == null || name.length() <= 0)
 			{

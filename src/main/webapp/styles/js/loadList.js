@@ -32,6 +32,9 @@ $(function(){
 	$("#recSearchBtn").on("click",function(){
 		loadRecList($("#currentPage").html());
 	});
+	$("#resSearchList").on("click",function(){
+		loadResumeList($("#currentPage").html());
+	});
 });
 function loadRecList(pageNo){
 	var name = $("#recName").val();
@@ -154,8 +157,9 @@ function loadAnnounList(pageNo){
 	});
 }
 function loadResumeList(pageNo){
+	var name = $("#resNameSearch").val();
 	$.ajax({
-		url:$.ctx+"/res/list",
+		url:$.ctx+"/res/list/"+name,
 		data:{pageNo:pageNo},
 		dataType:"json",
 		type:"post",
@@ -175,7 +179,7 @@ function loadResumeList(pageNo){
 					'<td width="12%">'+data[i].age+'</td>'+
 					'<td width="14%" class="color-yellow">'+
 					'<a class="btn btn-defaul" href="/html/addResume.jsp?'+data[i].id+'#resume">修改</a>'+
-					'<button class="btn btn-defaul">删除</button>'+
+					'<button class="btn btn-defaul" onclick="delRes('+data[i].id+')">删除</button>'+
 					'</td>'+
 					'</tr>';
 				}
@@ -245,6 +249,25 @@ function delRecruit(id){
 		success:function(result){
 			if(result.status == 200){
 				loadRecList($("#currentPage").html());
+			}else{
+				alert("删除失败！");
+			}
+		}
+	});
+}
+//del简历
+function delRes(id){
+	if(!confirm("确定删除？")){
+		return;
+	}
+	$.ajax({
+		url:$.ctx+"/res/delete/"+id,
+		data:{},
+		dataType:"json",
+		type:"post",
+		success:function(result){
+			if(result.status == 200){
+				loadResumeList($("#currentPage").html());
 			}else{
 				alert("删除失败！");
 			}

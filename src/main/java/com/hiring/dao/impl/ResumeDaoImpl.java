@@ -40,7 +40,7 @@ public class ResumeDaoImpl extends BaseDaoImpl<Resume, Long>
 	public List<Resume> getByPageByUserName(Page page, String name)
 		{
 		Criteria criteria = this.getSession().createCriteria(getEntityClass());
-		criteria.add(Restrictions.like("user.userName", "%" + name + "%"));
+		criteria.add(Restrictions.like("name", "%" + name + "%"));
 		criteria.setFirstResult((page.getPageNo() - 1) * page.getPageSize());
 		criteria.setMaxResults(page.getPageSize());
 		return criteria.list();
@@ -50,7 +50,7 @@ public class ResumeDaoImpl extends BaseDaoImpl<Resume, Long>
 	public int countByPageByUserName(String name)
 		{
 		Criteria criteria = this.getSession().createCriteria(getEntityClass());
-		criteria.add(Restrictions.like("user.userName", "%" + name + "%"));
+		criteria.add(Restrictions.like("name", "%" + name + "%"));
 		return criteria.list() == null ? 0 : criteria.list().size();
 		}
 	}

@@ -102,7 +102,7 @@ public class ResumeOccObj
 		{
 		try
 			{
-			this.resumeOcc.setEndTime(new SimpleDateFormat("yyyy-MM").parse(startTime));
+			this.resumeOcc.setStartTime(new SimpleDateFormat("yyyy-MM").parse(startTime));
 			}
 		catch (ParseException e)
 			{

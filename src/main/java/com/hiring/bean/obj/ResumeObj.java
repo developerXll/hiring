@@ -2,8 +2,10 @@ package com.hiring.bean.obj;
 
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
+import com.alibaba.fastjson.JSON;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.hiring.bean.Resume;
@@ -242,19 +244,18 @@ public class ResumeObj
 		return edus;
 		}
 
-	public void setResumeEdus(ResumeEduObj[] resumeEdus)
+	public void setResumeEdus(String resumeEdus)
 		{
-		Set<ResumeEdu> edus = new HashSet<ResumeEdu>();
-		if (resumeEdus != null && resumeEdus.length > 0)
+		List<ResumeEduObj> edus = JSON.parseArray(resumeEdus,
+				ResumeEduObj.class);
+		Set<ResumeEdu> eduSet = new HashSet<ResumeEdu>();
+		for (ResumeEduObj edu : edus)
 			{
-			for (ResumeEduObj obj : resumeEdus)
-				{
-				ResumeEdu edu = obj.getResumeEdu();
-				edu.setResume(this.resume);
-				edus.add(edu);
-				}
+			ResumeEdu eduBean = edu.getResumeEdu();
+			eduBean.setResume(resume);
+			eduSet.add(eduBean);
 			}
-		this.resume.setResumeEdus(edus);
+		this.resume.setResumeEdus(eduSet);
 		}
 
 	public ResumeOccObj[] getResumeOccs()
@@ -273,19 +274,18 @@ public class ResumeObj
 		return occs;
 		}
 
-	public void setResumeOccs(ResumeOccObj[] resumeOccs)
+	public void setResumeOccs(String resumeOccs)
 		{
-		Set<ResumeOcc> occs = new HashSet<ResumeOcc>();
-		if (resumeOccs != null && resumeOccs.length > 0)
+		List<ResumeOccObj> occs = JSON.parseArray(resumeOccs,
+				ResumeOccObj.class);
+		Set<ResumeOcc> occSet = new HashSet<ResumeOcc>();
+		for (ResumeOccObj occ : occs)
 			{
-			for (ResumeOccObj obj : resumeOccs)
-				{
-				ResumeOcc occ = obj.getResumeOcc();
-				occ.setResume(this.resume);
-				occs.add(occ);
-				}
+			ResumeOcc occBean = occ.getResumeOcc();
+			occBean.setResume(resume);
+			occSet.add(occBean);
 			}
-		this.resume.setResumeOccs(occs);
+		this.resume.setResumeOccs(occSet);
 		}
 
 	public ResumeProObj[] getResumePros()
@@ -304,19 +304,18 @@ public class ResumeObj
 		return pros;
 		}
 
-	public void setResumePros(ResumeProObj[] resumePros)
+	public void setResumePros(String resumePros)
 		{
-		Set<ResumePro> pros = new HashSet<ResumePro>();
-		if (resumePros != null && resumePros.length > 0)
+		List<ResumeProObj> pros = JSON.parseArray(resumePros,
+				ResumeProObj.class);
+		Set<ResumePro> proSet = new HashSet<ResumePro>();
+		for (ResumeProObj pro : pros)
 			{
-			for (ResumeProObj obj : resumePros)
-				{
-				ResumePro pro = obj.getResumePro();
-				pro.setResume(this.resume);
-				pros.add(pro);
-				}
+			ResumePro proBean = pro.getResumePro();
+			proBean.setResume(resume);
+			proSet.add(proBean);
 			}
-		this.resume.setResumePros(pros);
+		this.resume.setResumePros(proSet);
 		}
 
 	}

@@ -45,18 +45,6 @@
 					<input type="email" class="form-control" id="email" disabled placeholder="电子邮箱"/>
 				</span>
 			</li>
-<!-- 			<li class="row"> -->
-<!-- 				<label class="col-md-2">工作年限：</label> -->
-<!-- 				<span class="col-md-10"> -->
-<!-- 					<select class="form-control" disabled id="jobYear"> -->
-<!-- 						<option value="1" selected>1年</option> -->
-<!-- 						<option value="2">2年</option> -->
-<!-- 						<option value="3">3年</option> -->
-<!-- 						<option value="4">4年</option> -->
-<!-- 						<option value="5-7">5-7年</option> -->
-<!-- 					</select> -->
-<!-- 				</span> -->
-<!-- 			</li> -->
 			<li class="row">
 				<label class="col-md-2">居住-地：</label>
 				<span class="col-md-10">
@@ -88,12 +76,25 @@
 		</h3>
 		<div id="resumeEdus">
 		</div>
+		<ul class="container-fluid">
+			<li class="row"> 
+				<span class="col-md-12">
+					<button type="button" class="btn btn-success" id="resumeEdusBtn">继续添加</button>
+				</span>
+			</li>
+		</ul>
 		<h3 class="ui-user-info ui-education-info">
 			<span>工作经验</span>
 			<span class="glyphicon glyphicon-pencil ui-edit-icon"></span>
 		</h3>
 		<div id="jobExperience"></div>
-		<div id="jobExperience"></div>
+		<ul class="container-fluid">
+			<li class="row"> 
+				<span class="col-md-12">
+					<button type="button" class="btn btn-success" id="jobExperienceBtn">继续添加</button>
+				</span>
+			</li>
+		</ul>
 		<h3 class="ui-user-info ui-education-info">
 			<span>求职意向</span> 
 			<span class="glyphicon glyphicon-trash ui-edit-icon"></span>
@@ -103,7 +104,7 @@
 			<li class="row">
 			<span class="col-md-2 ui-job-title">自我评价</span>
 				<span class="col-md-10">
-					<textarea class="form-control" disabled id="selfIntroduction">本人乐观、开朗，热爱IT行业，喜欢从事软件开发工作。思维敏捷清晰，逻辑分析能力较强，有很好的学习、分析能力，参加过实习，能够承担较强的工作压力，做事有始终，敢于挑战！具备团队开发经验，规范的代码编写习惯。工作主动积极、团队协作、责任感强，具备良好团队合作精神！
+					<textarea class="form-control" disabled id="selfIntroduction">
 					</textarea>
 				</span> 
 			</li>
@@ -134,6 +135,13 @@
 			<span class="glyphicon glyphicon-pencil ui-edit-icon"></span>
 		</h3>
 		<div id="resumePros"></div>
+		<ul class="container-fluid">
+			<li class="row"> 
+				<span class="col-md-12">
+					<button type="button" class="btn btn-success" id="resumeProsBtn">继续添加</button>
+				</span>
+			</li>
+		</ul>
 		<ul class="container-fluid ui-objective-content">
 			<li class="row"> 
 				<span class="col-md-12">
