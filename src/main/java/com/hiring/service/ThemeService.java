@@ -12,6 +12,8 @@ public interface ThemeService extends BaseService<Theme>
 	String serv_name = "themeService";
 
 	List<ThemeObj> findPageByTitle(String title, Page page);
+	
+	int countByTitle(String title);
 
 	ThemeObj getFloorsByPageAndInfo(String themeId, Page page, String info);
 	}

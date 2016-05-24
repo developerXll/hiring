@@ -19,12 +19,38 @@
 	HttpSession Session = request.getSession();
 	UserObj user = (UserObj)Session.getAttribute("SESSION_AUTHENTICATION");
 	String userType = "请登录";
+	String adminType = "";
 	if(user != null){
+		adminType = user.getUserType();
 		if(user.getUserType().equalsIgnoreCase("APPLICANT")){
-			userType ="管理员,"+user.getUserName() ;
-		}else{
+			userType ="管理员,"+user.getUserName();
+%>
+		<script type="text/javascript">
+			$(function(){
+// 				$("#myResBox,#resume").hide(); 
+				$(".form-horizontal button").show();
+				$("#announ a,#announIndex").html("公告管理");
+				$("#myResBox h4,#resume a").html("简历管理");
+				$("#recruit a,#recruitIndex").html("招聘管理");
+				$(".form-horizontal .form-group input,.form-horizontal .form-group textarea,.form-horizontal .form-group select").removeAttr("disabled");
+				$("#recSearchBtn,#announceSearchBtn").next().show();
+			});
+		</script>	
+		<%}else{
 			userType ="应聘者,"+user.getUserName() ;
-		}%>
+		%>
+		<script type="text/javascript">
+			$(function(){
+// 				$("#myResBox,#resume").show(); 
+				$("#myResBox h4,#resume a").html("我的招聘");
+				$(".form-horizontal button").hide();
+				$("#recSearchBtn,#announceSearchBtn").next().hide();
+				$("#announ a,#announIndex").html("查看公告");
+				$("#recruit a,#recruitIndex").html("查看招聘");
+				$(".form-horizontal .form-group input,.form-horizontal .form-group textarea,.form-horizontal .form-group select").attr("disabled",true);
+			});
+		</script>	
+		<%}%>
 <%}else{%>
 	<script type="text/javascript">
 		$(function(){
@@ -37,7 +63,7 @@
 		<div class="header-top">
 			<h3 class="sys-title">小七的招聘管理系统</h3>
 			<div class="user-info">
-				<span>欢迎，<em id="userNameText"><%=userType%></em>，回来
+				<span>欢迎，<em id="userNameText" userType="<%=adminType%>"><%=userType%></em>，回来
 				</span> <a href="<%=request.getContextPath() %>/passport/logout#index">退出</a>
 				<%if(user == null){ %>
 					<button type="button" class="btn btn-success" data-toggle="modal" data-target="#registerDialog"id="emptyRegisterDialog">注册</button>
@@ -51,6 +77,7 @@
 				<li id="resume"><a href="/html/resumeList.jsp#resume">我的招聘</a></li>
 				<li id="recruit"><a href="/html/recruitList.jsp#recruit">招聘管理</a></li>
 				<li id="announ"><a href="/html/announ.jsp#announ">公告管理</a></li>
+				<li id="bbs"><a href="/html/BBSList.jsp#bbs">论坛管理</a></li>
 			</ul>
 		</div>
 	</div>

@@ -18,6 +18,7 @@ import com.hiring.bean.Resume;
 import com.hiring.bean.obj.ResumeObj;
 import com.hiring.bean.obj.UserObj;
 import com.hiring.constants.Constants;
+import com.hiring.constants.UserType;
 import com.hiring.framework.Page;
 import com.hiring.service.ResumeService;
 
@@ -40,13 +41,26 @@ public class ResumeController
 				.getAttribute(Constants.SESSION_AUTHENTICATION);
 		ResumeListData data = new ResumeListData();
 		if (userObj != null)
-			data.setList(resumeService.findPageObjByUser(userObj, page));
-		page.setTotalNumber(resumeService.findPageNumObjByUser(userObj));
+			{
+			UserType userType = UserType.valueOf(userObj.getUserType());
+			if (UserType.APPLICANT.equals(userType))
+				{
+				data.setList(resumeService.findPageObj(page));
+				page.setTotalNumber(resumeService.loadCountNum());
+				}
+			else if (UserType.RECRUITER.equals(userType))
+				{
+				data.setList(resumeService.findPageObjByUser(userObj, page));
+				page.setTotalNumber(
+						resumeService.findPageNumObjByUser(userObj));
+				}
+			}
 		data.setPage(page);
 		return data;
 		}
 
-	@RequestMapping(value = "/add", method = {RequestMethod.POST })
+	@RequestMapping(value = "/add", method =
+		{ RequestMethod.POST })
 	@ResponseBody
 	public Map<String, Object> add(ResumeObj resObj, HttpServletRequest request)
 		{
@@ -70,9 +84,12 @@ public class ResumeController
 		return map;
 		}
 
-	@RequestMapping(value = "/update", method = {RequestMethod.POST }, produces = { "application/json" })
+	@RequestMapping(value = "/update", method =
+		{ RequestMethod.POST }, produces =
+		{ "application/json" })
 	@ResponseBody
-	public Map<String, Object> update(ResumeObj resObj, HttpServletRequest request)
+	public Map<String, Object> update(ResumeObj resObj,
+			HttpServletRequest request)
 		{
 		Map<String, Object> map = new HashMap<String, Object>();
 		if (resObj == null)
@@ -153,31 +170,40 @@ public class ResumeController
 	public ResumeListData getListByUserName(Page page,
 			@PathVariable("name") String name, HttpServletRequest request)
 		{
-		/*
-		HttpSession session = request.getSession();
-		UserObj user = (UserObj) session
-				.getAttribute(Constants.SESSION_AUTHENTICATION);
-		if (user == null)
-			return null;
-		String userType = user.getUserType();
-		if (StringUtils.isEmpty(userType))
-			return null;
-		// 判断用户是否为应聘者，如果是应聘者，不支持查询简历功能
-		if (!UserType.APPLICANT.equals(UserType.valueOf(userType)))
-			return null;
 		if (page == null)
 			page = new Page();
-		*/
 		ResumeListData data = new ResumeListData();
-		if (name == null || name.length() <= 0)
+		HttpSession session = request.getSession();
+		UserObj userObj = (UserObj) session
+				.getAttribute(Constants.SESSION_AUTHENTICATION);
+		if (userObj != null)
 			{
-			data.setList(resumeService.findPageObj(page));
-			page.setTotalNumber(resumeService.loadCountNum());
-			}
-		else
-			{
-			data.setList(resumeService.findPageObjByUserName(name, page));
-			page.setTotalNumber(resumeService.findPageNumObjByUserName(name));
+			UserType userType = UserType.valueOf(userObj.getUserType());
+			if (UserType.APPLICANT.equals(userType))
+				{
+				// 管理员用户
+				if (name == null || name.length() <= 0)
+					{
+					// 如果传输name为空，查询所有信息
+					data.setList(resumeService.findPageObj(page));
+					page.setTotalNumber(resumeService.loadCountNum());
+					}
+				else
+					{
+					// 如果传输name为空，根据条件查询
+					data.setList(
+							resumeService.findPageObjByUserName(name, page));
+					page.setTotalNumber(
+							resumeService.findPageNumObjByUserName(name));
+					}
+				}
+			else if (UserType.RECRUITER.equals(userType))
+				{
+				// 应聘者
+				data.setList(resumeService.findPageObjByUser(userObj, page));
+				page.setTotalNumber(
+						resumeService.findPageNumObjByUser(userObj));
+				}
 			}
 		data.setPage(page);
 		return data;

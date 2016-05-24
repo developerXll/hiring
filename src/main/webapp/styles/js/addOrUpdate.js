@@ -128,26 +128,6 @@ $(function(){
 		'</ul>';
 		$("#resumePros").append(resumeProsHtml);
 	});
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 });
 function getAnnounce(){
 	if(window.location.href.split("?").length < 2 || window.location.hash.indexOf("announ") == -1){
@@ -582,7 +562,41 @@ function getResume(){
 	});
 	 
  }
-
+//add论坛
+ function addOrUpdateBBS(){
+ 	var bbsName = $("#bbsName").val();
+ 	if($.trim(bbsName).length==0){
+ 		$("#bbsName").attr("placeholder","请输入主题").parent().parent().addClass("has-error");
+ 		return;
+ 	}else{
+ 		$("#bbsName").attr("placeholder","请输入").parent().parent().removeClass("has-error");
+ 	}
+ 	var bbsContent = $("#bbsContent").val();
+ 	if($.trim(bbsContent).length==0){
+ 		$("#bbsContent").attr("placeholder","请输入内容").parent().parent().addClass("has-error");
+ 		return;
+ 	}else{
+ 		$("#bbsContent").attr("placeholder","请输入").parent().parent().removeClass("has-error");
+ 	}
+ 	$.ajax({
+ 		url:$.ctx + "/theme/addTheme",
+ 		data:{
+ 			  title:bbsName,
+ 			  info:bbsContent
+ 		},
+ 		dataType:"json",
+ 		type:"post",
+ 		success:function(result){
+ 			if(result.status == 200){
+ 				alert("提交成功！");
+ 				window.location.href = $.ctx + "/html/BBSList.jsp#bbs";
+ 			}else{
+ 				alert("提交失败！");
+ 			}
+ 		}
+ 	});
+ 	return false;
+ }
 
 
 

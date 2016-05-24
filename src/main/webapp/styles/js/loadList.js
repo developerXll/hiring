@@ -2,6 +2,7 @@ $(function(){
 	loadRecList(1);
 	loadAnnounList(1);
 	loadResumeList(1);
+	loadBBSList(1);
 	$("#recNext").on("click",function(){
 		var currentPage = parseInt($("#currentPage").html()) + 1;
 		loadRecList(currentPage);
@@ -57,11 +58,17 @@ function loadRecList(pageNo){
 								'<td width="21%">'+data[i].jobRequirement+'</td>'+
 								'<td width="12%">'+data[i].insertTime+'</td>'+
 								'<td width="12%">'+(data[i].recStatus == "RECRUTING"?"招聘中":"招聘结束")+'</td>'+
-								'<td width="14%" class="color-yellow">'+
-									'<a class="btn btn-defaul" href="/html/addOrUpdateRecruit.jsp?'+data[i].id+'#recruit">修改</a>'+
-									'<button class="btn btn-defaul"onclick="delRecruit('+data[i].id+')">删除</button>'+
-								'</td>'+
-							'</tr>';
+								'<td width="14%" class="color-yellow">';
+								if($("#userNameText").attr("userType") == "APPLICANT"){
+									trHTml += '<a class="btn btn-defaul" href="/html/addOrUpdateRecruit.jsp?'+data[i].id+'#recruit">修改</a>'+
+									'<button class="btn btn-defaul"onclick="delRecruit('+data[i].id+')">删除</button>';
+								}else if($("#userNameText").attr("userType") == "RECRUITER"){
+									trHTml += '<a class="btn btn-defaul" href="/html/addOrUpdateRecruit.jsp?'+data[i].id+'#recruit">查看</a>';
+//									if(data[i].recStatus == "RECRUTING"){
+//										trHTml += '<button class="btn btn-defaul" resumeId ="" recruitId ="'+data[i].id+'">投递简历</button>';
+//									}
+								}
+								trHTml += '</td></tr>';
 				}
 				$("#recTbody").html(trHTml);
 				$("#currentPage").html(pager.pageNo);
@@ -115,13 +122,16 @@ function loadAnnounList(pageNo){
 					'<td width="13%">'+data[i].title+'</td>'+
 					'<td width="23%">'+data[i].annInfo+'</td>'+
 					'<td width="21%">'+data[i].user.userName+'</td>'+
-					'<td width="12%">'+(data[i].user.userType == "RECRUITER" ? "管理员":"应聘者")+'</td>'+
+					'<td width="12%">'+(data[i].user.userType != "RECRUITER" ? "管理员":"应聘者")+'</td>'+
 					'<td width="12%">'+data[i].insertTime+'</td>'+
-					'<td width="14%" class="color-yellow">'+
-					'<a class="btn btn-default" href="/html/addOrUpdateAnnounce.jsp?id='+data[i].id+'#announ">修改</a>'+
-					'<button class="btn btn-default" onclick="delAnnounce('+data[i].id+')">删除</button>'+
-					'</td>'+
-					'</tr>';
+					'<td width="14%" class="color-yellow">';
+					if($("#userNameText").attr("userType") == "APPLICANT"){
+						trHTml += '<a class="btn btn-default" href="/html/addOrUpdateAnnounce.jsp?id='+data[i].id+'#announ">修改</a>'+
+						'<button class="btn btn-default" onclick="delAnnounce('+data[i].id+')">删除</button>';
+					}else if($("#userNameText").attr("userType") == "RECRUITER"){
+						trHTml += '<a class="btn btn-default" href="/html/addOrUpdateAnnounce.jsp?id='+data[i].id+'#announ">查看</a>';
+					}
+					trHTml += '</td></tr>';
 				}
 				$("#announTbody").html(trHTml);
 				$("#currentPage").html(pager.pageNo);
@@ -268,6 +278,80 @@ function delRes(id){
 		success:function(result){
 			if(result.status == 200){
 				loadResumeList($("#currentPage").html());
+			}else{
+				alert("删除失败！");
+			}
+		}
+	});
+}
+//加载论坛主题
+function loadBBSList(pageNo){
+	var name = $("#bbsListName").val();
+	$.ajax({
+		url:$.ctx+"/theme/listTheme/"+name,
+		data:{pageNo:pageNo},
+		dataType:"json",
+		type:"post",
+		success:function(result){
+			var data = result.list;
+			var pager = result.page;
+			var trHTml = "";
+			if(data && data.length>0){
+				for(var i=0,len=data.length;i<len;i++){
+					trHTml += '<tr class="customer-tbody">'+
+					'<td width="5%">'+(i+1)+'</td>'+
+					'<td width="60%">'+data[i].title+'</td>'+
+					'<td width="15%">'+data[i].insertDate+'</td>'+
+					'<td width="20%" class="color-yellow">'+
+					'<button class="btn btn-defaul" onclick="delBBS('+data[i].id+')">删除</button>'+
+					'</td>'+
+					'</tr>';
+				}
+				$("#bbsListTbody").html(trHTml);
+				$("#currentPage").html(pager.pageNo);
+				$("#totalPage").html(pager.totalPageNumber);
+				if(pager.pageNo == 1){
+					$("#bbsPrcv").parent().addClass("disabled");
+					$("#bbsPrcv").off("click");
+				}else{
+					$("#bbsPrcv").parent().removeClass("disabled");
+					$("#bbsPrcv").on("click",function(){
+						var currentPage = parseInt($("#currentPage").html()) -1;
+						loadResumeList(currentPage);
+					});
+				}
+				if(pager.pageNo == pager.totalPageNumber){
+					$("#bbsNext").parent().addClass("disabled");
+					$("#bbsNext").off("click");
+				}else if(pager.pageNo != pager.totalPageNumber){
+					$("#bbsNext").parent().removeClass("disabled");
+					$("#bbsNext").on("click",function(){
+						var currentPage = parseInt($("#currentPage").html()) + 1;
+						loadResumeList(currentPage);
+					});
+				}
+				$(".ui-page-num").show();
+			}else{
+				$("#bbsListTbody").html('<tr class="customer-tbody text-center"><td colspan="4">暂无数据</td></tr>');
+				$("#bbsPrcv").parent().addClass("disabled");
+				$("#bbsNext").parent().addClass("disabled");
+				$(".ui-page-num").hide();
+			}
+		}
+	});
+}
+function delBBS(id){
+	if(!confirm("确定删除？")){
+		return;
+	}
+	$.ajax({
+		url:$.ctx+"/theme/delTheme/"+id,
+		data:{},
+		dataType:"json",
+		type:"post",
+		success:function(result){
+			if(result.status == 200){
+				loadBBSList($("#currentPage").html());
 			}else{
 				alert("删除失败！");
 			}

@@ -8,5 +8,7 @@ import com.hiring.framework.Page;
 public interface ThemeDao extends BaseDao<Theme, Long>
 	{
 
-	public List<Theme> getByPageByName(Page page, String name);
+	List<Theme> getByPageByName(Page page, String name);
+
+	int countByName(String name);
 	}

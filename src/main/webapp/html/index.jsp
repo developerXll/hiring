@@ -9,7 +9,7 @@
 	<div class="container-fluid">
 		<jsp:include page="common.jsp"></jsp:include>
 		<div class="row container-fluid">
-			<div class="col-md-4">
+			<div class="col-md-4" id="myResBox">
 				<div class="modal-box">
 					<div class="modal-header">
 						<h4>我的招聘</h4>
@@ -27,7 +27,7 @@
 			<div class="col-md-4">
 				<div class="modal-box">
 					<div class="modal-header">
-						<h4>公告管理</h4>
+						<h4 id="announIndex">公告管理</h4>
 						<a href="/html/announ.jsp#announ">进入<em class="glyphicon glyphicon-menu-right"></em></a>
 					</div>
 					<ul class="list-group" id="announIndexList">
@@ -39,10 +39,10 @@
 					</ul>
 				</div>
 			</div>
-			<div class="col-md-4">
+			<div class="col-md-4" id="recruitListIndex">
 				<div class="modal-box">
 					<div class="modal-header">
-						<h4>招聘管理</h4>
+						<h4 id="recruitIndex">招聘管理</h4>
 						<a href="/html/recruitList.jsp#recruit">进入<em class="glyphicon glyphicon-menu-right"></em></a>
 					</div>
 					<ul class="list-group" id="myRecList">

@@ -1,7 +1,9 @@
 package com.hiring.controller;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -118,6 +120,32 @@ public class ThemeController
 			page = new Page();
 		ThemeListData data = new ThemeListData();
 		data.setList(themeService.findPageByTitle(title, page));
+		page.setTotalNumber(themeService.countByTitle(title));
+		data.setPage(page);
+		return data;
+		}
+
+	/**
+	 * 论坛主题列表
+	 * 
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping("/listTheme")
+	@ResponseBody
+	public ThemeListData ListTheme(Page page)
+		{
+		if (page == null)
+			page = new Page();
+		ThemeListData data = new ThemeListData();
+		List<ThemeObj> objs = new ArrayList<ThemeObj>();
+		List<Theme> themes = themeService.loadPage(page);
+		for (Theme theme : themes)
+			{
+			objs.add(new ThemeObj(theme));
+			}
+		data.setList(objs);
+		page.setTotalNumber(themeService.loadCountNum());
 		data.setPage(page);
 		return data;
 		}
@@ -132,10 +160,20 @@ public class ThemeController
 	 */
 	@RequestMapping("/infoTheme/{themeId}/{info}")
 	@ResponseBody
-	public ThemeObj getTheme(Page page, @PathVariable("themeId") String themeId,
+	public ThemeFloorListData getTheme(Page page,
+			@PathVariable("themeId") String themeId,
 			@PathVariable("info") String info)
 		{
-		return themeService.getFloorsByPageAndInfo(themeId, page, info);
+		if (page == null)
+			page = new Page();
+		ThemeFloorListData data = new ThemeFloorListData();
+		List<ThemeFloorObj> list = themeFloorService
+				.getFloorsByThemeAndPageAndInfo(themeId, page, info);
+		page.setTotalNumber(themeFloorService
+				.countByThemeAndPageAndInfo(themeId, page, info));
+		data.setList(list);
+		data.setPage(page);
+		return data;
 		}
 
 	/**
@@ -148,9 +186,21 @@ public class ThemeController
 	 */
 	@RequestMapping("/getTheme/{themeId}")
 	@ResponseBody
-	public ThemeObj getTheme(Page page, @PathVariable("themeId") String themeId)
+	public ThemeObjData getTheme(Page page,
+			@PathVariable("themeId") String themeId)
 		{
-		return themeService.getFloorsByPageAndInfo(themeId, page, null);
+		if (page == null)
+			page = new Page();
+		ThemeObjData data = new ThemeObjData();
+		ThemeObj obj = new ThemeObj();
+		obj.setTheme(themeService.load(themeId));
+		List<ThemeFloorObj> list = themeFloorService
+				.getFloorsByThemeAndPage(themeId, page);
+		page.setTotalNumber(themeFloorService.countByTheme(themeId));
+		obj.setFloors(list);
+		data.setObj(obj);
+		data.setPage(page);
+		return data;
 		}
 
 	/**

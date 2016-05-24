@@ -43,6 +43,11 @@ public class ThemeServiceImpl extends BaseServiceImpl<Theme>
 		return objs;
 		}
 
+	public int countByTitle(String title)
+		{
+		return themeDao.countByName(title);
+		}
+
 	public ThemeObj getFloorsByPageAndInfo(String themeId, Page page,
 			String info)
 		{
@@ -51,7 +56,8 @@ public class ThemeServiceImpl extends BaseServiceImpl<Theme>
 			return null;
 		if (StringUtils.isEmpty(info))
 			info = "";
-		List<ThemeFloor> floors = floorDao.getByPageByName(page, info, theme);
+		List<ThemeFloor> floors = floorDao.getByPageAndNameAndTheme(page, info,
+				theme);
 		List<ThemeFloorObj> floorObjs = new ArrayList<ThemeFloorObj>();
 		if (floors != null && floors.size() > 0)
 			{

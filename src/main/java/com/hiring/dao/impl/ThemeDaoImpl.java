@@ -25,4 +25,11 @@ public class ThemeDaoImpl extends BaseDaoImpl<Theme, Long> implements ThemeDao
 		criteria.setMaxResults(page.getPageSize());
 		return criteria.list();
 		}
+
+	public int countByName(String name)
+		{
+		Criteria criteria = this.getSession().createCriteria(getEntityClass());
+		criteria.add(Restrictions.like("title", "%" + name + "%"));
+		return criteria.list() != null ? criteria.list().size() : 0;
+		}
 	}

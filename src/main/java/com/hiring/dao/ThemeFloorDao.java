@@ -9,9 +9,14 @@ import com.hiring.framework.Page;
 public interface ThemeFloorDao extends BaseDao<ThemeFloor, Long>
 	{
 
-	List<ThemeFloor> getByPageByName(Page page, String name, Theme theme);
+	List<ThemeFloor> getByPageAndNameAndTheme(Page page, String name,
+			Theme theme);
+
+	int countByNameAndTheme(String name, Theme theme);
 
 	void deleteByTheme(Theme theme);
+
+	List<ThemeFloor> getByPageAndTheme(Page page, Theme theme);
 
 	int countByTheme(Theme theme);
 	}
