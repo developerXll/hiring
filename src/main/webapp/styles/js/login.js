@@ -70,7 +70,7 @@ function logout() {
 		type:"post",
 		success:function(result){
 			if(result.status === 200){
-				window.location.href = $.ctx + "/passport/index#index"; 
+				window.location.reload(); 
 			}else{
 				alert("系统出错！");
 			}
