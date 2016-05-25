@@ -27,6 +27,14 @@ $(function(){
 		var currentPage = parseInt($("#currentPage").html()) -1;
 		loadResumeList(currentPage);
 	});
+	$("#bbsNext").on("click",function(){
+		var currentPage = parseInt($("#currentPage").html()) + 1;
+		loadBBSList(currentPage);
+	});
+	$("#bbsPrcv").on("click",function(){
+		var currentPage = parseInt($("#currentPage").html()) -1;
+		loadBBSList(currentPage);
+	});
 	$("#announceSearchBtn").on("click",function(){
 		loadAnnounList($("#currentPage").html());
 	});
@@ -35,6 +43,9 @@ $(function(){
 	});
 	$("#resSearchList").on("click",function(){
 		loadResumeList($("#currentPage").html());
+	});
+	$("#bbsListSearchBtn").on("click",function(){
+		loadBBSList($("#currentPage").html());
 	});
 });
 function loadRecList(pageNo){
@@ -174,7 +185,6 @@ function loadResumeList(pageNo){
 		dataType:"json",
 		type:"post",
 		success:function(result){
-//			console.log(result);return;
 			var data = result.list;
 			var pager = result.page;
 			var trHTml = "";
@@ -302,8 +312,11 @@ function loadBBSList(pageNo){
 					'<td width="5%">'+(i+1)+'</td>'+
 					'<td width="60%">'+data[i].title+'</td>'+
 					'<td width="15%">'+data[i].insertDate+'</td>'+
-					'<td width="20%" class="color-yellow">'+
-					'<button class="btn btn-defaul" onclick="delBBS('+data[i].id+')">删除</button>'+
+					'<td width="20%" class="color-yellow">';
+					if($("#userNameText").attr("userType") == "APPLICANT"){
+						trHTml += '<button class="btn btn-defaul" onclick="delBBS('+data[i].id+')">删除</button>';
+					} 
+					trHTml += '<a class="btn btn-defaul" href="/html/showBBS.jsp?'+data[i].id+'#bbs">查看</a>'+
 					'</td>'+
 					'</tr>';
 				}
@@ -317,7 +330,7 @@ function loadBBSList(pageNo){
 					$("#bbsPrcv").parent().removeClass("disabled");
 					$("#bbsPrcv").on("click",function(){
 						var currentPage = parseInt($("#currentPage").html()) -1;
-						loadResumeList(currentPage);
+						loadBBSList(currentPage);
 					});
 				}
 				if(pager.pageNo == pager.totalPageNumber){
@@ -327,7 +340,7 @@ function loadBBSList(pageNo){
 					$("#bbsNext").parent().removeClass("disabled");
 					$("#bbsNext").on("click",function(){
 						var currentPage = parseInt($("#currentPage").html()) + 1;
-						loadResumeList(currentPage);
+						loadBBSList(currentPage);
 					});
 				}
 				$(".ui-page-num").show();

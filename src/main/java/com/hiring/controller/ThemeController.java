@@ -193,7 +193,7 @@ public class ThemeController
 			page = new Page();
 		ThemeObjData data = new ThemeObjData();
 		ThemeObj obj = new ThemeObj();
-		obj.setTheme(themeService.load(themeId));
+		obj.setTheme(themeService.load(Long.parseLong(themeId)));
 		List<ThemeFloorObj> list = themeFloorService
 				.getFloorsByThemeAndPage(themeId, page);
 		page.setTotalNumber(themeFloorService.countByTheme(themeId));

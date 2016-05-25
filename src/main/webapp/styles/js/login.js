@@ -99,9 +99,9 @@ function resigter(){
 //			console.log(result);
 			if(result.status === 200){
 				var user = result.user;
-				if(user.userType == "APPLICANT"){
+				if(user.userType && user.userType == "APPLICANT"){
 					$("#userNameText").html("管理员,"+user.userName);
-				}else{
+				}else if(user.userType && user.userType == "RECRUITER"){
 					$("#userNameText").html("应聘者,"+user.userName);
 				}
 				$('#registerDialog').modal("hide");

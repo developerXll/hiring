@@ -33,7 +33,8 @@
 				$("#myResBox h4,#resume a").html("简历管理");
 				$("#recruit a,#recruitIndex").html("招聘管理");
 				$(".form-horizontal .form-group input,.form-horizontal .form-group textarea,.form-horizontal .form-group select").removeAttr("disabled");
-				$("#recSearchBtn,#announceSearchBtn").next().show();
+				$("#recSearchBtn,#announceSearchBtn,#bbsListSearchBtn").next().show();
+				$("#resSearchList").next().hide();
 			});
 		</script>	
 		<%}else{
@@ -44,10 +45,13 @@
 // 				$("#myResBox,#resume").show(); 
 				$("#myResBox h4,#resume a").html("我的招聘");
 				$(".form-horizontal button").hide();
-				$("#recSearchBtn,#announceSearchBtn").next().hide();
+				$("#recSearchBtn,#announceSearchBtn,#bbsListSearchBtn").next().hide();
+				$("#resSearchList").next().show();
 				$("#announ a,#announIndex").html("查看公告");
 				$("#recruit a,#recruitIndex").html("查看招聘");
 				$(".form-horizontal .form-group input,.form-horizontal .form-group textarea,.form-horizontal .form-group select").attr("disabled",true);
+				$(".J_BBS .form-group textarea").removeAttr("disabled");
+				$(".J_BBS .form-horizontal button").show();
 			});
 		</script>	
 		<%}%>
@@ -61,7 +65,7 @@
 <body>
 	<div class="header">
 		<div class="header-top">
-			<h3 class="sys-title">小七的招聘管理系统</h3>
+			<h3 class="sys-title">科信公司招聘管理系统</h3>
 			<div class="user-info">
 				<span>欢迎，<em id="userNameText" userType="<%=adminType%>"><%=userType%></em>，回来
 				</span> <a href="<%=request.getContextPath() %>/passport/logout#index">退出</a>

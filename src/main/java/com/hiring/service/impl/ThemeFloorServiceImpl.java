@@ -44,7 +44,7 @@ public class ThemeFloorServiceImpl extends BaseServiceImpl<ThemeFloor>
 	public List<ThemeFloorObj> getFloorsByThemeAndPageAndInfo(String themeId,
 			Page page, String info)
 		{
-		Theme theme = themeDao.get(themeId);
+		Theme theme = themeDao.get(Long.parseLong(themeId));
 		List<ThemeFloorObj> objs = new ArrayList<ThemeFloorObj>();
 		if (theme == null)
 			return objs;
@@ -63,7 +63,7 @@ public class ThemeFloorServiceImpl extends BaseServiceImpl<ThemeFloor>
 	public int countByThemeAndPageAndInfo(String themeId, Page page,
 			String info)
 		{
-		Theme theme = themeDao.get(themeId);
+		Theme theme = themeDao.get(Long.parseLong(themeId));
 		if (theme == null)
 			return 0;
 		return floorDao.countByNameAndTheme(info, theme);
@@ -72,7 +72,7 @@ public class ThemeFloorServiceImpl extends BaseServiceImpl<ThemeFloor>
 	public List<ThemeFloorObj> getFloorsByThemeAndPage(String themeId,
 			Page page)
 		{
-		Theme theme = themeDao.get(themeId);
+		Theme theme = themeDao.get(Long.parseLong(themeId));
 		List<ThemeFloorObj> objs = new ArrayList<ThemeFloorObj>();
 		if (theme == null)
 			return objs;
@@ -89,7 +89,7 @@ public class ThemeFloorServiceImpl extends BaseServiceImpl<ThemeFloor>
 
 	public int countByTheme(String themeId)
 		{
-		Theme theme = themeDao.get(themeId);
+		Theme theme = themeDao.get(Long.parseLong(themeId));
 		if (theme == null)
 			return 0;
 		return floorDao.countByTheme(theme);

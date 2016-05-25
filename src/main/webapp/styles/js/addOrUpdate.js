@@ -2,6 +2,15 @@ $(function(){
 	getAnnounce();
 	getRecruit();
 	getResume();
+	loadThemeFloorList(1);
+	$("#showbbsNext").on("click",function(){
+		var currentPage = parseInt($("#currentPage").html()) + 1;
+		loadThemeFloorList(currentPage);
+	});
+	$("#showbbsPrcv").on("click",function(){
+		var currentPage = parseInt($("#currentPage").html()) -1;
+		loadThemeFloorList(currentPage);
+	});
 	$("#noticeName").focus(function(){
 		$("#noticeName").attr("placeholder","输入公告名称").parent().parent().removeClass("has-error");
 		$(".ui-error").remove();
@@ -306,7 +315,7 @@ function getResume(){
 					$("#resumeEdus").append(resumeEdusHtml);
 					$('.educationName[resumeEdusId="'+resumeEdus[i].id+'"]').val(resumeEdus[i].education);
 				}
-				var resumeOccs = data.resumeOccs;debugger
+				var resumeOccs = data.resumeOccs;
 				for(var i = 0 ,len = resumeOccs.length;i<len ;i++){
 					if(!resumeOccs[i]){
 						continue;
@@ -356,7 +365,7 @@ function getResume(){
 					$("#jobExperience").append(resumeOccsHtml);
 					$('.companyType[resumeOccsId ="'+resumeOccs[i].id+'"]').val(resumeOccs[i].companyType);
 				}
-				var resumePros = data.resumePros;debugger
+				var resumePros = data.resumePros;
 				for(var i = 0 ,len = resumePros.length;i<len ;i++){
 					if(!resumePros[i]){
 						continue;
@@ -552,7 +561,6 @@ function getResume(){
 		dataType:"json",
 		type:"post",
 		success:function(result){
-			console.log(result);
 			if(result.status == 200){
 				window.location.href = "/html/resumeList.jsp#resume";
 			}else{
@@ -597,7 +605,115 @@ function getResume(){
  	});
  	return false;
  }
-
+//发表评论
+function addThemeFloor(){
+	 var bbsContent = $("#bbsContent").val();
+	 if($.trim(bbsContent).length==0){
+		 $("#bbsContent").attr("placeholder","请输入内容").parent().parent().addClass("has-error");
+		 return;
+	 }else{
+		 $("#bbsContent").attr("placeholder","请输入").parent().parent().removeClass("has-error");
+	 }
+	 var id = $("#showBBSName").attr("bbsId");
+	 $.ajax({
+		 url:$.ctx + "/theme/addThemeFloor",
+		 data:{
+			 themeId:id,
+			 info:bbsContent
+		 },
+		 dataType:"json",
+		 type:"post",
+		 success:function(result){
+			 if(result.status == 200){
+				 loadThemeFloorList($("#currentPage").html());
+				 $("#bbsContent").val("");
+			 }else{
+				 alert("提交失败！");
+			 }
+		 }
+	 });
+	 return false;
+ }
+//load评论list
+function loadThemeFloorList(pageNo){
+	var theRequest = window.location.search;
+	if(!theRequest || window.location.hash.indexOf("bbs") == -1){
+		return;
+	}
+	var id = theRequest.split("#")[0].replace("?","");
+	$.ajax({
+		url:$.ctx + "/theme/getTheme/"+id,
+		data:{pageNo:pageNo},
+		dataType:"json",
+		type:"post",
+		success:function(result){
+			var bbsHtml = "";
+			var floors = result.obj.floors;
+			var bbs = result.obj;
+			$("#showBBSName").html(bbs.title).attr("bbsId",bbs.id)
+			for(var i=0,len = floors.length;i<len;i++){
+				bbsHtml += '<li class="row ui-bbs-li" id="'+floors[i].id+'">'+
+			  		'<label for="bbsContent" class="col-sm-2 control-label">'+floors[i].userObj.userName+'</label>'+
+			  		'<div class="col-sm-7 ui-bbs-content">'+floors[i].info+
+			  		'</div>'+
+					'<div class="col-sm-2 ui-bbs-content">'+floors[i].insertDate+
+					'</div>';
+					if($("#userNameText").attr("userType") == "APPLICANT"){
+						bbsHtml +='<div class="col-sm-1 ui-bbs-content"><button type="button" class="btn btn-defaul" onclick="delShowBBS('+floors[i].id+')">删除</button></div>';
+					} 
+					bbsHtml +='</li>';
+			}
+			$("#showBBSContet").html(bbsHtml);
+			var pager = result.page;
+			$("#currentPage").html(pager.pageNo);
+			$("#totalPage").html(pager.totalPageNumber);
+			if(pager.pageNo == 1){
+				$("#showbbsPrcv").parent().addClass("disabled");
+				$("#showbbsPrcv").off("click");
+			}else{
+				$("#showbbsPrcv").parent().removeClass("disabled");
+				$("#showbbsPrcv").on("click",function(){
+					var currentPage = parseInt($("#currentPage").html()) -1;
+					loadThemeFloorList(currentPage);
+				});
+			}
+			if(pager.pageNo == pager.totalPageNumber){
+				$("#showbbsNext").parent().addClass("disabled");
+				$("#showbbsNext").off("click");
+			}else if(pager.pageNo != pager.totalPageNumber){
+				$("#showbbsNext").parent().removeClass("disabled");
+				$("#showbbsNext").on("click",function(){
+					var currentPage = parseInt($("#currentPage").html()) + 1;
+					loadThemeFloorList(currentPage);
+				});
+			}
+			$(".ui-page-num").show();
+		
+		}
+	});
+	return false;
+}
+//发表评论
+function delShowBBS(id){
+	if(!confirm("确定删除？")){
+		return;
+	}
+	 $.ajax({
+		 url:$.ctx + "/theme/delThemeFloor/"+id,
+		 data:{},
+		 dataType:"json",
+		 type:"post",
+		 success:function(result){
+			 if(result.status == 200){
+				 loadThemeFloorList($("#currentPage").html());
+				 $("#bbsContent").val("");
+			 }else{
+				 alert("提交失败！");
+			 }
+		 }
+	 });
+	 return false;
+ }
 
 
 /**       

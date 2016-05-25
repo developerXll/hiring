@@ -306,7 +306,32 @@ li{list-style:none;}
 	line-height: 45px;
 }
 
-
+/***
+查看BBS
+***/
+.ui-bbs-box{
+	border-bottom: 1px solid #c6c6c6;
+}
+.ui-bbs-title{
+	font-size: 18px;
+	padding: 4px 15px;
+	font-weight: 600;
+}
+.ui-bbs-li{
+	min-height: 120px;
+	border-bottom:  1px solid #c6c6c6;
+	margin: 5px 0;
+}
+.ui-bbs-li > label{
+	text-align: center !important;
+	line-height: 22px;
+	padding: 0 !important;
+}
+.ui-bbs-content{
+	line-height: 22px;
+	text-align: left;
+	padding: 0 20px;
+}
 
 
 

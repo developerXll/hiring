@@ -15,16 +15,12 @@ import com.hiring.dao.ThemeFloorDao;
 import com.hiring.framework.Page;
 
 @Repository
-public class ThemeFloorDaoImpl extends BaseDaoImpl<ThemeFloor, Long>
-		implements ThemeFloorDao
-	{
+public class ThemeFloorDaoImpl extends BaseDaoImpl<ThemeFloor, Long> implements ThemeFloorDao {
 
-	private String delByThemeHql = "delete ThemeFloor where theme=:theme";
+	private String delByThemeHql = "delete from t_theme_floor where THEME_ID=?";
 
 	@SuppressWarnings("unchecked")
-	public List<ThemeFloor> getByPageAndNameAndTheme(Page page, String name,
-			Theme theme)
-		{
+	public List<ThemeFloor> getByPageAndNameAndTheme(Page page, String name, Theme theme) {
 		Criteria criteria = this.getSession().createCriteria(getEntityClass());
 		criteria.add(Restrictions.eq("theme", theme));
 		criteria.add(Restrictions.like("info", "%" + name + "%"));
@@ -32,39 +28,35 @@ public class ThemeFloorDaoImpl extends BaseDaoImpl<ThemeFloor, Long>
 		criteria.setFirstResult((page.getPageNo() - 1) * page.getPageSize());
 		criteria.setMaxResults(page.getPageSize());
 		return criteria.list();
-		}
-
-	public int countByNameAndTheme(String name, Theme theme)
-		{
-		Criteria criteria = this.getSession().createCriteria(getEntityClass());
-		criteria.add(Restrictions.eq("theme", theme));
-		criteria.add(Restrictions.like("info", "%" + name + "%"));
-		return criteria.list() != null ? criteria.list().size() : 0;
-		}
-
-	public void deleteByTheme(Theme theme)
-		{
-		Session session = this.getSession();
-		Query query = session.createQuery(delByThemeHql);
-		query.setParameter("theme", theme);
-		query.executeUpdate();
-		}
-
-	public int countByTheme(Theme theme)
-		{
-		Criteria criteria = this.getSession().createCriteria(getEntityClass());
-		criteria.add(Restrictions.eq("theme", theme));
-		return criteria.list() != null ? criteria.list().size() : 0;
-		}
-
-	@SuppressWarnings("unchecked")
-	public List<ThemeFloor> getByPageAndTheme(Page page, Theme theme)
-		{
-		Criteria criteria = this.getSession().createCriteria(getEntityClass());
-		criteria.add(Restrictions.eq("theme", theme));
-		criteria.addOrder(Order.desc("updateDate"));
-		criteria.setFirstResult((page.getPageNo() - 1) * page.getPageSize());
-		criteria.setMaxResults(page.getPageSize());
-		return criteria.list();
-		}
 	}
+
+	public int countByNameAndTheme(String name, Theme theme) {
+		Criteria criteria = this.getSession().createCriteria(getEntityClass());
+		criteria.add(Restrictions.eq("theme", theme));
+		criteria.add(Restrictions.like("info", "%" + name + "%"));
+		return criteria.list() != null ? criteria.list().size() : 0;
+	}
+
+	public void deleteByTheme(Theme theme) {
+		Session session = this.getSession();
+		Query query = session.createSQLQuery(delByThemeHql);
+		query.setParameter(0, theme.getId());
+		query.executeUpdate();
+	}
+
+	public int countByTheme(Theme theme) {
+		Criteria criteria = this.getSession().createCriteria(getEntityClass());
+		criteria.add(Restrictions.eq("theme", theme));
+		return criteria.list() != null ? criteria.list().size() : 0;
+	}
+
+	@SuppressWarnings("unchecked")
+	public List<ThemeFloor> getByPageAndTheme(Page page, Theme theme) {
+		Criteria criteria = this.getSession().createCriteria(getEntityClass());
+		criteria.add(Restrictions.eq("theme", theme));
+		criteria.addOrder(Order.desc("insertDate"));
+		criteria.setFirstResult((page.getPageNo() - 1) * page.getPageSize());
+		criteria.setMaxResults(page.getPageSize());
+		return criteria.list();
+	}
+}
