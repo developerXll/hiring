@@ -60,6 +60,25 @@ function login() {
 	
 }
 /**
+ *退出
+ */
+function logout() {
+	$.ajax({
+		url:$.ctx+"/passport/logout",
+		data:{},
+		dataType:"json",
+		type:"post",
+		success:function(result){
+			if(result.status === 200){
+				window.location.href = $.ctx + "/passport/index#index"; 
+			}else{
+				alert("系统出错！");
+			}
+		}
+	});
+	
+}
+/**
  * 注册
  */
 function resigter(){

@@ -197,9 +197,13 @@ function loadResumeList(pageNo){
 					'<td width="21%">'+data[i].education+'</td>'+
 					'<td width="12%">'+data[i].graduateSchool+'</td>'+
 					'<td width="12%">'+data[i].age+'</td>'+
-					'<td width="14%" class="color-yellow">'+
-					'<a class="btn btn-defaul" href="/html/addResume.jsp?'+data[i].id+'#resume">修改</a>'+
-					'<button class="btn btn-defaul" onclick="delRes('+data[i].id+')">删除</button>'+
+					'<td width="14%" class="color-yellow">';
+					if($("#userNameText").attr("userType") == "APPLICANT"){
+						trHTml += '<a class="btn btn-defaul" href="/html/addResume.jsp?'+data[i].id+'#resume">查看</a>';
+					}else if($("#userNameText").attr("userType") == "RECRUITER"){
+						trHTml += '<a class="btn btn-defaul" href="/html/addResume.jsp?'+data[i].id+'#resume">修改</a>';
+					}
+					trHTml += '<button class="btn btn-defaul" onclick="delRes('+data[i].id+')">删除</button>'+
 					'</td>'+
 					'</tr>';
 				}

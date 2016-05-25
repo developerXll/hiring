@@ -68,7 +68,7 @@
 			<h3 class="sys-title">科信公司招聘管理系统</h3>
 			<div class="user-info">
 				<span>欢迎，<em id="userNameText" userType="<%=adminType%>"><%=userType%></em>，回来
-				</span> <a href="<%=request.getContextPath() %>/passport/logout#index">退出</a>
+				</span> <a href="javascript:logout() ;">退出</a>
 				<%if(user == null){ %>
 					<button type="button" class="btn btn-success" data-toggle="modal" data-target="#registerDialog"id="emptyRegisterDialog">注册</button>
 					<button type="button" class="btn btn-success" data-toggle="modal" data-target="#loginDialog" id="emptyLoginDialog">登录</button>

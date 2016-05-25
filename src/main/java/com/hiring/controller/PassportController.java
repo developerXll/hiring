@@ -85,11 +85,22 @@ public class PassportController
 	 * @return
 	 */
 	@RequestMapping("/logout")
-	public ModelAndView logout(HttpServletRequest request)
+	public Map<String, Object> logout(HttpServletRequest request)
 		{
-		HttpSession session = request.getSession();
-		session.removeAttribute(Constants.SESSION_AUTHENTICATION);
-		return new ModelAndView("index");
+		Map<String, Object> map = new HashMap<String, Object>();
+		try {
+			HttpSession session = request.getSession();
+			session.removeAttribute(Constants.SESSION_AUTHENTICATION);
+			map.put("status", 200);
+			map.put("message", "login success!");
+			return map;
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			map.put("status", 300);
+			map.put("message", "userName and password must be input!");
+			return map;
+		}
 		}
 
 	/**
