@@ -13,6 +13,7 @@ import com.hiring.bean.ResumeEdu;
 import com.hiring.bean.ResumeOcc;
 import com.hiring.bean.ResumePro;
 import com.hiring.constants.Gender;
+import com.hiring.constants.ResumeStatus;
 
 /**
  * 简历信息
@@ -24,6 +25,8 @@ public class ResumeObj
 	{
 
 	private Resume resume = new Resume();
+
+	private String recruitId;
 
 	public ResumeObj()
 		{
@@ -318,4 +321,34 @@ public class ResumeObj
 		this.resume.setResumePros(proSet);
 		}
 
+	public RecruitObj getRecruit()
+		{
+		return new RecruitObj(this.resume.getRecruit());
+		}
+
+	public void setRecruit(RecruitObj recruit)
+		{
+		this.resume.setRecruit(recruit.getRecruit());
+		}
+
+	public String getStatus()
+		{
+		return this.resume.getStatus().toString();
+		}
+
+	public void setStatus(String status)
+		{
+		this.resume.setStatus(status != null ? ResumeStatus.valueOf(status)
+				: ResumeStatus.FAIL);
+		}
+
+	public String getRecruitId()
+		{
+		return recruitId;
+		}
+
+	public void setRecruitId(String recruitId)
+		{
+		this.recruitId = recruitId;
+		}
 	}

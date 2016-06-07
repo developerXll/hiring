@@ -13,11 +13,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import com.hiring.constants.Gender;
+import com.hiring.constants.ResumeStatus;
 
 /**
  * 简历信息实体类
@@ -101,8 +101,13 @@ public class Resume
 	@OneToMany(mappedBy = "resume", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private Set<ResumePro> resumePros;
 
-	@ManyToMany(targetEntity = Recruit.class, mappedBy = "resumes")
-	private Set<Recruit> recruits;
+	@ManyToOne(cascade = CascadeType.PERSIST, optional = false)
+	@JoinColumn(name = "REC_ID", referencedColumnName = "ID")
+	private Recruit recruit;
+
+	@Column(name = "STATUS", nullable = false)
+	@Enumerated(value = EnumType.STRING)
+	private ResumeStatus status;
 
 	public Long getId()
 		{
@@ -314,14 +319,24 @@ public class Resume
 		this.resumePros = resumePros;
 		}
 
-	public Set<Recruit> getRecruits()
+	public Recruit getRecruit()
 		{
-		return recruits;
+		return recruit;
 		}
 
-	public void setRecruits(Set<Recruit> recruits)
+	public void setRecruit(Recruit recruit)
 		{
-		this.recruits = recruits;
+		this.recruit = recruit;
+		}
+
+	public ResumeStatus getStatus()
+		{
+		return status;
+		}
+
+	public void setStatus(ResumeStatus status)
+		{
+		this.status = status;
 		}
 
 	}

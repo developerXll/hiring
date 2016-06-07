@@ -1,9 +1,7 @@
 package com.hiring.service.impl;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +11,7 @@ import com.hiring.bean.Recruit;
 import com.hiring.bean.Resume;
 import com.hiring.bean.obj.ResumeObj;
 import com.hiring.bean.obj.UserObj;
+import com.hiring.constants.ResumeStatus;
 import com.hiring.dao.RecruitDao;
 import com.hiring.dao.ResumeDao;
 import com.hiring.framework.Page;
@@ -90,24 +89,42 @@ public class ResumeServiceImpl extends BaseServiceImpl<Resume>
 	@Override
 	public boolean addDeliver(String recId, String resId)
 		{
-		Resume res = resumeDao.load(resId);
-		Recruit rec = recruitDao.load(recId);
-		if (rec == null)
-			return false;
-		Set<Recruit> recs = res.getRecruits();
-		if (recs == null || recs.size() <= 0)
+		// 方法已弃用
+		return false;
+		}
+
+	@Override
+	public List<ResumeObj> findResPageObj(String rescruitId, String userName,
+			Page page)
+		{
+		Recruit recruit = recruitDao.load(rescruitId);
+		if (recruit == null)
+			return new ArrayList<ResumeObj>();
+		List<Resume> ress = resumeDao.getResPage(recruit, page, userName);
+		List<ResumeObj> resObjs = new ArrayList<ResumeObj>();
+		if (ress != null && ress.size() > 0)
 			{
-			recs = new HashSet<Recruit>();
+			for (Resume res : ress)
+				{
+				resObjs.add(new ResumeObj(res));
+				}
 			}
-		else
-			{
-			if (recs.contains(rec))
-				return false;
-			}
-		recs.add(rec);
-		res.setRecruits(recs);
-		resumeDao.save(res);
-		return true;
+		return resObjs;
+		}
+
+	@Override
+	public int findPageNumResPageObj(String rescruitId, String userName)
+		{
+		Recruit recruit = recruitDao.load(rescruitId);
+		if (recruit == null)
+			return 0;
+		return resumeDao.countRes(recruit, userName);
+		}
+
+	@Override
+	public boolean addAudit(String recId, ResumeStatus status)
+		{
+		return resumeDao.addAudit(recId, status.toString());
 		}
 
 	}

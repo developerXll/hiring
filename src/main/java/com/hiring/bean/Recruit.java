@@ -12,9 +12,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import com.hiring.constants.RecStatus;
 
@@ -58,12 +57,9 @@ public class Recruit
 	@Column(name = "INSERT_TIME", nullable = false, columnDefinition = "DATETIME", updatable = false)
 	private Date insertTime;
 
-	@ManyToMany(cascade = CascadeType.PERSIST, targetEntity = Resume.class)
-	@JoinTable(name = "t_recruit_resume", joinColumns =
-		{ @JoinColumn(name = "REC_ID") }, inverseJoinColumns =
-		{ @JoinColumn(name = "RES_ID") })
+	@OneToMany(cascade = CascadeType.PERSIST, targetEntity = Resume.class)
 	private Set<Resume> resumes;
-
+	
 	public Long getId()
 		{
 		return id;

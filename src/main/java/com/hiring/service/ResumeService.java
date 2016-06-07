@@ -5,6 +5,7 @@ import java.util.List;
 import com.hiring.bean.Resume;
 import com.hiring.bean.obj.ResumeObj;
 import com.hiring.bean.obj.UserObj;
+import com.hiring.constants.ResumeStatus;
 import com.hiring.framework.Page;
 
 public interface ResumeService extends BaseService<Resume>
@@ -22,6 +23,13 @@ public interface ResumeService extends BaseService<Resume>
 
 	int findPageNumObjByUserName(String userName);
 
+	List<ResumeObj> findResPageObj(String rescruitId, String userName,
+			Page page);
+
+	int findPageNumResPageObj(String rescruitId, String userName);
+
 	boolean addDeliver(String recId, String resId);
+
+	boolean addAudit(String recId, ResumeStatus status);
 
 	}
