@@ -11,5 +11,7 @@ public interface RecruitDao extends BaseDao<Recruit, Long>
 	public List<Recruit> getByPositon(Page page, String name);
 
 	public int countByPositon(String name);
+	
+	public List<Recruit> getAll();
 
 	}

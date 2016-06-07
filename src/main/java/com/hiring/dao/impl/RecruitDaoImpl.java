@@ -34,4 +34,12 @@ public class RecruitDaoImpl extends BaseDaoImpl<Recruit, Long>
 		return criteria.list() != null ? criteria.list().size() : 0;
 		}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Recruit> getAll()
+		{
+		Criteria criteria = this.getSession().createCriteria(getEntityClass());
+		return criteria.list();
+		}
+
 	}

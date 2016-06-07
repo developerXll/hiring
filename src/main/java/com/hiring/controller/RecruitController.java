@@ -28,6 +28,15 @@ public class RecruitController
 	@Autowired
 	private RecruitService recruitService;
 
+	@RequestMapping("/listAll")
+	@ResponseBody
+	public RecruitListData getListAll()
+		{
+		RecruitListData data = new RecruitListData();
+		data.setList(recruitService.findAll());
+		return data;
+		}
+
 	@RequestMapping("/list")
 	@ResponseBody
 	public RecruitListData getList(Page page)

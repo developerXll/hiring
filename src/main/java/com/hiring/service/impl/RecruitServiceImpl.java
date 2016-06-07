@@ -58,4 +58,19 @@ public class RecruitServiceImpl extends BaseServiceImpl<Recruit>
 		return recDao.countByPositon(name);
 		}
 
+	@Override
+	public List<RecruitObj> findAll()
+		{
+		List<Recruit> recs = recDao.getAll();
+		List<RecruitObj> recObjs = new ArrayList<RecruitObj>();
+		if (recs != null && recs.size() > 0)
+			{
+			for (Recruit rec : recs)
+				{
+				recObjs.add(new RecruitObj(rec));
+				}
+			}
+		return recObjs;
+		}
+
 	}

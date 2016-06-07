@@ -12,6 +12,8 @@ public interface RecruitService extends BaseService<Recruit>
 	String serv_name = "recruitService";
 
 	List<RecruitObj> findPageObj(Page page);
+	
+	List<RecruitObj> findAll();
 
 	List<RecruitObj> findPageObjByName(Page page, String name);
 	
