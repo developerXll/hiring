@@ -12,24 +12,19 @@
 			<div class="row container-fluid ui-search-box">
 				<form class="form-inline">
 				   <div class="form-group">
-				     <label for="name">名称</label>
-				     <input type="text" class="form-control" id="recName" placeholder="输入查询名称">
+				     <label for="name">用户名</label>
+				     <input type="text" class="form-control" id="resNameSearch" placeholder="输入查询用户名">
 				   </div>
-				   <button type="button" class="btn btn-primary" id="recSearchBtn">查询</button>
-				   <a type="button" class="btn btn-success nav-right" href="addOrUpdateRecruit.jsp#recruit">新建</a>
+				   <button type="button" class="btn btn-primary" id="userSearchList">查询</button>
 				</form>
 			</div>
 			<table class="table table-striped table-hover"> 
 				<tr class="customer-thead">
 					<th width="5%">序号</th>
-					<th width="13%">职位名称</th>
-					<th width="23%">职位描述</th>
-					<th width="21%">工作描述</th>
-					<th width="12%">招聘时间</th>
-					<th width="12%">状态</th>
-					<th width="14%">操作</th> 
+					<th width="70%">用户名</th> 
+					<th width="25%">操作</th> 
 				</tr>
-				<tbody id="recTbody">
+				<tbody id="userTbody">
 				
 				</tbody>
 <!-- 				<tr class="customer-tbody"> -->
@@ -51,12 +46,12 @@
 				<div class="ui-page-num">当前第<span id="currentPage">1</span>页,共<span id="totalPage"></span>页</div>
 				<ul class="pagination">
 					<li class="disabled">
-					  <a href="javascript:void(0);" aria-label="Previous" id="recPrcv">
+					  <a href="javascript:void(0);" aria-label="Previous" id="resumePrcv">
 						<span aria-hidden="true">上一页</span>
 					  </a>
 					</li>
 					<li>
-					  <a href="javascript:void(0);" aria-label="Next" id="recNext">
+					  <a href="javascript:void(0);" aria-label="Next" id="resumeNext">
 						<span aria-hidden="true">下一页</span>
 					  </a>
 					</li>

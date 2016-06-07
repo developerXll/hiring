@@ -193,16 +193,19 @@ function loadResumeList(pageNo){
 					trHTml += '<tr class="customer-tbody">'+
 					'<td width="5%">'+(i+1)+'</td>'+
 					'<td width="13%">'+data[i].name+'</td>'+
-					'<td width="23%">'+(data[i].gender == "M"?"男":"女")+'</td>'+
-					'<td width="21%">'+data[i].education+'</td>'+
-					'<td width="12%">'+data[i].graduateSchool+'</td>'+
-					'<td width="12%">'+data[i].age+'</td>'+
-					'<td width="14%" class="color-yellow">';
+					'<td width="13%">'+(data[i].gender == "M"?"男":"女")+'</td>'+
+					'<td width="12%">'+data[i].resumeEdus[0].education+'</td>'+
+					'<td width="12%">'+data[i].resumeEdus[0].schoolName+'</td>'+
+					'<td width="10%">'+data[i].age+'</td>'+
+					'<td width="12%">'+data[i].status+'</td>'+
+					'<td width="23%" class="color-yellow">';
 					if($("#userNameText").attr("userType") == "APPLICANT"){
 						trHTml += '<a class="btn btn-defaul" href="/html/addResume.jsp?'+data[i].id+'#resume">查看</a>';
 					}else if($("#userNameText").attr("userType") == "RECRUITER"){
 						trHTml += '<a class="btn btn-defaul" href="/html/addResume.jsp?'+data[i].id+'#resume">修改</a>';
 					}
+					trHTml += '<a class="btn btn-defaul" href="javascript:void();">通过</a>';
+					trHTml += '<a class="btn btn-defaul" href="javascript:void();">不通过</a>';
 					trHTml += '<button class="btn btn-defaul" onclick="delRes('+data[i].id+')">删除</button>'+
 					'</td>'+
 					'</tr>';

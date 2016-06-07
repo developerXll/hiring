@@ -111,7 +111,9 @@
 			<li class="row">
 				<label class="col-md-2 ui-job-title">期望职位：</label>
 				<span class="col-md-10">
-					<input type="text" class="form-control" id="jobIntension" disabled placeholder="期望职位"/>
+					<select class="form-control" disabled id="jobIntension">
+						<option value="">请选择</option>
+					</select>
 				</span>
 			</li>
 			<li class="row">

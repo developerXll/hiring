@@ -15,6 +15,11 @@
 				     <label for="name">名称</label>
 				     <input type="text" class="form-control" id="resNameSearch" placeholder="输入查询名称">
 				   </div>
+				   <div class="form-group">
+				     <select class="form-control" disabled id="res_recList">
+						<option value="all">请选择职位</option>
+					</select>
+				   </div>
 				   <button type="button" class="btn btn-primary" id="resSearchList">查询</button>
 				   <a type="button" class="btn btn-success nav-right" href="/html/addResume.jsp#resume">新建</a>
 				</form>
@@ -23,11 +28,12 @@
 				<tr class="customer-thead">
 					<th width="5%">序号</th>
 					<th width="13%">名字</th>
-					<th width="23%">性别</th>
-					<th width="21%">学历</th>
+					<th width="13%">性别</th>
+					<th width="12%">学历</th>
 					<th width="12%">毕业学校</th>
-					<th width="12%">年龄</th>
-					<th width="14%">操作</th> 
+					<th width="10%">年龄</th>
+					<th width="12%">状态</th>
+					<th width="23%">操作</th> 
 				</tr>
 				<tbody id="resumeTbody">
 				

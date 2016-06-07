@@ -403,6 +403,7 @@ function getResume(){
 					'</ul>';
 					$("#resumePros").append(resumeProsHtml);
 				}
+				loadRecList();
 			}else{
 				alert("获取失败！");
 			}
@@ -714,7 +715,25 @@ function delShowBBS(id){
 	 });
 	 return false;
  }
-
+//获取职位名称
+function loadRecList(){
+	$.ajax({
+		url:$.ctx+"/rec/list",
+		data:{pageNo:1},
+		dataType:"json",
+		type:"post",
+		success:function(result){
+			var data = result.list;
+			var trHTml = "";
+			if(data && data.length>0){
+				for(var i=0,len=data.length;i<len;i++){
+					trHTml += '<option id="'+data[i].id+'">'+data[i].possion+'</option>';
+				}
+				$("#jobIntension").html(trHTml);
+			}
+		}
+	});
+}
 
 /**       
  * 对Date的扩展，将 Date 转化为指定格式的String       

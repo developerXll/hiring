@@ -35,6 +35,7 @@
 				$(".form-horizontal .form-group input,.form-horizontal .form-group textarea,.form-horizontal .form-group select").removeAttr("disabled");
 				$("#recSearchBtn,#announceSearchBtn,#bbsListSearchBtn").next().show();
 				$("#resSearchList").next().hide();
+				$("#user").show();
 			});
 		</script>	
 		<%}else{
@@ -52,6 +53,7 @@
 				$(".form-horizontal .form-group input,.form-horizontal .form-group textarea,.form-horizontal .form-group select").attr("disabled",true);
 				$(".J_BBS .form-group textarea").removeAttr("disabled");
 				$(".J_BBS .form-horizontal button").show();
+				$("#user").hide();
 			});
 		</script>	
 		<%}%>
@@ -83,6 +85,7 @@
 				<li id="recruit"><a href="/html/recruitList.jsp#recruit">招聘管理</a></li>
 				<li id="announ"><a href="/html/announ.jsp#announ">公告管理</a></li>
 				<li id="bbs"><a href="/html/BBSList.jsp#bbs">论坛管理</a></li>
+				<li id="user"><a href="/html/userManage.jsp#user">用户管理</a></li>
 			</ul>
 		</div>
 	</div>

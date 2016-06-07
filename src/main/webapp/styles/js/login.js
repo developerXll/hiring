@@ -86,25 +86,25 @@ function resigter(){
 	var passWord = $("#registerPassword").val();
 	var passWordAgain = $("#registerPasswordAgain").val();
 	if($.trim(userName).length==0){
-		$("#registerName").attr("placeholder","登录账号输入错误").parent().parent().addClass("has-error");
+		$("#registerName").val("").attr("placeholder","登录账号输入错误").parent().parent().addClass("has-error");
 		return;
 	}else{
 		$("#registerName").attr("placeholder","邮箱或手机号").parent().parent().removeClass("has-error");
 	}
 	if($.trim(passWord).length==0){
-		$("#registerPassword").attr("placeholder","登录密码输入错误").parent().parent().addClass("has-error");
+		$("#registerPassword").val("").attr("placeholder","登录密码输入错误").parent().parent().addClass("has-error");
 		return;
 	}else{
 		$("#registerPassword").attr("placeholder","密码").parent().parent().removeClass("has-error");
 	}
 	if($.trim(passWordAgain).length==0){
-		$("#registerPasswordAgain").attr("placeholder","登录密码输入错误").parent().parent().addClass("has-error");
+		$("#registerPasswordAgain").val("").attr("placeholder","登录密码输入错误").parent().parent().addClass("has-error");
 		return;
 	}else{
 		$("#registerPasswordAgain").attr("placeholder","密码").parent().parent().removeClass("has-error");
 	}
 	if(passWordAgain != passWord){
-		$("#registerPasswordAgain").attr("placeholder","登录密码输入不一致").parent().parent().addClass("has-error");
+		$("#registerPasswordAgain").val("").attr("placeholder","登录密码输入不一致").parent().parent().addClass("has-error");
 		return;
 	}else{
 		$("#registerPasswordAgain").attr("placeholder","密码").parent().parent().removeClass("has-error");
@@ -115,14 +115,8 @@ function resigter(){
 		dataType:"json",
 		type:"post",
 		success:function(result){
-//			console.log(result);
 			if(result.status === 200){
-				var user = result.user;
-				if(user.userType && user.userType == "APPLICANT"){
-					$("#userNameText").html("管理员,"+user.userName);
-				}else if(user.userType && user.userType == "RECRUITER"){
-					$("#userNameText").html("应聘者,"+user.userName);
-				}
+				window.location.reload(); 
 				$('#registerDialog').modal("hide");
 			}else if(result.status === 403){
 				$("#registerName").val("").attr("placeholder","您输入的账号已存在，请登录！").parent().parent().addClass("has-error");

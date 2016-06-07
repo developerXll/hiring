@@ -60,7 +60,7 @@ function loadRecIndexList(){
 			var liHTml = "";
 			if(result && result.length>0){
 				for(var i=0,len=result.length;i<len;i++){
-					liHTml += '<li class="list-group-item" id="'+result[i].id+'">'+result[i].jobRequirement+'</li>';
+					liHTml += '<li class="list-group-item" id="'+result[i].id+'">'+result[i].possion+'</li>';
 				}
 				$("#myRecList").html(liHTml);
 			}else{
