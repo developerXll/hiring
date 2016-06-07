@@ -1,13 +1,11 @@
 package com.hiring.bean.obj;
 
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.hiring.bean.Recruit;
-import com.hiring.bean.Resume;
 import com.hiring.constants.RecStatus;
 
 /**
@@ -20,6 +18,8 @@ public class RecruitObj
 	{
 
 	private Recruit recruit = new Recruit();
+	private List<ResumeObj> resumes;
+	private List<UserObj> applicants;
 
 	public RecruitObj()
 		{
@@ -104,12 +104,12 @@ public class RecruitObj
 
 	public String getRecStatus()
 		{
-		return this.recruit.getRecStatus().toString();
+		return this.recruit.getRecStatus() != null ? this.recruit.getRecStatus().toString() : null;
 		}
 
 	public void setRecStatus(String recStatus)
 		{
-		this.recruit.setRecStatus(RecStatus.valueOf(recStatus));
+		if(recStatus != null) this.recruit.setRecStatus(RecStatus.valueOf(recStatus));
 		}
 
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
@@ -123,33 +123,24 @@ public class RecruitObj
 		this.recruit.setInsertTime(insertTime);
 		}
 
-	public Set<ResumeObj> getResumes()
+	public List<ResumeObj> getResumes()
 		{
-		Set<ResumeObj> objs = new HashSet<ResumeObj>();
-		if (this.recruit.getResumes() != null
-				&& this.recruit.getResumes().size() > 0)
-			{
-			for (Resume resume : this.recruit.getResumes())
-				{
-				objs.add(new ResumeObj(resume));
-				}
-
-			}
-		return objs;
+		return resumes;
+		}
+	
+	public void setResumes(List<ResumeObj> resumes)
+		{
+		this.resumes = resumes;
 		}
 
-	public Set<UserObj> getApplicants()
+	public List<UserObj> getApplicants()
 		{
-		Set<UserObj> users = new HashSet<UserObj>();
-		if (this.recruit.getResumes() != null
-				&& this.recruit.getResumes().size() > 0)
-			{
-			for (Resume resume : this.recruit.getResumes())
-				{
-				users.add(new UserObj(resume.getUser()));
-				}
-			}
-		return users;
+		return applicants;
+		}
+	
+	public void setApplicants(List<UserObj> applicants)
+		{
+		this.applicants = applicants;
 		}
 
 	@JsonIgnore

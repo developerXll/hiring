@@ -8,8 +8,12 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.hiring.bean.Recruit;
+import com.hiring.bean.Resume;
 import com.hiring.bean.obj.RecruitObj;
+import com.hiring.bean.obj.ResumeObj;
+import com.hiring.bean.obj.UserObj;
 import com.hiring.dao.RecruitDao;
+import com.hiring.dao.ResumeDao;
 import com.hiring.framework.Page;
 import com.hiring.service.RecruitService;
 
@@ -21,6 +25,9 @@ public class RecruitServiceImpl extends BaseServiceImpl<Recruit>
 
 	@Autowired
 	private RecruitDao recDao;
+	
+	@Autowired
+	private ResumeDao resDao;
 
 	@Override
 	public List<RecruitObj> findPageObj(Page page)
@@ -73,4 +80,24 @@ public class RecruitServiceImpl extends BaseServiceImpl<Recruit>
 		return recObjs;
 		}
 
+	@Override
+	public RecruitObj get(String id)
+		{
+		Recruit recruit = recDao.load(Long.parseLong(id));
+		RecruitObj obj = new RecruitObj(recruit);
+		List<Resume> resList = resDao.getByRecId(recruit.getId());
+		if(resList != null)
+			{
+			List<ResumeObj> resObjs = new ArrayList<ResumeObj>();
+			List<UserObj> userObjs = new ArrayList<UserObj>();
+			for(Resume res : resList)
+				{
+				resObjs.add(new ResumeObj(res));
+				userObjs.add(new UserObj(res.getUser()));
+				}
+			obj.setApplicants(userObjs);
+			obj.setResumes(resObjs);
+			}
+		return obj;
+		}
 	}

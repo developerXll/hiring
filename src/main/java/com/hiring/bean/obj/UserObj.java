@@ -5,6 +5,7 @@ import java.util.Date;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.hiring.bean.User;
+import com.hiring.constants.UserStatus;
 import com.hiring.constants.UserType;
 
 /**
@@ -77,6 +78,16 @@ public class UserObj
 	public void setInsertTime(Date insertTime)
 		{
 		this.user.setInsertTime(insertTime);
+		}
+	
+	public UserStatus getStatus()
+		{
+		return this.user.getStatus();
+		}
+	
+	public void setStatus(UserStatus status)
+		{
+		this.user.setStatus(status != null ? status : UserStatus.ACTIVE);
 		}
 
 	@JsonIgnore

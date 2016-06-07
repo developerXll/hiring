@@ -20,4 +20,6 @@ public interface UserService extends BaseService<User>
 	List<UserObj> findPageByUserName(Page page, String userName, boolean isApp);
 
 	int countByUserName(String userName, boolean isApp);
+	
+	boolean delUser(String userId);
 	}

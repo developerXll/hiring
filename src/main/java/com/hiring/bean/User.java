@@ -12,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.hiring.constants.UserStatus;
 import com.hiring.constants.UserType;
 
 /**
@@ -49,6 +50,10 @@ public class User
 
 	@OneToMany(mappedBy = "user")
 	private Set<Announcement> announcements;
+	
+	@Column(name = "USER_STATUS")
+	@Enumerated(value = EnumType.STRING)
+	private UserStatus status;
 
 	public Long getId()
 		{
@@ -129,5 +134,13 @@ public class User
 		{
 		this.announcements = announcements;
 		}
+
+	public UserStatus getStatus() {
+		return status;
+	}
+
+	public void setStatus(UserStatus status) {
+		this.status = status;
+	}
 
 	}

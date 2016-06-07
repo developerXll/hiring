@@ -13,7 +13,7 @@
 				<form class="form-inline">
 				   <div class="form-group">
 				     <label for="name">用户名</label>
-				     <input type="text" class="form-control" id="resNameSearch" placeholder="输入查询用户名">
+				     <input type="text" class="form-control" id="userNameSearch" placeholder="输入查询用户名">
 				   </div>
 				   <button type="button" class="btn btn-primary" id="userSearchList">查询</button>
 				</form>
@@ -46,12 +46,12 @@
 				<div class="ui-page-num">当前第<span id="currentPage">1</span>页,共<span id="totalPage"></span>页</div>
 				<ul class="pagination">
 					<li class="disabled">
-					  <a href="javascript:void(0);" aria-label="Previous" id="resumePrcv">
+					  <a href="javascript:void(0);" aria-label="Previous" id="userPrcv">
 						<span aria-hidden="true">上一页</span>
 					  </a>
 					</li>
 					<li>
-					  <a href="javascript:void(0);" aria-label="Next" id="resumeNext">
+					  <a href="javascript:void(0);" aria-label="Next" id="userNext">
 						<span aria-hidden="true">下一页</span>
 					  </a>
 					</li>

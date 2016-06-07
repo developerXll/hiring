@@ -13,5 +13,7 @@ public interface UserDao extends BaseDao<User, Long>
 	List<User> findPageByUserName(Page page, String userName, boolean isApp);
 
 	int countByUserName(String userName, boolean isApp);
+	
+	boolean delUser(Long id);
 
 	}

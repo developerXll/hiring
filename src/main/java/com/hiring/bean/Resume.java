@@ -101,9 +101,8 @@ public class Resume
 	@OneToMany(mappedBy = "resume", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
 	private Set<ResumePro> resumePros;
 
-	@ManyToOne(cascade = CascadeType.PERSIST, optional = false)
-	@JoinColumn(name = "REC_ID", referencedColumnName = "ID")
-	private Recruit recruit;
+	@Column(name = "REC_ID", nullable = false, columnDefinition = "bigint(20)")
+	private Long recruitId;
 
 	@Column(name = "STATUS", nullable = false)
 	@Enumerated(value = EnumType.STRING)
@@ -319,15 +318,13 @@ public class Resume
 		this.resumePros = resumePros;
 		}
 
-	public Recruit getRecruit()
-		{
-		return recruit;
-		}
+	public Long getRecruitId() {
+		return recruitId;
+	}
 
-	public void setRecruit(Recruit recruit)
-		{
-		this.recruit = recruit;
-		}
+	public void setRecruitId(Long recruitId) {
+		this.recruitId = recruitId;
+	}
 
 	public ResumeStatus getStatus()
 		{

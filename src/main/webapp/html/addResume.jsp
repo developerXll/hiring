@@ -109,7 +109,7 @@
 				</span> 
 			</li>
 			<li class="row">
-				<label class="col-md-2 ui-job-title">期望职位：</label>
+				<label class="col-md-2">期望职位：</label>
 				<span class="col-md-10">
 					<select class="form-control" disabled id="jobIntension">
 						<option value="">请选择</option>

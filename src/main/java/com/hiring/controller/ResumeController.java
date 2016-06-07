@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.hiring.bean.Recruit;
 import com.hiring.bean.Resume;
 import com.hiring.bean.obj.RecruitObj;
 import com.hiring.bean.obj.ResumeObj;
@@ -90,7 +91,7 @@ public class ResumeController
 				map.put("status", 302);
 				map.put("message", "Must select recrudit!");
 				}
-			resObj.setRecruit(new RecruitObj(recruitService.load(recruitId)));
+			// RecruitObj recruitoObj = recruitService.get(recruitId);
 			// 初始为未通过
 			resObj.setStatus(ResumeStatus.FAIL.toString());
 			resumeService.save(resObj.getResume());
@@ -125,7 +126,7 @@ public class ResumeController
 				map.put("status", 302);
 				map.put("message", "Must select recrudit!");
 				}
-			resObj.setRecruit(new RecruitObj(recruitService.load(recruitId)));
+			resObj.setRecruit(new RecruitObj(recruitService.load(Long.parseLong(recruitId))));
 			resumeService.update(resObj.getResume());
 			map.put("status", 200);
 			map.put("message", "add success!");
@@ -172,6 +173,8 @@ public class ResumeController
 			else
 				{
 				ResumeObj resObj = new ResumeObj(res);
+				Recruit rec = recruitService.load(Long.parseLong(resObj.getRecruitId()));
+				if(rec != null) resObj.setRecruit(new RecruitObj(rec));
 				map.put("status", 200);
 				map.put("message", "add success!");
 				map.put("data", resObj);
@@ -202,6 +205,30 @@ public class ResumeController
 		data.setList(resumeService.findResPageObj(recruitId, name, page));
 		page.setTotalNumber(
 				resumeService.findPageNumResPageObj(recruitId, name));
+		return data;
+		}
+	
+	/**
+	 * 
+	 * 管理员根据招聘信息id和查询条件查询投递简历信息
+	 * 
+	 * @param page
+	 * @param recruitId
+	 * @param name
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping("/listRes/{recruitId}")
+	@ResponseBody
+	public ResumeListData getResList(Page page,
+			@PathVariable("recruitId") String recruitId,HttpServletRequest request)
+		{
+		if (page == null)
+			page = new Page();
+		ResumeListData data = new ResumeListData();
+		data.setList(resumeService.findResPageObj(recruitId, "", page));
+		page.setTotalNumber(
+				resumeService.findPageNumResPageObj(recruitId, ""));
 		return data;
 		}
 

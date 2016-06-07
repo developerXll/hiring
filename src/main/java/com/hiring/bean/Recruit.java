@@ -1,7 +1,6 @@
 package com.hiring.bean;
 
 import java.util.Date;
-import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -13,7 +12,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
 import com.hiring.constants.RecStatus;
 
@@ -24,8 +22,7 @@ import com.hiring.constants.RecStatus;
  *
  */
 @Entity(name = "t_recruit")
-public class Recruit
-	{
+public class Recruit {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -57,106 +54,75 @@ public class Recruit
 	@Column(name = "INSERT_TIME", nullable = false, columnDefinition = "DATETIME", updatable = false)
 	private Date insertTime;
 
-	@OneToMany(cascade = CascadeType.PERSIST, targetEntity = Resume.class)
-	private Set<Resume> resumes;
-	
-	public Long getId()
-		{
+	public Long getId() {
 		return id;
-		}
-
-	public void setId(Long id)
-		{
-		this.id = id;
-		}
-
-	public User getUser()
-		{
-		return user;
-		}
-
-	public void setUser(User user)
-		{
-		this.user = user;
-		}
-
-	public String getPossion()
-		{
-		return possion;
-		}
-
-	public void setPossion(String possion)
-		{
-		this.possion = possion;
-		}
-
-	public String getPay()
-		{
-		return pay;
-		}
-
-	public void setPay(String pay)
-		{
-		this.pay = pay;
-		}
-
-	public String getPayMonths()
-		{
-		return payMonths;
-		}
-
-	public void setPayMonths(String payMonths)
-		{
-		this.payMonths = payMonths;
-		}
-
-	public String getPossionIntroduction()
-		{
-		return possionIntroduction;
-		}
-
-	public void setPossionIntroduction(String possionIntroduction)
-		{
-		this.possionIntroduction = possionIntroduction;
-		}
-
-	public String getJobRequirement()
-		{
-		return jobRequirement;
-		}
-
-	public void setJobRequirement(String jobRequirement)
-		{
-		this.jobRequirement = jobRequirement;
-		}
-
-	public RecStatus getRecStatus()
-		{
-		return recStatus;
-		}
-
-	public void setRecStatus(RecStatus recStatus)
-		{
-		this.recStatus = recStatus;
-		}
-
-	public Date getInsertTime()
-		{
-		return insertTime;
-		}
-
-	public void setInsertTime(Date insertTime)
-		{
-		this.insertTime = insertTime;
-		}
-
-	public Set<Resume> getResumes()
-		{
-		return resumes;
-		}
-
-	public void setResumes(Set<Resume> resumes)
-		{
-		this.resumes = resumes;
-		}
 	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	public String getPossion() {
+		return possion;
+	}
+
+	public void setPossion(String possion) {
+		this.possion = possion;
+	}
+
+	public String getPay() {
+		return pay;
+	}
+
+	public void setPay(String pay) {
+		this.pay = pay;
+	}
+
+	public String getPayMonths() {
+		return payMonths;
+	}
+
+	public void setPayMonths(String payMonths) {
+		this.payMonths = payMonths;
+	}
+
+	public String getPossionIntroduction() {
+		return possionIntroduction;
+	}
+
+	public void setPossionIntroduction(String possionIntroduction) {
+		this.possionIntroduction = possionIntroduction;
+	}
+
+	public String getJobRequirement() {
+		return jobRequirement;
+	}
+
+	public void setJobRequirement(String jobRequirement) {
+		this.jobRequirement = jobRequirement;
+	}
+
+	public RecStatus getRecStatus() {
+		return recStatus;
+	}
+
+	public void setRecStatus(RecStatus recStatus) {
+		this.recStatus = recStatus;
+	}
+
+	public Date getInsertTime() {
+		return insertTime;
+	}
+
+	public void setInsertTime(Date insertTime) {
+		this.insertTime = insertTime;
+	}
+}

@@ -266,6 +266,7 @@ function saveOrUpdateRecruit(){
 //我的招聘
 function getResume(){
 	var theRequest = window.location.search;
+	loadRecList();
 	if(!theRequest || window.location.hash.indexOf("resume") == -1){
 		return;
 	}
@@ -278,7 +279,7 @@ function getResume(){
 		success:function(result){
 			if(result.status == 200){
 				var data = result.data;
-				$("#name").val(data.name).attr("resId",data.id);
+				$("#name").val(data.name).attr({"resId":data.id,"status":data.status});
 				$("#gender").val(data.gender);
 				$("#age").val(data.age);
 				$("#phone").val(data.tel);
@@ -403,7 +404,6 @@ function getResume(){
 					'</ul>';
 					$("#resumePros").append(resumeProsHtml);
 				}
-				loadRecList();
 			}else{
 				alert("获取失败！");
 			}
@@ -464,6 +464,7 @@ function getResume(){
 	}
 	var identificationType = $("#identificationType").val();
 	var selfIntroduction = $("#selfIntroduction").val();
+	var status = $("#name").attr("status");
 	var jobIntension = $("#jobIntension").val();
 	if($.trim(jobIntension).length==0){
 		$("#jobIntension").attr("placeholder","请输入工作意向").parent().parent().addClass("has-error");
@@ -551,6 +552,8 @@ function getResume(){
 			'identification':identification,
 			'identificationType':identificationType,
 			'jobIntension':jobIntension,
+			'recruitId':jobIntension,
+			'status':status,
 			'name':name,
 			'residence':residence,
 			'resumeEdus':resumeEdus,
@@ -718,8 +721,8 @@ function delShowBBS(id){
 //获取职位名称
 function loadRecList(){
 	$.ajax({
-		url:$.ctx+"/rec/list",
-		data:{pageNo:1},
+		url:$.ctx+"/rec/listAll",
+		data:{},
 		dataType:"json",
 		type:"post",
 		success:function(result){
@@ -727,7 +730,7 @@ function loadRecList(){
 			var trHTml = "";
 			if(data && data.length>0){
 				for(var i=0,len=data.length;i<len;i++){
-					trHTml += '<option id="'+data[i].id+'">'+data[i].possion+'</option>';
+					trHTml += '<option value = "'+data[i].id+'">'+data[i].possion+'</option>';
 				}
 				$("#jobIntension").html(trHTml);
 			}

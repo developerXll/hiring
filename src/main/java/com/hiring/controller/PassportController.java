@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.hiring.bean.obj.UserObj;
 import com.hiring.constants.Constants;
+import com.hiring.constants.UserStatus;
 import com.hiring.constants.UserType;
 import com.hiring.service.UserService;
 import com.mysql.jdbc.StringUtils;
@@ -131,6 +132,7 @@ public class PassportController
 				user.setUserType(form.getUserType() == null
 						? UserType.RECRUITER.toString()
 						: form.getUserType().toString());
+				user.setStatus(UserStatus.ACTIVE);
 				user.setInsertTime(new Date());
 				userService.save(user.getUser());
 				// insert session

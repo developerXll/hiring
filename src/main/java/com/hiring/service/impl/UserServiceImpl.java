@@ -63,5 +63,11 @@ public class UserServiceImpl extends BaseServiceImpl<User>
 		{
 		return userDao.countByUserName(userName, isApp);
 		}
+	
+	@Override
+	public boolean delUser(String userId)
+		{
+		return userDao.delUser(Long.parseLong(userId));
+		}
 
 	}

@@ -7,7 +7,6 @@ import org.hibernate.Query;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Repository;
 
-import com.hiring.bean.Recruit;
 import com.hiring.bean.Resume;
 import com.hiring.bean.User;
 import com.hiring.dao.ResumeDao;
@@ -58,12 +57,12 @@ public class ResumeDaoImpl extends BaseDaoImpl<Resume, Long>
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Resume> getResPage(Recruit recruit, Page page, String name)
+	public List<Resume> getResPage(Long recruitId, Page page, String name)
 		{
 
 		Criteria criteria = this.getSession().createCriteria(getEntityClass());
 		criteria.add(Restrictions.like("name", "%" + name + "%"));
-		criteria.add(Restrictions.eq("recruit", recruit));
+		criteria.add(Restrictions.eq("recruitId", recruitId));
 		criteria.setFirstResult((page.getPageNo() - 1) * page.getPageSize());
 		criteria.setMaxResults(page.getPageSize());
 		return criteria.list();
@@ -71,21 +70,30 @@ public class ResumeDaoImpl extends BaseDaoImpl<Resume, Long>
 		}
 
 	@Override
-	public int countRes(Recruit recruit, String name)
+	public int countRes(Long recruitId, String name)
 		{
 		Criteria criteria = this.getSession().createCriteria(getEntityClass());
 		criteria.add(Restrictions.like("name", "%" + name + "%"));
-		criteria.add(Restrictions.eq("recruit", recruit));
+		criteria.add(Restrictions.eq("recruitId", recruitId));
 		return criteria.list() == null ? 0 : criteria.list().size();
 		}
 
 	@Override
-	public boolean addAudit(String recId, String status)
+	public boolean addAudit(Long recId, String status)
 		{
-		String hql = "update Resume set status = :status where id = :id";
-		Query query = getSession().createQuery(hql);
-		query.setParameter("status", status);
-		query.setParameter("id", recId);
+		String hql = "update t_resume set STATUS = ? where id = ?";
+		Query query = getSession().createSQLQuery(hql);
+		query.setParameter(0, status);
+		query.setParameter(1, recId);
 		return query.executeUpdate() > 0 ? true : false;
+		}
+	
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Resume> getByRecId(Long recId)
+		{
+		Criteria criteria = this.getSession().createCriteria(getEntityClass());
+		criteria.add(Restrictions.eq("recruitId", recId));
+		return criteria.list();
 		}
 	}

@@ -1,8 +1,9 @@
 $(function(){
 	loadRecList(1);
 	loadAnnounList(1);
-	loadResumeList(1);
+	loadAllRecList();
 	loadBBSList(1);
+	loaduserList(1);
 	$("#recNext").on("click",function(){
 		var currentPage = parseInt($("#currentPage").html()) + 1;
 		loadRecList(currentPage);
@@ -46,6 +47,18 @@ $(function(){
 	});
 	$("#bbsListSearchBtn").on("click",function(){
 		loadBBSList($("#currentPage").html());
+	});
+	$("#userNext").on("click",function(){
+		var currentPage = parseInt($("#currentPage").html()) + 1;
+		loadRecList(currentPage);
+	});
+	$("#userPrcv").on("click",function(){
+		var currentPage = parseInt($("#currentPage").html()) -1;
+		loadRecList(currentPage);
+	});
+	$("#userSearchList").on("click",function(){
+		var currentPage = parseInt($("#currentPage").html());
+		loadRecList(currentPage);
 	});
 });
 function loadRecList(pageNo){
@@ -179,8 +192,10 @@ function loadAnnounList(pageNo){
 }
 function loadResumeList(pageNo){
 	var name = $("#resNameSearch").val();
+	var recruitId = $("#res_recList").val();
+	var url = $.ctx+"/res/listRes/"+recruitId+"/"+name;
 	$.ajax({
-		url:$.ctx+"/res/list/"+name,
+		url:url,
 		data:{pageNo:pageNo},
 		dataType:"json",
 		type:"post",
@@ -197,15 +212,19 @@ function loadResumeList(pageNo){
 					'<td width="12%">'+data[i].resumeEdus[0].education+'</td>'+
 					'<td width="12%">'+data[i].resumeEdus[0].schoolName+'</td>'+
 					'<td width="10%">'+data[i].age+'</td>'+
-					'<td width="12%">'+data[i].status+'</td>'+
+					'<td width="12%">'+(data[i].status == "FAIL" ? "不通过":"通过") +'</td>'+
 					'<td width="23%" class="color-yellow">';
 					if($("#userNameText").attr("userType") == "APPLICANT"){
 						trHTml += '<a class="btn btn-defaul" href="/html/addResume.jsp?'+data[i].id+'#resume">查看</a>';
+						if(data[i].status == "FAIL"){
+							trHTml += '<a class="btn btn-defaul" href="javascript:void(0);" onclick ="resPass(\''+data[i].id+'\',1)">通过</a>';
+						}else{
+							trHTml += '<a class="btn btn-defaul" href="javascript:void(0);" onclick ="resPass(\''+data[i].id+'\',0)">不通过</a>';
+						}
 					}else if($("#userNameText").attr("userType") == "RECRUITER"){
 						trHTml += '<a class="btn btn-defaul" href="/html/addResume.jsp?'+data[i].id+'#resume">修改</a>';
 					}
-					trHTml += '<a class="btn btn-defaul" href="javascript:void();">通过</a>';
-					trHTml += '<a class="btn btn-defaul" href="javascript:void();">不通过</a>';
+			
 					trHTml += '<button class="btn btn-defaul" onclick="delRes('+data[i].id+')">删除</button>'+
 					'</td>'+
 					'</tr>';
@@ -375,6 +394,127 @@ function delBBS(id){
 			}else{
 				alert("删除失败！");
 			}
+		}
+	});
+}
+
+
+//获取职位名称
+function loadAllRecList(){
+	var theRequest = window.location.search;
+	if(window.location.hash.indexOf("resume") == -1){
+		return;
+	}
+	$.ajax({
+		url:$.ctx+"/rec/listAll",
+		data:{},
+		dataType:"json",
+		type:"post",
+		success:function(result){
+			var data = result.list;
+			var trHTml = "";
+			if(data && data.length>0){
+				for(var i=0,len=data.length;i<len;i++){
+					trHTml += '<option value = "'+data[i].id+'">'+data[i].possion+'</option>';
+				}
+				$("#res_recList").html(trHTml);
+				loadResumeList(1);
+			}
+		}
+	});
+}
+//通过、不通过
+function resPass(id,status){
+	$.ajax({
+		url:$.ctx+"/res/audit/"+id+"/"+status,
+		data:{},
+		dataType:"json",
+		type:"post",
+		success:function(result){
+			if(result.status == 200){
+				alert("修改成功");
+				loadResumeList(1);
+			}else{
+				alert("修改失败");
+			}
+			
+		}
+	});
+}
+//获取用户list
+function loaduserList(pageNo){
+	var name = $("#userNameSearch").val();
+	$.ajax({
+		url:$.ctx+"/user/list/"+name,
+		data:{pageNo:pageNo},
+		dataType:"json",
+		type:"post",
+		success:function(result){
+//			console.log(result);
+			var data = result.list;
+			var pager = result.page;
+			var trHTml = "";
+			if(data && data.length>0){
+				for(var i=0,len=data.length;i<len;i++){
+					trHTml += '<tr class="customer-tbody">'+
+								'<td width="5%">'+(i+1)+'</td>'+
+								'<td width="70%">'+data[i].userName+'</td>'+
+								'<td width="25%" class="color-yellow">';
+								if($("#userNameText").attr("userType") == "APPLICANT"){
+									trHTml += '<button class="btn btn-defaul"onclick="delUser(\''+data[i].id+'\')">删除</button>';
+								} 
+								trHTml += '</td></tr>';
+				}
+				$("#userTbody").html(trHTml);
+				$("#currentPage").html(pager.pageNo);
+				$("#totalPage").html(pager.totalPageNumber);
+				if(pager.pageNo == 1){
+					$("#userPrcv").parent().addClass("disabled");
+					$("#userPrcv").off("click");
+				}else{
+					$("#userPrcv").parent().removeClass("disabled");
+					$("#userPrcv").on("click",function(){
+						var currentPage = parseInt($("#currentPage").html()) -1;
+						loadRecList(currentPage);
+					});
+				}
+				if(pager.pageNo == pager.totalPageNumber){
+					$("#userNext").parent().addClass("disabled");
+					$("#userNext").off("click");
+				}else if(pager.pageNo != pager.totalPageNumber){
+					$("#userNext").parent().removeClass("disabled");
+					$("#userNext").on("click",function(){
+						var currentPage = parseInt($("#currentPage").html()) + 1;
+						loadRecList(currentPage);
+					});
+				}
+				$(".ui-page-num").show();
+			}else{
+				$("#userTbody").html('<tr class="customer-tbody text-center"><td colspan="7">暂无数据</td></tr>');
+				$("#userPrcv").parent().addClass("disabled");
+				$("#userNext").parent().addClass("disabled");
+				$(".ui-page-num").hide();
+			}
+		}
+	});
+}
+function delUser(id){
+	if(!confirm("确定删除？")){
+		return;
+	}
+	$.ajax({
+		url:$.ctx+"/user/del/"+id,
+		data:{},
+		dataType:"json",
+		type:"post",
+		success:function(result){
+			if(result.status == 200){
+				alert("修改成功");
+				loaduserList($("#currentPage").html());
+			}else{
+				alert("修改失败");
+			}
+			
 		}
 	});
 }

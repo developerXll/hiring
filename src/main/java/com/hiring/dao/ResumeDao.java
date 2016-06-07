@@ -2,7 +2,6 @@ package com.hiring.dao;
 
 import java.util.List;
 
-import com.hiring.bean.Recruit;
 import com.hiring.bean.Resume;
 import com.hiring.bean.User;
 import com.hiring.framework.Page;
@@ -18,10 +17,12 @@ public interface ResumeDao extends BaseDao<Resume, Long>
 
 	public int countByPageByUserName(String name);
 	
-	public List<Resume> getResPage(Recruit recruit, Page page, String name);
+	public List<Resume> getResPage(Long recruitId, Page page, String name);
 
-	public int countRes(Recruit recruit, String name);
+	public int countRes(Long recruitId, String name);
 	
-	public boolean addAudit(String recId, String status);
+	public boolean addAudit(Long recId, String status);
+	
+	public List<Resume> getByRecId(Long recId);
 
 	}

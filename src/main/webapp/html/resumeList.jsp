@@ -16,8 +16,7 @@
 				     <input type="text" class="form-control" id="resNameSearch" placeholder="输入查询名称">
 				   </div>
 				   <div class="form-group">
-				     <select class="form-control" disabled id="res_recList">
-						<option value="all">请选择职位</option>
+				     <select class="form-control" id="res_recList">
 					</select>
 				   </div>
 				   <button type="button" class="btn btn-primary" id="resSearchList">查询</button>

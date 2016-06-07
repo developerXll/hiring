@@ -26,7 +26,7 @@ public class ResumeObj
 
 	private Resume resume = new Resume();
 
-	private String recruitId;
+	private RecruitObj recruit;
 
 	public ResumeObj()
 		{
@@ -323,12 +323,12 @@ public class ResumeObj
 
 	public RecruitObj getRecruit()
 		{
-		return new RecruitObj(this.resume.getRecruit());
+		return recruit;
 		}
 
 	public void setRecruit(RecruitObj recruit)
 		{
-		this.resume.setRecruit(recruit.getRecruit());
+		this.recruit = recruit;
 		}
 
 	public String getStatus()
@@ -344,11 +344,11 @@ public class ResumeObj
 
 	public String getRecruitId()
 		{
-		return recruitId;
+		return this.resume.getRecruitId().toString();
 		}
 
 	public void setRecruitId(String recruitId)
 		{
-		this.recruitId = recruitId;
+		this.resume.setRecruitId(Long.parseLong(recruitId));
 		}
 	}

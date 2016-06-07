@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.hiring.bean.Recruit;
 import com.hiring.bean.Resume;
+import com.hiring.bean.obj.RecruitObj;
 import com.hiring.bean.obj.ResumeObj;
 import com.hiring.bean.obj.UserObj;
 import com.hiring.constants.ResumeStatus;
@@ -97,16 +98,19 @@ public class ResumeServiceImpl extends BaseServiceImpl<Resume>
 	public List<ResumeObj> findResPageObj(String rescruitId, String userName,
 			Page page)
 		{
-		Recruit recruit = recruitDao.load(rescruitId);
+		Recruit recruit = recruitDao.load(Long.parseLong(rescruitId));
 		if (recruit == null)
 			return new ArrayList<ResumeObj>();
-		List<Resume> ress = resumeDao.getResPage(recruit, page, userName);
+		RecruitObj recObj = new RecruitObj();
+		List<Resume> ress = resumeDao.getResPage(Long.parseLong(rescruitId), page, userName);
 		List<ResumeObj> resObjs = new ArrayList<ResumeObj>();
 		if (ress != null && ress.size() > 0)
 			{
 			for (Resume res : ress)
 				{
-				resObjs.add(new ResumeObj(res));
+				ResumeObj obj = new ResumeObj(res);
+				obj.setRecruit(recObj);
+				resObjs.add(obj);
 				}
 			}
 		return resObjs;
@@ -115,16 +119,13 @@ public class ResumeServiceImpl extends BaseServiceImpl<Resume>
 	@Override
 	public int findPageNumResPageObj(String rescruitId, String userName)
 		{
-		Recruit recruit = recruitDao.load(rescruitId);
-		if (recruit == null)
-			return 0;
-		return resumeDao.countRes(recruit, userName);
+		return resumeDao.countRes(Long.parseLong(rescruitId), userName);
 		}
 
 	@Override
 	public boolean addAudit(String recId, ResumeStatus status)
 		{
-		return resumeDao.addAudit(recId, status.toString());
+		return resumeDao.addAudit(Long.parseLong(recId), status.toString());
 		}
 
 	}

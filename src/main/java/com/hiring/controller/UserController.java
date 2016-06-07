@@ -63,6 +63,43 @@ public class UserController
 			}
 		return data;
 		}
+	
+	/**
+	 * 
+	 * 管理员列表用户
+	 * 
+	 * @param page
+	 * @param name
+	 * @return
+	 */
+	@RequestMapping("/list")
+	@ResponseBody
+	public UserListData getList(Page page, HttpServletRequest request)
+		{
+		if (page == null)
+			page = new Page();
+		UserListData data = new UserListData();
+		HttpSession session = request.getSession();
+		UserObj user = (UserObj) session
+				.getAttribute(Constants.SESSION_AUTHENTICATION);
+		if (user != null)
+			{
+			// 管理员用户
+			if (UserType.APPLICANT.equals(UserType.valueOf(user.getUserType())))
+				{
+				data.setList(userService.findPageByUserName(page, "", true));
+				page.setTotalNumber(userService.countByUserName("", true));
+				data.setPage(page);
+				}
+			else
+				{
+				data.setList(userService.findPageByUserName(page, "", false));
+				page.setTotalNumber(userService.countByUserName("", false));
+				data.setPage(page);
+				}
+			}
+		return data;
+		}
 
 	@RequestMapping("/del/{userId}")
 	@ResponseBody
@@ -71,7 +108,7 @@ public class UserController
 		Map<String, Object> map = new HashMap<String, Object>();
 		try
 			{
-			userService.delById(userId);
+			userService.delUser(userId);
 			map.put("status", 200);
 			map.put("message", "delete success!");
 			}

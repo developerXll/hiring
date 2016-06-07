@@ -18,4 +18,6 @@ public interface RecruitService extends BaseService<Recruit>
 	List<RecruitObj> findPageObjByName(Page page, String name);
 	
 	int countObjByName(String name);
+	
+	RecruitObj get(String id);
 	}
